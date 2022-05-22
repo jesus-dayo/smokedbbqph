@@ -1,5 +1,5 @@
 const Section = ({ children }) => {
-  return <div className="grid justify-items-center md:mt-4">{children}</div>;
+  return <div className="h-52 w-full">{children}</div>;
 };
 
 export default Section;
