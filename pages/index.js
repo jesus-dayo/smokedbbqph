@@ -137,12 +137,7 @@ const HomePage = () => {
                 />
               </div>
               <div className="mt-2">
-                <button
-                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
-                >
-                  Submit
-                </button>
+                <Button>Submit</Button>
               </div>
             </form>
           </div>

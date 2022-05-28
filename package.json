@@ -1,10 +1,12 @@
 {
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "currency-formatter": "^1.5.9",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "recoil": "^0.7.3-alpha.2"
   },
   "scripts": {
     "dev": "next dev",

@@ -12,7 +12,7 @@ const classes = {
   },
   variant: {
     primary:
-      'bg-teal-600 hover:bg-teal-800 focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 text-white rounded-full',
+      'bg-slate-900 ring-2 hover:bg-slate-800 focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50 text-white rounded-full',
     secondary:
       'bg-rose-900 hover:bg-rose-600 focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50 text-white hover:text-white rounded-full',
     danger:

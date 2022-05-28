@@ -10,6 +10,7 @@ const Quantity = ({ value = 0, onAdd, onMinus }) => {
         <input
           type={'text'}
           value={value}
+          onChange={() => {}}
           className="w-8 h-full text-center border-t-2 border-b-2 border-black"
         />
       </div>
