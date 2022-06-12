@@ -1,7 +1,7 @@
 import Header from './Header';
 import Head from 'next/head';
 
-export default function Layout({ children }) {
+export default function Layout({ full, children }) {
   return (
     <>
       <Head>
@@ -9,8 +9,8 @@ export default function Layout({ children }) {
         <link rel={'icon'} href={'/favicon.ico'} />
       </Head>
       <Header />
-      <main>
-        <div>{children}</div>
+      <main className={`${full ? 'h-screen' : ''}`}>
+        <div className={`${full ? 'h-screen' : ''}`}>{children}</div>
       </main>
     </>
   );

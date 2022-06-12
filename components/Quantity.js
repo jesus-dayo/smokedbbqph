@@ -1,12 +1,12 @@
-import { MinusIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline';
+import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline';
 
 const Quantity = ({ value = 0, onAdd, onMinus }) => {
   return (
-    <div className="flex bg-black rounded-md">
+    <div className="flex bg-black rounded-md h-10">
       <div className="w-8 text-white ">
         <PlusSmIcon onClick={onAdd} className="cursor-pointer" />
       </div>
-      <div className="text-center">
+      <div className="text-center text-black">
         <input
           type={'text'}
           value={value}

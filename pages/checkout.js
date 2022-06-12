@@ -1,23 +1,19 @@
-import { useRecoilValue } from 'recoil';
-import Quantity from '../components/Quantity';
-import { orderState } from '../states/orders';
+import Address from '../components/Address';
+import CalendarReservation from '../components/CalendarReservation';
+import PaymentOption from '../components/PaymentOption';
+import TotalSummary from '../components/TotalSummary';
 
 const { default: Layout } = require('../components/Layout');
 
 const Checkout = () => {
-  const orders = useRecoilValue(orderState);
-
   return (
-    <Layout>
-      {orders?.map((order) => (
-        <div className="flex">
-          <div>{order.label}</div>
-          <div>{order.price}</div>
-          <div>{order.quantity}</div>
-          <div>{order.quantity * order.price}</div>
-          <Quantity value={order.quantity} />
-        </div>
-      ))}
+    <Layout full>
+      <div className="flex flex-col justify-between gap-5 p-1 text-white">
+        <Address />
+        <TotalSummary />
+        <CalendarReservation />
+        <PaymentOption />
+      </div>
     </Layout>
   );
 };

@@ -8,7 +8,7 @@ const CheckoutButton = ({ onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="bg-slate-800 text-white text-sm w-80 rounded-lg ring-2"
+      className="bg-violet-600 text-white text-sm w-80 rounded-lg ring-2"
     >
       <div className="flex justify-evenly">
         <div className="p-2 flex relative">
