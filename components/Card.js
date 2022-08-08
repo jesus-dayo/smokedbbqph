@@ -61,7 +61,7 @@ const Card = ({
   };
 
   return (
-    <div className="bg-white w-40 max-h-96 h-96 shadow-md flex-col">
+    <div className="bg-white w-40 max-h-96 h-96 shadow-md flex-col md:w-2/12 md:h-full md:max-h-full">
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>
       </div>

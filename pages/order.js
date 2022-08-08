@@ -20,17 +20,19 @@ const OrderPage = () => {
 
   return (
     <Layout>
-      <div>
-        <div className="flex p-2 space-x-2 border-gray-800 border-2">
-          <FilterButton>Recommended</FilterButton>
-          <FilterButton>Beef</FilterButton>
-          <FilterButton>Pork</FilterButton>
-          <FilterButton>Seafood</FilterButton>
-          <FilterButton>Rubs</FilterButton>
+      <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
+        <div className=" grow p-2 space-x-2 ">
+          <div className="grid grid-flow-col gap-2 md:w-8/12 md:gap-5">
+            <FilterButton>Recommended</FilterButton>
+            <FilterButton>Beef</FilterButton>
+            <FilterButton>Pork</FilterButton>
+            <FilterButton>Seafood</FilterButton>
+            <FilterButton>Rubs</FilterButton>
+          </div>
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="flex flex-wrap justify-evenly bg-black p-3 gap-2">
+        <div className="flex flex-wrap justify-evenly md:justify-start bg-black p-3 gap-2">
           <Card
             id={1}
             label={'Beef Brisket'}
@@ -69,8 +71,8 @@ const OrderPage = () => {
           />
         </div>
       </div>
-      {orders.length && (
-        <div className="pt-1 pb-4 fixed -bottom-5 left-7 animate-bounce">
+      {orders.length > 0 && (
+        <div className="pt-1 pb-4 fixed -bottom-4 right-7 animate-bounce">
           <CheckoutButton onClick={routeToCheckoutPage} />
         </div>
       )}
