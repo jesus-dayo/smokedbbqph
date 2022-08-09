@@ -17,7 +17,10 @@ const TotalSummary = ({ className }) => {
         <div>Quantity</div>
       </div>
       {orders?.map((order) => (
-        <div className="flex flex-row gap-2 text-md justify-between">
+        <div
+          key={`${order.id}`}
+          className="flex flex-row gap-2 text-md justify-between"
+        >
           <div className="w-30">{order.label}</div>
           <div className="w-30">{convertToPHP(order.price)}</div>
           <div className="w-30 h-8">

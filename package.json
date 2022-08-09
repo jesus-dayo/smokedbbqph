@@ -14,7 +14,9 @@
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
-    "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook"
+    "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -26,6 +28,9 @@
     "@storybook/testing-library": "^0.0.13",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
+    "eslint": "8.21.0",
+    "eslint-config-next": "12.2.4",
+    "husky": "^8.0.1",
     "miragejs": "^0.1.45",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"

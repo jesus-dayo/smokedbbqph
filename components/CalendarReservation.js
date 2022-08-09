@@ -36,14 +36,19 @@ const CalendarReservation = ({ className }) => {
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {availDateAndTime.map((avail) => (
-          <div className="p-2 bg-slate-100 shadow-lg">
+          <div
+            key={`avail-${avail.date}-${avail.time}`}
+            className="p-2 bg-slate-100 shadow-lg"
+          >
             <div className="text-left font-bold text-xl uppercase">
               {avail.date}
             </div>
             <div className="text-left text-lg uppercase">{avail.day}</div>
             <select className="rounded-md text-lg px-3 py-2 mb-1 border-2 border-gray-200 w-full">
               {avail.time.map((time) => (
-                <option value={time}>{time}</option>
+                <option key={`time-${time}`} value={time}>
+                  {time}
+                </option>
               ))}
             </select>
             <div className="text-sm text-red-400">

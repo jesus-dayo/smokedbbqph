@@ -42,6 +42,7 @@ const OrderPage = () => {
         <div className="flex flex-wrap justify-evenly md:justify-start bg-black p-3 gap-2">
           {data?.products?.map((item) => (
             <Card
+              key={`item-${item.id}`}
               id={item.id}
               label={item.name}
               imgSrc={item.picture?.web}

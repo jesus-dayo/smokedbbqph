@@ -7,6 +7,7 @@ import {
   convertToPHP,
   replaceItemAtIndex,
 } from '../utils/index';
+import Image from 'next/image';
 
 const Card = ({
   id,
@@ -65,8 +66,8 @@ const Card = ({
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 h-36">
-        <img src={imgSrc} className="h-32 w-full" />
+      <div className="p-1 border-2 h-36 w-full relative">
+        <Image src={imgSrc} alt={label} layout="fill" objectFit="contain" />
       </div>
       <div className="text-xs p-2 h-28">{description}</div>
       <div className="text-md text-center opacity-80 p-2">
