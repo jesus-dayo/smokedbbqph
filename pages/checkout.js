@@ -8,7 +8,7 @@ const { default: Layout } = require('../components/Layout');
 const Checkout = () => {
   return (
     <Layout full>
-      <div className="flex flex-col justify-between gap-5 p-1 text-white">
+      <div className="flex flex-col justify-between md:justify-center gap-5 p-1 md:p-10 text-white">
         <Address />
         <TotalSummary />
         <CalendarReservation />
