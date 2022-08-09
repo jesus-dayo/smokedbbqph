@@ -1,9 +1,9 @@
 import FormContainer from './FormContainer';
 import FormInput from './FormInput';
 
-const Address = () => {
+const Address = ({ className }) => {
   return (
-    <FormContainer>
+    <FormContainer className={className}>
       <div>
         <h1 className="text-center font-bold text-xl uppercase mb-2">
           Delivery Address

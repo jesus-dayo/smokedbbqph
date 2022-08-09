@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FormContainer from './FormContainer';
 
-const CalendarReservation = () => {
+const CalendarReservation = ({ className }) => {
   const availDateAndTime = [
     {
       date: 'July 1',
@@ -30,7 +30,7 @@ const CalendarReservation = () => {
   ];
 
   return (
-    <FormContainer>
+    <FormContainer className={className}>
       <p className="text-center font-bold text-xl uppercase mb-2">
         Choose Delivery Date
       </p>

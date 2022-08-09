@@ -5,11 +5,11 @@ import FormH1 from './FormH1';
 import FormContainer from './FormContainer';
 import Quantity from './Quantity';
 
-const TotalSummary = () => {
+const TotalSummary = ({ className }) => {
   const orders = useRecoilValue(orderState);
 
   return (
-    <FormContainer>
+    <FormContainer className={className}>
       <FormH1>Order Summary</FormH1>
       <div className="flex flex-row gap-2 mb-2 text-md font-bold justify-between">
         <div>Name</div>

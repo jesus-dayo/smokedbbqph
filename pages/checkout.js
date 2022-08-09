@@ -8,11 +8,20 @@ const { default: Layout } = require('../components/Layout');
 const Checkout = () => {
   return (
     <Layout full>
-      <div className="flex flex-col justify-between md:justify-center gap-5 p-1 md:p-10 text-white">
-        <Address />
-        <TotalSummary />
-        <CalendarReservation />
-        <PaymentOption />
+      <div className="flex flex-wrap text-white h-full md:p-10">
+        <div className="w-full">
+          <TotalSummary className="md:w-full" />
+        </div>
+
+        <div className="w-full">
+          <CalendarReservation className="md:w-full" />
+        </div>
+        <div className="w-full md:w-6/12">
+          <Address className="w-full" />
+        </div>
+        <div className="w-full md:w-6/12">
+          <PaymentOption className="w-full" />
+        </div>
       </div>
     </Layout>
   );

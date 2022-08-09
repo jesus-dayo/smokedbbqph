@@ -15,7 +15,7 @@ const HomePage = () => {
   };
 
   return (
-    <Layout>
+    <Layout full>
       <div className="flex flex-col">
         <Section>
           <div className="w-full h-screen md:h-full m-0 bg-slate-700 block bg-no-repeat bg-contain md:bg-cover md:bg-center bg-[url('/beef_brisket.jpg')]">

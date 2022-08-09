@@ -2,9 +2,9 @@ import FormContainer from './FormContainer';
 import FormH1 from './FormH1';
 import FormInput from './FormInput';
 
-const PaymentOption = () => {
+const PaymentOption = ({ className }) => {
   return (
-    <FormContainer>
+    <FormContainer className={className}>
       <FormH1>Secure payment info</FormH1>
       <div className="mb-3 flex -mx-2">
         <div className="px-2">

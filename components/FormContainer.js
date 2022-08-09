@@ -1,7 +1,9 @@
-const FormContainer = ({ children }) => {
+const FormContainer = ({ children, className }) => {
   return (
-    <div className="flex p-1">
-      <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700">
+    <div className="flex p-1 w-full">
+      <div
+        className={`w-full rounded-lg bg-white shadow-lg p-10 text-gray-700 ${className}`}
+      >
         {children}
       </div>
     </div>
