@@ -15,7 +15,7 @@
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
-    "lint": "next lint",
+    "lint": "next lint --max-warnings=0",
     "prepare": "husky install"
   },
   "devDependencies": {
