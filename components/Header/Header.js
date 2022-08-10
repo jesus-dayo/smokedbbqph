@@ -4,7 +4,7 @@ import { ViewListIcon } from '@heroicons/react/outline';
 const Header = () => {
   return (
     <div className="bg-gray-700">
-      <div className="flex justify-between shadow-md h-14 text-white">
+      <div className="flex justify-between shadow-md h-14 text-yellow-50">
         <div>icon</div>
         <div>
           <div className="p-4 gap-4 hidden md:flex ">

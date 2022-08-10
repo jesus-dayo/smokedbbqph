@@ -21,36 +21,40 @@ const Card = ({
   const [quantity, setQuantity] = useState(quantityCount);
   const [orders, setOrders] = useRecoilState(orderState);
 
-  useEffect(() => {
-    const updateOrders = () => {
-      const foundOrderIndex = orders.findIndex((order) => order.id === id);
-      if (quantity === 0) {
-        setOrders(removeItemAtIndex(orders, foundOrderIndex));
-      } else {
-        if (foundOrderIndex === -1) {
-          setOrders([
-            ...orders,
-            {
-              id,
-              label,
-              price,
-              quantity,
-            },
-          ]);
+  useEffect(
+    () => {
+      const updateOrders = () => {
+        const foundOrderIndex = orders.findIndex((order) => order.id === id);
+        if (quantity === 0) {
+          setOrders(removeItemAtIndex(orders, foundOrderIndex));
         } else {
-          setOrders(
-            replaceItemAtIndex(orders, foundOrderIndex, {
-              id,
-              label,
-              price,
-              quantity,
-            })
-          );
+          if (foundOrderIndex === -1) {
+            setOrders([
+              ...orders,
+              {
+                id,
+                label,
+                price,
+                quantity,
+              },
+            ]);
+          } else {
+            setOrders(
+              replaceItemAtIndex(orders, foundOrderIndex, {
+                id,
+                label,
+                price,
+                quantity,
+              })
+            );
+          }
         }
-      }
-    };
-    updateOrders();
-  }, [quantity]);
+      };
+      updateOrders();
+    },
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+    [quantity]
+  );
 
   const handleAddQuantity = () => {
     const newQuantity = quantity + 1;

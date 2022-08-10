@@ -28,7 +28,7 @@ const OrderPage = () => {
   return (
     <Layout>
       <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
-        <div className="grow p-2 space-x-2 ">
+        <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 ">
           <div className="grid grid-flow-col gap-2 md:w-8/12 md:gap-5">
             <FilterButton>Recommended</FilterButton>
             <FilterButton>Beef</FilterButton>
@@ -39,7 +39,7 @@ const OrderPage = () => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="flex flex-wrap justify-evenly md:justify-start bg-black p-3 gap-2">
+        <div className="flex flex-wrap justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {data?.products?.map((item) => (
             <Card
               key={`item-${item.id}`}
