@@ -1,11 +1,8 @@
-import Head from 'next/head';
-import Header from '../components/Header/Header';
-import Section from '../components/Section';
+import Section from '../components/Section/Section';
 import Image from 'next/image';
-import Button from '../components/Button';
+import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import Layout from '../components/Layout/Layout';
 import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {

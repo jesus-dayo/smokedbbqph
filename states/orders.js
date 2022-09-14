@@ -1,4 +1,4 @@
-const { atom, selector } = require('recoil');
+import { atom, selector } from 'recoil';
 
 const orderState = atom({
   key: 'orderState',

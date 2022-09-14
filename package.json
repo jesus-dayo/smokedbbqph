@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@aws-amplify/ui-react": "^3.5.1",
     "@heroicons/react": "^1.0.6",
+    "aws-amplify": "^4.3.35",
     "currency-formatter": "^1.5.9",
     "next": "^12.1.6",
     "react": "^18.1.0",
@@ -17,7 +19,8 @@
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "lint": "next lint --max-warnings=0",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress": "cypress open"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -29,6 +32,7 @@
     "@storybook/testing-library": "^0.0.13",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
+    "cypress": "^10.7.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
     "husky": "^8.0.1",

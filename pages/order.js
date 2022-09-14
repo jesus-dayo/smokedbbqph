@@ -1,21 +1,31 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import FilterButton from '../components/FilterButton/FilterButton';
-import Card from '../components/Card';
+import Card from '../components/Card/Card';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
-import CheckoutButton from '../components/CheckoutButton';
-import useSWR from 'swr';
+import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify, API, Auth, withSSRContext } from 'aws-amplify';
+import awsExports from '../src/aws-exports';
+import { listProducts } from '../src/graphql/queries';
 
-const OrderPage = () => {
-  const { data } = useSWR('/api/products', (...args) =>
-    fetch(...args).then((res) => {
-      console.log('res', res);
-      return res.json();
-    })
-  );
-  console.log('data', data);
+Amplify.configure({ ...awsExports, ssr: true });
+
+export const getServerSideProps = async ({ req }) => {
+  const SSR = withSSRContext({ req });
+  const response = await SSR.API.graphql({ query: listProducts });
+
+  return {
+    props: {
+      products: response.data.listProducts.items,
+    },
+  };
+};
+
+const OrderPage = ({ products = [] }) => {
+  console.log('products', products);
   const router = useRouter();
   const orders = useRecoilValue(orderState);
 
@@ -40,7 +50,7 @@ const OrderPage = () => {
       </div>
       <div className="p-2 mb-10">
         <div className="flex flex-wrap justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
-          {data?.products?.map((item) => (
+          {products?.map((item) => (
             <Card
               key={`item-${item.id}`}
               id={item.id}
