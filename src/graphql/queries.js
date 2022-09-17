@@ -2,44 +2,35 @@
 // this is an auto generated file. This will be overwritten
 
 export const getProduct = /* GraphQL */ `
-  query GetProduct($id: ID!) {
-    getProduct(id: $id) {
-      id
+  query GetProduct($name: String!) {
+    getProduct(name: $name) {
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -54,25 +45,29 @@ export const getProduct = /* GraphQL */ `
 `;
 export const listProducts = /* GraphQL */ `
   query ListProducts(
+    $name: String
     $filter: ModelProductFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProducts(
+      name: $name
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -89,36 +84,10 @@ export const listProducts = /* GraphQL */ `
   }
 `;
 export const getAvailability = /* GraphQL */ `
-  query GetAvailability($id: ID!) {
-    getAvailability(id: $id) {
+  query GetAvailability($date: ID!) {
+    getAvailability(date: $date) {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -126,26 +95,22 @@ export const getAvailability = /* GraphQL */ `
 `;
 export const listAvailabilities = /* GraphQL */ `
   query ListAvailabilities(
+    $date: ID
     $filter: ModelAvailabilityFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listAvailabilities(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listAvailabilities(
+      date: $date
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
         date
         quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
@@ -159,19 +124,15 @@ export const getPicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -200,13 +161,13 @@ export const listPictures = /* GraphQL */ `
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }

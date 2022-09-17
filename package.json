@@ -6,6 +6,8 @@
     "currency-formatter": "^1.5.9",
     "next": "^12.1.6",
     "react": "^18.1.0",
+    "react-alert": "^7.0.3",
+    "react-alert-template-basic": "^1.0.2",
     "react-calendar": "^3.7.0",
     "react-dom": "^18.1.0",
     "react-instagram-embed": "^3.0.0",
@@ -16,6 +18,8 @@
   },
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev",
+    "build": "next build",
+    "start": "next start",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "lint": "next lint --max-warnings=0",

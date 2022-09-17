@@ -1,0 +1,28 @@
+query MyQuery {
+  listProducts {
+    items {
+      name
+      availability {
+        items {
+          date
+          quantity
+        }
+      }
+    }
+  }
+}
+
+mutation seedAvailability {
+  createAvailability(input: {date: "21 Aug 2022", quantity: 2}){
+    date
+  }
+}
+
+mutation seedProducts {
+  createProduct(
+    input: { name: "Beef Brisket", category: "beef", description: "Smoked barbecued for 12hrs until tender with our secret rub. Best partnered with your favorite wine or whisky. Prices are per 1kg.", 
+      price: 1800, currency: "php", isRecommended: true, availabilityDate: "21 Aug 2022"}
+  ) {
+    name
+  }
+}

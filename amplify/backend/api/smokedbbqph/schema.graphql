@@ -4,21 +4,20 @@ input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
 type Product @model {
-  id: ID!
-  name: String!
+  name: String! @primaryKey
   category: String!
   description: String
   price: Float
   currency: String
   isRecommended: Boolean
-  availability: [Availability]
+  availabilityDate: ID
+  availability: [Availability] @hasMany(fields: ["availabilityDate"])
   picture: [Picture]
 }
 
 type Availability @model {
-  date: String!
+  date: ID! @primaryKey
   quantity: Int!
-  appearsIn: [Product]
 }
 
 type Picture @model {

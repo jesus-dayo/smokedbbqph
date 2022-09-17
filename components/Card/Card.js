@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Quantity from '../Quantity/Quantity';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -8,23 +9,26 @@ import {
   replaceItemAtIndex,
 } from '../../utils/index';
 import Image from 'next/image';
+import { useAlert } from 'react-alert';
 
 const Card = ({
-  id,
   label,
   price,
   imgSrc,
   description,
   quantityCount = 0,
-  notAvailable,
+  availableQuantity,
 }) => {
   const [quantity, setQuantity] = useState(quantityCount);
   const [orders, setOrders] = useRecoilState(orderState);
+  const alert = useAlert();
 
   useEffect(
     () => {
       const updateOrders = () => {
-        const foundOrderIndex = orders.findIndex((order) => order.id === id);
+        const foundOrderIndex = orders.findIndex(
+          (order) => order.label === label
+        );
         if (quantity === 0) {
           setOrders(removeItemAtIndex(orders, foundOrderIndex));
         } else {
@@ -32,7 +36,6 @@ const Card = ({
             setOrders([
               ...orders,
               {
-                id,
                 label,
                 description,
                 price,
@@ -43,7 +46,6 @@ const Card = ({
           } else {
             setOrders(
               replaceItemAtIndex(orders, foundOrderIndex, {
-                id,
                 label,
                 description,
                 price,
@@ -61,18 +63,27 @@ const Card = ({
   );
 
   const handleAddQuantity = () => {
+    alert.removeAll();
     const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
+    console.log('availableQuantity', availableQuantity);
+    if (newQuantity > availableQuantity) {
+      alert.show('Max exceeded');
+    } else {
+      setQuantity(newQuantity);
+    }
   };
 
   const handleMinusQuantity = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
+    alert.removeAll();
+    if (quantity > 0) {
+      console.log('quantity', quantity);
+      setQuantity(quantity - 1);
+    }
   };
-
   return (
     <div
-      data-cy={`test-${id}-card`}
-      className="bg-white w-40 max-h-96 h-96 shadow-md flex-col md:w-2/12 md:h-full md:max-h-full"
+      data-cy={`test-${label}-card`}
+      className="bg-white w-full max-h-full h-full shadow-md flex-col md:w-2/12 md:h-full md:max-h-full"
     >
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>
@@ -93,11 +104,27 @@ const Card = ({
           value={quantity}
           onAdd={handleAddQuantity}
           onMinus={handleMinusQuantity}
-          id={id}
+          id={label}
+          notAvail={availableQuantity === 0}
         />
+      </div>
+      <div
+        data-cy={`test-${label}-quantity-avail-id`}
+        className={'h-8 text-center text-lg text-red-400 font-semibold'}
+      >
+        {availableQuantity !== 0 && `${availableQuantity} left`}
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  description: PropTypes.string,
+  imgSrc: PropTypes.string,
+  label: PropTypes.string,
+  price: PropTypes.string,
+  quantityCount: PropTypes.number,
+  availableQuantity: PropTypes.number,
 };
 
 export default Card;

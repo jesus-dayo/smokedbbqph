@@ -22,3 +22,7 @@ export const convertToPHP = (value) => {
   }
   return currencyFormatter.format(value, { code: 'PHP' });
 };
+
+export const getTotalQuantity = (availability) => {
+  return availability?.items?.reduce((total, next) => total + next.quantity, 0);
+};

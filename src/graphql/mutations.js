@@ -7,42 +7,33 @@ export const createProduct = /* GraphQL */ `
     $condition: ModelProductConditionInput
   ) {
     createProduct(input: $input, condition: $condition) {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -61,42 +52,33 @@ export const updateProduct = /* GraphQL */ `
     $condition: ModelProductConditionInput
   ) {
     updateProduct(input: $input, condition: $condition) {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -115,42 +97,33 @@ export const deleteProduct = /* GraphQL */ `
     $condition: ModelProductConditionInput
   ) {
     deleteProduct(input: $input, condition: $condition) {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -171,32 +144,6 @@ export const createAvailability = /* GraphQL */ `
     createAvailability(input: $input, condition: $condition) {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -210,32 +157,6 @@ export const updateAvailability = /* GraphQL */ `
     updateAvailability(input: $input, condition: $condition) {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -249,32 +170,6 @@ export const deleteAvailability = /* GraphQL */ `
     deleteAvailability(input: $input, condition: $condition) {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -289,19 +184,15 @@ export const createPicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -328,19 +219,15 @@ export const updatePicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -367,19 +254,15 @@ export const deletePicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web

@@ -4,42 +4,33 @@
 export const onCreateProduct = /* GraphQL */ `
   subscription OnCreateProduct {
     onCreateProduct {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -55,42 +46,33 @@ export const onCreateProduct = /* GraphQL */ `
 export const onUpdateProduct = /* GraphQL */ `
   subscription OnUpdateProduct {
     onUpdateProduct {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -106,42 +88,33 @@ export const onUpdateProduct = /* GraphQL */ `
 export const onDeleteProduct = /* GraphQL */ `
   subscription OnDeleteProduct {
     onDeleteProduct {
-      id
       name
       category
       description
       price
       currency
       isRecommended
+      availabilityDate
       availability {
-        date
-        quantity
-        appearsIn {
-          id
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
+        items {
+          date
+          quantity
           createdAt
           updatedAt
         }
-        id
-        createdAt
-        updatedAt
+        nextToken
       }
       picture {
         web
         mobile
         appearsIn {
-          id
           name
           category
           description
           price
           currency
           isRecommended
+          availabilityDate
           createdAt
           updatedAt
         }
@@ -159,32 +132,6 @@ export const onCreateAvailability = /* GraphQL */ `
     onCreateAvailability {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -195,32 +142,6 @@ export const onUpdateAvailability = /* GraphQL */ `
     onUpdateAvailability {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -231,32 +152,6 @@ export const onDeleteAvailability = /* GraphQL */ `
     onDeleteAvailability {
       date
       quantity
-      appearsIn {
-        id
-        name
-        category
-        description
-        price
-        currency
-        isRecommended
-        availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      id
       createdAt
       updatedAt
     }
@@ -268,19 +163,15 @@ export const onCreatePicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -304,19 +195,15 @@ export const onUpdatePicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
@@ -340,19 +227,15 @@ export const onDeletePicture = /* GraphQL */ `
       web
       mobile
       appearsIn {
-        id
         name
         category
         description
         price
         currency
         isRecommended
+        availabilityDate
         availability {
-          date
-          quantity
-          id
-          createdAt
-          updatedAt
+          nextToken
         }
         picture {
           web
