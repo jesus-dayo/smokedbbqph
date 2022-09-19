@@ -17,7 +17,13 @@ type Product @model {
 
 type Availability @model {
   date: ID! @primaryKey
+  range: Range @hasOne
   quantity: Int!
+}
+
+type Range @model {
+  start: String
+  end: String
 }
 
 type Picture @model {

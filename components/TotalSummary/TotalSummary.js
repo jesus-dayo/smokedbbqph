@@ -26,12 +26,14 @@ const TotalSummary = ({ className }) => {
           {orders?.map((order) => (
             <tr key={`order.label`} className="border-t-cyan-700 border-2">
               <td width={'20%'} className="p-2">
-                <Image
-                  src={order.picture}
-                  alt={order.label}
-                  width={100}
-                  height={100}
-                />
+                {order.picture && (
+                  <Image
+                    src={order.picture}
+                    alt={order.label}
+                    width={100}
+                    height={100}
+                  />
+                )}
               </td>
               <td className="text-left" width={'20%'}>
                 <div className="text-sm">{order.label}</div>

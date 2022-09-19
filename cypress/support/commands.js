@@ -65,7 +65,6 @@ Cypress.Commands.add('addQuantity', ({ name, availQuantity }) => {
       cy.inputQuantity({ name })
         .invoke('val')
         .should((val2) => {
-          console.log('addQuantity', val2, availQuantity);
           if (val2 >= availQuantity) {
             expect(Number(val2)).eq(Number(availQuantity));
           } else {
@@ -79,8 +78,6 @@ Cypress.Commands.add('minusQuantity', ({ name }) => {
   cy.inputQuantity({ name })
     .invoke('val')
     .then((val) => {
-      console.log('val', val);
-
       cy.get(`[data-cy='test-${name}-quantity-minus-id']`).click();
       cy.inputQuantity({ name })
         .invoke('val')
@@ -100,9 +97,6 @@ Cypress.Commands.add('clickCategory', ({ products, category }) => {
     products.forEach((product) => {
       if (product.isRecommended) {
         cy.contains(product.name).should('be.visible');
-        if (getTotalQuantity(product.availability) > 0) {
-          cy.get(`[data-cy='test-${product.name}-quantity-input-id']`).eq(0);
-        }
       } else {
         cy.contains(product.name).should('not.exist');
       }
@@ -111,9 +105,6 @@ Cypress.Commands.add('clickCategory', ({ products, category }) => {
     products.forEach((product) => {
       if (product.category === category) {
         cy.contains(product.name).should('be.visible');
-        if (getTotalQuantity(product.availability) > 0) {
-          cy.get(`[data-cy='test-${product.name}-quantity-input-id']`).eq(0);
-        }
       } else {
         cy.contains(product.name).should('not.exist');
       }

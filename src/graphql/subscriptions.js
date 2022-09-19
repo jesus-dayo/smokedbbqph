@@ -17,6 +17,7 @@ export const onCreateProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -59,6 +60,7 @@ export const onUpdateProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -101,6 +103,7 @@ export const onDeleteProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -131,9 +134,17 @@ export const onCreateAvailability = /* GraphQL */ `
   subscription OnCreateAvailability {
     onCreateAvailability {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
       createdAt
       updatedAt
+      availabilityRangeId
     }
   }
 `;
@@ -141,9 +152,17 @@ export const onUpdateAvailability = /* GraphQL */ `
   subscription OnUpdateAvailability {
     onUpdateAvailability {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
       createdAt
       updatedAt
+      availabilityRangeId
     }
   }
 `;
@@ -151,7 +170,48 @@ export const onDeleteAvailability = /* GraphQL */ `
   subscription OnDeleteAvailability {
     onDeleteAvailability {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
+      createdAt
+      updatedAt
+      availabilityRangeId
+    }
+  }
+`;
+export const onCreateRange = /* GraphQL */ `
+  subscription OnCreateRange {
+    onCreateRange {
+      start
+      end
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateRange = /* GraphQL */ `
+  subscription OnUpdateRange {
+    onUpdateRange {
+      start
+      end
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteRange = /* GraphQL */ `
+  subscription OnDeleteRange {
+    onDeleteRange {
+      start
+      end
+      id
       createdAt
       updatedAt
     }

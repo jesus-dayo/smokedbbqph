@@ -17,6 +17,7 @@ export const getProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -67,7 +68,14 @@ export const listProducts = /* GraphQL */ `
         isRecommended
         availabilityDate
         availability {
-          nextToken
+          items {
+            date
+            quantity
+            range {
+              start
+              end
+            }
+          }
         }
         picture {
           web
@@ -87,9 +95,17 @@ export const getAvailability = /* GraphQL */ `
   query GetAvailability($date: ID!) {
     getAvailability(date: $date) {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
       createdAt
       updatedAt
+      availabilityRangeId
     }
   }
 `;
@@ -110,7 +126,44 @@ export const listAvailabilities = /* GraphQL */ `
     ) {
       items {
         date
+        range {
+          start
+          end
+          id
+          createdAt
+          updatedAt
+        }
         quantity
+        createdAt
+        updatedAt
+        availabilityRangeId
+      }
+      nextToken
+    }
+  }
+`;
+export const getRange = /* GraphQL */ `
+  query GetRange($id: ID!) {
+    getRange(id: $id) {
+      start
+      end
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listRanges = /* GraphQL */ `
+  query ListRanges(
+    $filter: ModelRangeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listRanges(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        start
+        end
+        id
         createdAt
         updatedAt
       }

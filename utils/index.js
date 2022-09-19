@@ -26,3 +26,20 @@ export const convertToPHP = (value) => {
 export const getTotalQuantity = (availability) => {
   return availability?.items?.reduce((total, next) => total + next.quantity, 0);
 };
+
+export const DAYS = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
+export const isProductAvailableByDate = (product, date) => {
+  const found = product.availability?.items?.find(
+    (item) => item.date === date && item.quantity > 0
+  );
+  return found !== undefined && found !== null;
+};

@@ -4,7 +4,7 @@ import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline';
 const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
   return (
     <div
-      className={`flex bg-black rounded-md p-2 text-white h-full ${className}`}
+      className={`flex bg-black rounded-md p-1 text-white h-full md:h-8 w-28 ${className}`}
       data-cy={`test-${id}-quantity-id`}
     >
       {notAvail && (
@@ -13,12 +13,12 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
         </div>
       )}
       {!notAvail && (
-        <div className="flex flex-row gap-3 w-full h-8">
-          <div className="w-8">
-            <PlusSmIcon
-              onClick={onAdd}
-              className="cursor-pointer"
-              data-cy={`test-${id}-quantity-plus-id`}
+        <div className="flex flex-row justify-around h-8 md:h-6 w-full">
+          <div className="w-8 md:w-4 text-center">
+            <MinusSmIcon
+              onClick={onMinus}
+              className="cursor-pointer md:h-6"
+              data-cy={`test-${id}-quantity-minus-id`}
             />
           </div>
           <div className="text-center text-black">
@@ -27,14 +27,14 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
               value={value}
               data-cy={`test-${id}-quantity-input-id`}
               onChange={() => {}}
-              className="w-8 h-full text-center border-t-2 border-b-2 border-black"
+              className="w-8 md:w-6 h-full text-center border-t-2 border-b-2 border-black"
             />
           </div>
-          <div className="w-8">
-            <MinusSmIcon
-              onClick={onMinus}
-              className="cursor-pointer"
-              data-cy={`test-${id}-quantity-minus-id`}
+          <div className="w-8 md:w-4 text-center">
+            <PlusSmIcon
+              onClick={onAdd}
+              className="cursor-pointer md:h-6"
+              data-cy={`test-${id}-quantity-plus-id`}
             />
           </div>
         </div>

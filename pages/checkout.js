@@ -48,7 +48,6 @@ const Checkout = () => {
           <div className="md:w-6/12 md:h-full">
             <PersonalDetails className="md:w-full" />
             <Address className="md:w-full w-full" />
-            <CalendarReservation className="md:w-full" />
           </div>
           <div className="md:w-6/12 md:h-full">
             <TotalSummary className="md:w-full" />

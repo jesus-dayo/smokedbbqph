@@ -1,7 +1,6 @@
 import { createServer } from 'miragejs';
 
 export const makeServer = (env) => {
-  console.log('env', env);
   if (env !== 'mock') {
     return;
   }

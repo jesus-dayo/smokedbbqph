@@ -20,6 +20,7 @@ export const createProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -65,6 +66,7 @@ export const updateProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -110,6 +112,7 @@ export const deleteProduct = /* GraphQL */ `
           quantity
           createdAt
           updatedAt
+          availabilityRangeId
         }
         nextToken
       }
@@ -143,9 +146,17 @@ export const createAvailability = /* GraphQL */ `
   ) {
     createAvailability(input: $input, condition: $condition) {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
       createdAt
       updatedAt
+      availabilityRangeId
     }
   }
 `;
@@ -156,9 +167,17 @@ export const updateAvailability = /* GraphQL */ `
   ) {
     updateAvailability(input: $input, condition: $condition) {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
       createdAt
       updatedAt
+      availabilityRangeId
     }
   }
 `;
@@ -169,7 +188,57 @@ export const deleteAvailability = /* GraphQL */ `
   ) {
     deleteAvailability(input: $input, condition: $condition) {
       date
+      range {
+        start
+        end
+        id
+        createdAt
+        updatedAt
+      }
       quantity
+      createdAt
+      updatedAt
+      availabilityRangeId
+    }
+  }
+`;
+export const createRange = /* GraphQL */ `
+  mutation CreateRange(
+    $input: CreateRangeInput!
+    $condition: ModelRangeConditionInput
+  ) {
+    createRange(input: $input, condition: $condition) {
+      start
+      end
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateRange = /* GraphQL */ `
+  mutation UpdateRange(
+    $input: UpdateRangeInput!
+    $condition: ModelRangeConditionInput
+  ) {
+    updateRange(input: $input, condition: $condition) {
+      start
+      end
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteRange = /* GraphQL */ `
+  mutation DeleteRange(
+    $input: DeleteRangeInput!
+    $condition: ModelRangeConditionInput
+  ) {
+    deleteRange(input: $input, condition: $condition) {
+      start
+      end
+      id
       createdAt
       updatedAt
     }

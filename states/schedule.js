@@ -4,7 +4,8 @@ const scheduleState = atom({
   key: 'scheduleState',
   default: {
     date: '',
-    time: '',
+    range: '',
+    quantity: 0,
   },
 });
 

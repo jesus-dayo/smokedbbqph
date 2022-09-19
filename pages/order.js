@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout/Layout';
-import FilterButton from '../components/FilterButton/FilterButton';
 import Card from '../components/Card/Card';
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
-import { Authenticator } from '@aws-amplify/ui-react';
-import { Amplify, API, Auth, withSSRContext } from 'aws-amplify';
+import { Amplify, withSSRContext } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
 import { listProducts } from '../src/graphql/queries';
-import { getTotalQuantity } from '../utils';
 import FilterGroup from '../components/FilterGroup/FilterGroup';
+import CalendarReservation from '../components/CalendarReservation/CalendarReservation';
+import uniqBy from 'lodash/uniqBy';
+import flatMap from 'lodash/flatMap';
+import { scheduleState } from '../states/schedule';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -29,7 +30,12 @@ export const getServerSideProps = async ({ req }) => {
 const OrderPage = ({ products = [] }) => {
   const [filter, setFilter] = useState();
   const [recommended, setRecommended] = useState(true);
+  const selectedSchedule = useRecoilValue(scheduleState);
 
+  const availabilities = uniqBy(
+    flatMap(products.map((product) => product.availability.items)),
+    'date'
+  );
   const router = useRouter();
   const orders = useRecoilValue(orderState);
 
@@ -91,8 +97,27 @@ const OrderPage = ({ products = [] }) => {
     },
   ];
 
+  const getQuantityBaseOnSchedule = (availability) => {
+    const avail = availability.find(
+      (avail) => avail.date === selectedSchedule.date
+    );
+    if (avail) {
+      return avail.quantity;
+    }
+    return 0;
+  };
+
   return (
     <Layout>
+      <div className="p-2">
+        <div className="flex flex-wrap justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+          <CalendarReservation
+            className="md:w-full"
+            availabilities={availabilities}
+            products={products}
+          />
+        </div>
+      </div>
       <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
         <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 ">
           <div className="grid grid-flow-col gap-2 md:w-8/12 md:gap-5">
@@ -109,7 +134,9 @@ const OrderPage = ({ products = [] }) => {
               imgSrc={item.picture?.web}
               description={item.description}
               price={item.price}
-              availableQuantity={getTotalQuantity(item.availability)}
+              availableQuantity={getQuantityBaseOnSchedule(
+                item.availability?.items
+              )}
             />
           ))}
         </div>

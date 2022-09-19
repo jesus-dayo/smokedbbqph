@@ -11,6 +11,10 @@
         "items": [
           {
             "date": "21 Aug 2022",
+            "range": {
+              "start": "7pm",
+              "end": "9pm"
+            },
             "quantity": 2
           }
         ]
@@ -31,6 +35,10 @@
         "items": [
           {
             "date": "21 Aug 2022",
+            "range": {
+              "start": "7pm",
+              "end": "9pm"
+            },
             "quantity": 4
           }
         ]
@@ -50,7 +58,11 @@
       "availability": {
         "items": [
           {
-            "date": "21 Aug 2022",
+            "date": "22 Aug 2022",
+            "range": {
+              "start": "7pm",
+              "end": "9pm"
+            },
             "quantity": 10
           }
         ]
@@ -71,6 +83,10 @@
         "items": [
           {
             "date": "21 Aug 2022",
+            "range": {
+              "start": "7pm",
+              "end": "9pm"
+            },
             "quantity": 0
           }
         ]

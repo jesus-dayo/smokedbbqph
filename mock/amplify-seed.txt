@@ -6,9 +6,19 @@ query MyQuery {
         items {
           date
           quantity
+          range {
+            start
+            end
+          }
         }
       }
     }
+  }
+}
+
+mutation createRange {
+  createRange(input: {start:"7pm", end: "8pm"}){
+    id
   }
 }
 
@@ -24,5 +34,15 @@ mutation seedProducts {
       price: 1800, currency: "php", isRecommended: true, availabilityDate: "21 Aug 2022"}
   ) {
     name
+  }
+}
+
+mutation updateAvailability {
+  updateAvailability(input: {
+    date: "21 Aug 2022",
+    quantity: 2,
+    availabilityRangeId: "14edb3fb-e74c-43b2-9b3a-b7e1dc1ccc29"
+  }) {
+    availabilityRangeId
   }
 }

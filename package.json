@@ -4,6 +4,8 @@
     "@heroicons/react": "^1.0.6",
     "aws-amplify": "^4.3.35",
     "currency-formatter": "^1.5.9",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-alert": "^7.0.3",

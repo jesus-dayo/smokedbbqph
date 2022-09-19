@@ -23,6 +23,20 @@ const Card = ({
   const [orders, setOrders] = useRecoilState(orderState);
   const alert = useAlert();
 
+  useEffect(() => {
+    const foundOrder = orders.find((order) => order.label === label);
+    if (foundOrder) {
+      setQuantity(foundOrder.quantity);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('availableQuantity', label, availableQuantity);
+    if (!availableQuantity) {
+      setQuantity(0);
+    }
+  }, [availableQuantity]);
+
   useEffect(
     () => {
       const updateOrders = () => {
@@ -65,7 +79,6 @@ const Card = ({
   const handleAddQuantity = () => {
     alert.removeAll();
     const newQuantity = quantity + 1;
-    console.log('availableQuantity', availableQuantity);
     if (newQuantity > availableQuantity) {
       alert.show('Max exceeded');
     } else {
@@ -110,7 +123,9 @@ const Card = ({
       </div>
       <div
         data-cy={`test-${label}-quantity-avail-id`}
-        className={'h-8 text-center text-lg text-red-400 font-semibold'}
+        className={
+          'h-8 text-center text-lg md:text-sm text-red-400 font-semibold'
+        }
       >
         {availableQuantity !== 0 && `${availableQuantity} left`}
       </div>
