@@ -10,9 +10,23 @@ import CalendarReservation from '../components/CalendarReservation/CalendarReser
 import TotalSummary from '../components/TotalSummary/TotalSummary';
 import Layout from '../components/Layout/Layout';
 import PersonalDetails from '../components/PersonalDetails/PersonalDetails';
+import { useState } from 'react';
 
 const Checkout = () => {
   const router = useRouter();
+  const [errors, setErrors] = useState([]);
+
+  const handleChange = (e, fieldName) => {
+    validate(e, fieldName);
+  };
+
+  const validate = (e, fieldName) => {
+    if (!e.target.value) {
+      setErrors([...errors, fieldName]);
+    } else {
+      setErrors([...errors.filter((item) => item !== fieldName)]);
+    }
+  };
 
   const handleBackToOrders = () => {
     router.push('/order');
@@ -44,12 +58,20 @@ const Checkout = () => {
             Note: As of now, we only accept GCASH as mode of payment.
           </h5>
         </div>
-        <div className="flex flex-wrap md:w-full">
-          <div className="md:w-6/12 md:h-full">
-            <PersonalDetails className="md:w-full" />
-            <Address className="md:w-full w-full" />
+        <div className="grid grid-cols-2 md:w-full">
+          <div className="md:h-full">
+            <PersonalDetails
+              className="md:w-full"
+              validate={validate}
+              errors={errors}
+            />
+            <Address
+              className="md:w-full w-full"
+              validate={validate}
+              errors={errors}
+            />
           </div>
-          <div className="md:w-6/12 md:h-full">
+          <div className="md:h-full">
             <TotalSummary className="md:w-full" />
           </div>
         </div>

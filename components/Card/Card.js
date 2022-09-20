@@ -1,98 +1,19 @@
 import PropTypes from 'prop-types';
 import Quantity from '../Quantity/Quantity';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { orderState } from '../../states/orders';
-import {
-  removeItemAtIndex,
-  convertToPHP,
-  replaceItemAtIndex,
-} from '../../utils/index';
+import { useEffect } from 'react';
+import { convertToPHP } from '../../utils/index';
 import Image from 'next/image';
-import { useAlert } from 'react-alert';
+import useOrders from '../../hooks/useOrders';
 
-const Card = ({
-  label,
-  price,
-  imgSrc,
-  description,
-  quantityCount = 0,
-  availableQuantity,
-}) => {
-  const [quantity, setQuantity] = useState(quantityCount);
-  const [orders, setOrders] = useRecoilState(orderState);
-  const alert = useAlert();
-
-  useEffect(() => {
-    const foundOrder = orders.find((order) => order.label === label);
-    if (foundOrder) {
-      setQuantity(foundOrder.quantity);
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log('availableQuantity', label, availableQuantity);
-    if (!availableQuantity) {
-      setQuantity(0);
-    }
-  }, [availableQuantity]);
-
-  useEffect(
-    () => {
-      const updateOrders = () => {
-        const foundOrderIndex = orders.findIndex(
-          (order) => order.label === label
-        );
-        if (quantity === 0) {
-          setOrders(removeItemAtIndex(orders, foundOrderIndex));
-        } else {
-          if (foundOrderIndex === -1) {
-            setOrders([
-              ...orders,
-              {
-                label,
-                description,
-                price,
-                quantity,
-                picture: imgSrc,
-              },
-            ]);
-          } else {
-            setOrders(
-              replaceItemAtIndex(orders, foundOrderIndex, {
-                label,
-                description,
-                price,
-                quantity,
-                picture: imgSrc,
-              })
-            );
-          }
-        }
-      };
-      updateOrders();
-    },
-    //eslint-disable-next-line react-hooks/exhaustive-deps
-    [quantity]
-  );
-
-  const handleAddQuantity = () => {
-    alert.removeAll();
-    const newQuantity = quantity + 1;
-    if (newQuantity > availableQuantity) {
-      alert.show('Max exceeded');
-    } else {
-      setQuantity(newQuantity);
-    }
-  };
-
-  const handleMinusQuantity = () => {
-    alert.removeAll();
-    if (quantity > 0) {
-      console.log('quantity', quantity);
-      setQuantity(quantity - 1);
-    }
-  };
+const Card = ({ label, price, imgSrc, description, availableQuantity }) => {
+  const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
+    label,
+    price,
+    imgSrc,
+    description,
+    availableQuantity,
+  });
+  console.log('order card', order);
   return (
     <div
       data-cy={`test-${label}-card`}
@@ -114,7 +35,7 @@ const Card = ({
       </div>
       <div className="p-2 flex items-center justify-center">
         <Quantity
-          value={quantity}
+          value={order.quantity}
           onAdd={handleAddQuantity}
           onMinus={handleMinusQuantity}
           id={label}

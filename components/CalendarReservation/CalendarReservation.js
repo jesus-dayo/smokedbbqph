@@ -13,10 +13,10 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
   const alert = useAlert();
 
   useEffect(() => {
-    if (availabilities.length > 0 && !schedule.date) {
-      console.log('set default');
+    if (availabilities.length > 0 && !schedule?.date) {
       setSchedule(availabilities[0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availabilities]);
 
   const handleSelectDate = (index) => {
@@ -25,14 +25,10 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
     });
     // scan orders for not available on that date
     if (orders && orders.length > 0) {
-      console.log('check orders', orders);
-
       const noLongerAvailOrders = orders.filter((order) => {
         const prod = findProductByOrder(order);
-        console.log('found prod', prod, availabilities[index].date);
         return !isProductAvailableByDate(prod, availabilities[index].date);
       });
-      console.log('noLongerAvailOrders', noLongerAvailOrders);
       let newOrders = [];
       noLongerAvailOrders.forEach((order) => {
         newOrders = [
@@ -41,7 +37,6 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
             orders.findIndex((ord) => ord.label === order.label)
           ),
         ];
-        console.log('show message');
         alert.show(`${order.label} is not available on this date.`);
       });
       setOrders(newOrders);
@@ -64,21 +59,21 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
       <div className="grid grid-cols-2  sm:grid-cols-4 md:grid-cols-6 gap-4">
         {availabilities.map((avail, index) => (
           <div
-            data-cy={`test-avail-${avail.date}-id`}
-            key={`avail-${avail.date}`}
+            data-cy={`test-avail-${avail?.date}-id`}
+            key={`avail-${avail?.date}`}
             className={`p-2 bg-slate-400 shadow-lg cursor-pointer ${
-              avail.date !== schedule.date ? 'hover:bg-slate-300' : ''
-            }  ${avail.date === schedule.date ? 'bg-slate-300' : ''}`}
+              avail?.date !== schedule?.date ? 'hover:bg-slate-300' : ''
+            }  ${avail?.date === schedule?.date ? 'bg-slate-300' : ''}`}
             onClick={() => handleSelectDate(index)}
           >
             <div className="text-center font-bold text-lg uppercase">
-              {avail.date}
+              {avail?.date}
             </div>
             <div className="text-center text-sm uppercase">
-              {getDay(avail.date)}
+              {getDay(avail?.date)}
             </div>
             <div className="text-center text-sm">
-              {avail.range.start}-{avail.range.end}
+              {avail?.range?.start}-{avail?.range?.end}
             </div>
           </div>
         ))}

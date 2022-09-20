@@ -68,14 +68,7 @@ export const listProducts = /* GraphQL */ `
         isRecommended
         availabilityDate
         availability {
-          items {
-            date
-            quantity
-            range {
-              start
-              end
-            }
-          }
+          nextToken
         }
         picture {
           web

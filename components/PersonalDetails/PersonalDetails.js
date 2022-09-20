@@ -3,28 +3,15 @@ import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
 import { personalState } from '../../states/personal';
 
-const PersonalDetails = ({ className }) => {
+const PersonalDetails = ({ className, validate, errors }) => {
   const [personal, setPersonal] = useRecoilState(personalState);
 
-  const handleNameChange = (e) => {
+  const handleChange = (e, fieldName) => {
     setPersonal({
       ...personal,
-      name: e.target.value,
+      [fieldName]: e.target.value,
     });
-  };
-
-  const handlePhoneChange = (e) => {
-    setPersonal({
-      ...personal,
-      phoneNumber: e.target.value,
-    });
-  };
-
-  const handleEmailChange = (e) => {
-    setPersonal({
-      ...personal,
-      email: e.target.value,
-    });
+    validate(e, fieldName);
   };
 
   return (
@@ -38,17 +25,33 @@ const PersonalDetails = ({ className }) => {
         <FormInput
           label="Name"
           placeholder="Full name here"
-          onChange={handleNameChange}
+          onChange={(e) => handleChange(e, 'name')}
+          onBlur={(e) => validate(e, 'name')}
+          testId="name"
+          validationError={'name is a required field'}
+          error={errors.includes('name')}
+          maxLength={50}
         />
         <FormInput
           label="Phone Number"
           placeholder="Phone number of contact person"
-          onChange={handlePhoneChange}
+          testId="phone"
+          validationError={'phone is a required field'}
+          onChange={(e) => handleChange(e, 'phone')}
+          onBlur={(e) => validate(e, 'phone')}
+          error={errors.includes('phone')}
+          maxLength={20}
         />
         <FormInput
           label="Email"
           placeholder="Email here"
-          onChange={handleEmailChange}
+          validationError={'email is a required field'}
+          onChange={(e) => handleChange(e, 'email')}
+          onBlur={(e) => validate(e, 'email')}
+          error={errors.includes('email')}
+          maxLength={50}
+          testId="email"
+          type="email"
         />
       </div>
     </FormContainer>

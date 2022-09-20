@@ -36,6 +36,12 @@ Cypress.Commands.add('checkout', () => {
   return cy.get(`[data-cy='test-checkout-id']`);
 });
 
+Cypress.Commands.add('checkoutNow', () => {
+  cy.get(`[data-cy='test-checkout-id']`).click();
+  cy.wait(2000);
+  cy.url().should('include', '/checkout');
+});
+
 Cypress.Commands.add('quantity', ({ name }) => {
   return cy.get(`[data-cy='test-${name}-quantity-id']`);
 });
@@ -110,4 +116,44 @@ Cypress.Commands.add('clickCategory', ({ products, category }) => {
       }
     });
   }
+});
+
+Cypress.Commands.add('fillPersonalDetails', () => {
+  cy.get(`[data-cy='test-name-input']`).focus();
+  cy.get(`[data-cy='test-name-input']`).blur();
+  cy.contains('name is a required field').should('exist');
+  cy.get(`[data-cy='test-name-input']`).type('Johnny Depp');
+  cy.contains('name is a required field').should('not.exist');
+
+  cy.get(`[data-cy='test-phone-input']`).focus();
+  cy.get(`[data-cy='test-phone-input']`).blur();
+  cy.contains('phone is a required field').should('exist');
+  cy.get(`[data-cy='test-phone-input']`).type('63 9192345678');
+  cy.contains('phone is a required field').should('not.exist');
+
+  cy.get(`[data-cy='test-email-input']`).focus();
+  cy.get(`[data-cy='test-email-input']`).blur();
+  cy.contains('email is a required field').should('exist');
+  cy.get(`[data-cy='test-email-input']`).type('johnny.depp@email.com');
+  cy.contains('email is a required field').should('not.exist');
+});
+
+Cypress.Commands.add('fillAddress', () => {
+  cy.get(`[data-cy='test-houseNo-input']`).focus();
+  cy.get(`[data-cy='test-houseNo-input']`).blur();
+  cy.contains('house number is a required field').should('exist');
+  cy.get(`[data-cy='test-houseNo-input']`).type('B1 L2 Manila');
+  cy.contains('house number is a required field').should('not.exist');
+
+  cy.get(`[data-cy='test-streetAddress-input']`).focus();
+  cy.get(`[data-cy='test-streetAddress-input']`).blur();
+  cy.contains('street address is a required field').should('exist');
+  cy.get(`[data-cy='test-streetAddress-input']`).type('iris st');
+  cy.contains('street address is a required field').should('not.exist');
+
+  cy.get(`[data-cy='test-city-input']`).focus();
+  cy.get(`[data-cy='test-city-input']`).blur();
+  cy.contains('city is a required field').should('exist');
+  cy.get(`[data-cy='test-city-input']`).type('Muntinlupa');
+  cy.contains('city is a required field').should('not.exist');
 });

@@ -3,42 +3,15 @@ import { addressState } from '../../states/address';
 import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
 
-const Address = ({ className }) => {
+const Address = ({ className, validate, errors = [] }) => {
   const [address, setAddress] = useRecoilState(addressState);
 
-  const handleHouseNo = (e) => {
+  const handleChange = (e, fieldName) => {
     setAddress({
       ...address,
-      houseNo: e.target.value,
+      [fieldName]: e.target.value,
     });
-  };
-
-  const handleStreetAddress = (e) => {
-    setAddress({
-      ...address,
-      street: e.target.value,
-    });
-  };
-
-  const handleBarangay = (e) => {
-    setAddress({
-      ...address,
-      barangay: e.target.value,
-    });
-  };
-
-  const handleCity = (e) => {
-    setAddress({
-      ...address,
-      city: e.target.value,
-    });
-  };
-
-  const handlePostal = (e) => {
-    setAddress({
-      ...address,
-      postalCode: e.target.value,
-    });
+    validate(e, fieldName);
   };
 
   return (
@@ -52,23 +25,49 @@ const Address = ({ className }) => {
         <FormInput
           label="House No"
           placeholder="House No"
-          onChange={handleHouseNo}
+          testId="houseNo"
+          value={address.houseNo}
+          validationError={'house number is a required field'}
+          onChange={(e) => handleChange(e, 'houseNo')}
+          onBlur={(e) => validate(e, 'houseNo')}
+          error={errors.includes('houseNo')}
+          maxLength={50}
         />
         <FormInput
           label="Street Address"
           placeholder="Street Address"
-          onChange={handleStreetAddress}
+          testId="streetAddress"
+          value={address.street}
+          validationError={'street address is a required field'}
+          onChange={(e) => handleChange(e, 'street')}
+          onBlur={(e) => validate(e, 'street')}
+          error={errors.includes('street')}
+          maxLength={50}
         />
         <FormInput
           label="Barangay"
+          value={address.barangay}
           placeholder="Barangay"
-          onChange={handleBarangay}
+          testId="barangay"
+          onChange={(e) => handleChange(e, 'barangay')}
         />
-        <FormInput label="City" placeholder="City" onChange={handleCity} />
         <FormInput
+          label="City"
+          placeholder="City"
+          value={address.city}
+          testId="city"
+          validationError={'city is a required field'}
+          onChange={(e) => handleChange(e, 'city')}
+          onBlur={(e) => validate(e, 'city')}
+          error={errors.includes('city')}
+          maxLength={50}
+        />
+        <FormInput
+          value={address.postalCode}
           label="Postal Code"
           placeholder="Postal"
-          onChange={handlePostal}
+          onChange={(e) => handleChange(e, 'postalCode')}
+          testId="postal"
         />
       </div>
     </FormContainer>

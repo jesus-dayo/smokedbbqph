@@ -7,18 +7,20 @@ import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
 import { Amplify, withSSRContext } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
-import { listProducts } from '../src/graphql/queries';
 import FilterGroup from '../components/FilterGroup/FilterGroup';
 import CalendarReservation from '../components/CalendarReservation/CalendarReservation';
 import uniqBy from 'lodash/uniqBy';
 import flatMap from 'lodash/flatMap';
 import { scheduleState } from '../states/schedule';
+import { listProductsWithAvailability } from '../src/graphql/custom_queries';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
 export const getServerSideProps = async ({ req }) => {
   const SSR = withSSRContext({ req });
-  const response = await SSR.API.graphql({ query: listProducts });
+  const response = await SSR.API.graphql({
+    query: listProductsWithAvailability,
+  });
   console.log('response', response);
   return {
     props: {
@@ -28,6 +30,7 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 const OrderPage = ({ products = [] }) => {
+  console.log('products', products);
   const [filter, setFilter] = useState();
   const [recommended, setRecommended] = useState(true);
   const selectedSchedule = useRecoilValue(scheduleState);
@@ -98,9 +101,13 @@ const OrderPage = ({ products = [] }) => {
   ];
 
   const getQuantityBaseOnSchedule = (availability) => {
+    if (!availability) {
+      return 0;
+    }
     const avail = availability.find(
       (avail) => avail.date === selectedSchedule.date
     );
+    console.log('getQuantityBaseOnSchedule', avail);
     if (avail) {
       return avail.quantity;
     }
