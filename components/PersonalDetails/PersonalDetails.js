@@ -17,11 +17,11 @@ const PersonalDetails = ({ className, validate, errors }) => {
   return (
     <FormContainer className={className}>
       <div>
-        <h1 className="text-left font-bold text:lg md:text-xl uppercase ">
+        <h1 className="text-left font-bold text:lg uppercase ">
           Personal Details
         </h1>
       </div>
-      <div className="flex flex-col gap-1 p-2">
+      <div className="flex flex-col gap-1 md:gap-0 p-2 md:p-0">
         <FormInput
           label="Name"
           placeholder="Full name here"

@@ -17,7 +17,7 @@ const Address = ({ className, validate, errors = [] }) => {
   return (
     <FormContainer className={className}>
       <div>
-        <h1 className="text-left font-bold text:lg md:text-xl uppercase ">
+        <h1 className="text-left font-bold text:lg uppercase ">
           Delivery Address
         </h1>
       </div>

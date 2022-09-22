@@ -11,14 +11,13 @@ import TotalSummary from '../components/TotalSummary/TotalSummary';
 import Layout from '../components/Layout/Layout';
 import PersonalDetails from '../components/PersonalDetails/PersonalDetails';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { orderState } from '../states/orders';
 
 const Checkout = () => {
   const router = useRouter();
   const [errors, setErrors] = useState([]);
-
-  const handleChange = (e, fieldName) => {
-    validate(e, fieldName);
-  };
+  const orders = useRecoilValue(orderState);
 
   const validate = (e, fieldName) => {
     if (!e.target.value) {
@@ -37,29 +36,42 @@ const Checkout = () => {
   };
 
   return (
-    <Layout full>
-      <div className="p-4">
+    <Layout medium>
+      <div className="p-4 md:p-4 flex justify-between">
         <Button
           variant="secondary"
-          className="h-12"
+          className="h-12 text-lg md:h-10 md:text-sm md:align-middle"
           onClick={handleBackToOrders}
         >
-          <div className="flex gap-4">
-            <div className="w-8">
+          <div className="flex gap-4 md:gap-2">
+            <div className="w-8 md:w-6">
               <BackspaceIcon />
             </div>
-            <div className="text-lg">Back to Orders</div>
+            <div className="md:pt-1">Back to Orders</div>
+          </div>
+        </Button>
+        <Button
+          variant="primary"
+          onClick={handleSubmitOrders}
+          disabled={!orders || orders.length === 0}
+          className="md:text-sm md:h-10"
+        >
+          <div className="flex gap-2">
+            <div className="text-right">Submit Order</div>
+            <div className="w-8 md:w-6">
+              <ArrowCircleRightIcon />
+            </div>
           </div>
         </Button>
       </div>
-      <div className=" text-white h-full md:w-full text-center md:pl-10 md:pr-10 md:pb-4 pb-2">
+      <div className=" text-white h-auto md:w-full text-center md:pl-5 md:pr-5 md:pb-2 pb-2">
         <div className="w-full text-left">
-          <h5 className="font-bold text-lg">
+          <h5 className="font-bold text-sm">
             Note: As of now, we only accept GCASH as mode of payment.
           </h5>
         </div>
-        <div className="grid grid-cols-2 md:w-full">
-          <div className="md:h-full">
+        <div className="grid grid-cols-2 gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
+          <div className="md:h-auto">
             <PersonalDetails
               className="md:w-full"
               validate={validate}
@@ -75,16 +87,6 @@ const Checkout = () => {
             <TotalSummary className="md:w-full" />
           </div>
         </div>
-      </div>
-      <div className="pb-4 w-full text-center animate-pulse">
-        <Button variant="primary" onClick={handleSubmitOrders}>
-          <div className="flex gap-2">
-            <div className="text-right text-lg">Submit Order</div>
-            <div className="w-8">
-              <ArrowCircleRightIcon />
-            </div>
-          </div>
-        </Button>
       </div>
     </Layout>
   );

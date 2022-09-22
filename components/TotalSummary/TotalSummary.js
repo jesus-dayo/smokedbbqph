@@ -63,14 +63,14 @@ const TotalSummary = ({ className }) => {
   console.log('summary', orders);
   return (
     <div className="p-1 h-full">
-      <div className="h-full rounded-lg bg-white shadow-lg md:p-10 p-4 text-gray-700">
+      <div className="h-full rounded-lg bg-white shadow-lg md:p-4 p-4 text-gray-700">
         <div>
-          <h1 className="text-left font-bold text:lg md:text-xl uppercase mb-2">
+          <h1 className="text-left font-bold text:lg uppercase">
             Shopping Cart
           </h1>
         </div>
         <table border={2} className="table-auto md:table-fixed">
-          <thead className="text-sm md:text-lg">
+          <thead className="text-sm">
             <th className="text-left">Product</th>
             <th className="text-left"></th>
             <th className="text-center">Weight</th>
@@ -78,39 +78,49 @@ const TotalSummary = ({ className }) => {
             <th className="text-right p-2">Price</th>
           </thead>
           <tbody>
-            {orders?.map((order, index) => (
-              <Row {...order} key={`order-${index}`} />
-            ))}
+            {orders &&
+              orders?.map((order, index) => (
+                <Row {...order} key={`order-${index}`} />
+              ))}
+            {(!orders || orders.length === 0) && (
+              <tr>
+                <td colSpan={5}>
+                  Nothing on the cart. Please return to order page to re-order.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
-        <div className="flex flex-col justify-end">
-          <div className="text-sm bg-white flex justify-end w-full">
-            <div className="p-2">Sub Total:</div>
-            <div className="p-2">
-              {convertToPHP(
-                orders.reduce(
-                  (prev, curr) => prev + curr.price * curr.quantity,
-                  0
-                )
-              )}
+        {orders && orders.length > 0 && (
+          <div className="flex flex-col justify-end">
+            <div className="text-sm bg-white flex justify-end w-full">
+              <div className="p-2">Sub Total:</div>
+              <div className="p-2">
+                {convertToPHP(
+                  orders.reduce(
+                    (prev, curr) => prev + curr.price * curr.quantity,
+                    0
+                  )
+                )}
+              </div>
+            </div>
+            <div className="text-sm bg-white flex justify-end">
+              <div className="p-2 ">Shipping:</div>
+              <div className="p-2 font-bold">Free</div>
+            </div>
+            <div className="text-xl bg-white flex gap-2 items-end justify-items-end justify-end">
+              <div className="p-2 font-bold text-sm">Total:</div>
+              <div className="p-2 text-sm">
+                {convertToPHP(
+                  orders.reduce(
+                    (prev, curr) => prev + curr.price * curr.quantity,
+                    0
+                  )
+                )}
+              </div>
             </div>
           </div>
-          <div className="text-sm bg-white flex justify-end">
-            <div className="p-2 ">Shipping:</div>
-            <div className="p-2 font-bold">Free</div>
-          </div>
-          <div className="text-xl bg-white flex gap-2 items-end justify-items-end justify-end">
-            <div className="p-2 font-bold text-sm">Total:</div>
-            <div className="p-2 text-sm">
-              {convertToPHP(
-                orders.reduce(
-                  (prev, curr) => prev + curr.price * curr.quantity,
-                  0
-                )
-              )}
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -157,3 +157,9 @@ Cypress.Commands.add('fillAddress', () => {
   cy.get(`[data-cy='test-city-input']`).type('Muntinlupa');
   cy.contains('city is a required field').should('not.exist');
 });
+
+Cypress.Commands.add('submitOrder', () => {
+  cy.contains('Submit Order').should('exist');
+  cy.contains('Submit Order').click();
+  cy.url().should('include', '/confirmation');
+});

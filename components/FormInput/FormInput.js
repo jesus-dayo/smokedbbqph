@@ -12,11 +12,14 @@ const FormInput = ({
   type = 'text',
 }) => {
   return (
-    <div className="mb-3 text-left" data-cy={`test-${testId}-input-container`}>
+    <div
+      className="mb-3 md:mb-0 text-left"
+      data-cy={`test-${testId}-input-container`}
+    >
       <label className="font-bold text-sm text-left">{label}</label>
       <div className="p-1">
         <input
-          className="w-full px-3 py-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
+          className="w-full md:w-4/5 md:h-8 px-3 py-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
           placeholder={placeholder}
           type={type}
           onChange={onChange}

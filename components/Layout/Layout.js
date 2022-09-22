@@ -1,7 +1,7 @@
 import Header from '../Header/Header';
 import Head from 'next/head';
 
-export default function Layout({ full, children }) {
+export default function Layout({ medium, children }) {
   return (
     <div className={'h-full'}>
       <Head>
@@ -9,8 +9,12 @@ export default function Layout({ full, children }) {
         <link rel={'icon'} href={'/favicon.ico'} />
       </Head>
       <Header />
-      <main className={'h-full'}>
-        <div>{children}</div>
+      <main className={`${medium ? 'max-h-auto h-auto' : 'h-full'} box-border`}>
+        <div
+          className={`${medium ? 'max-h-auto h-auto' : 'h-full'} box-border`}
+        >
+          {children}
+        </div>
       </main>
     </div>
   );
