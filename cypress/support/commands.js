@@ -24,8 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { getTotalQuantity } from '../../utils';
-
 Cypress.Commands.add('orderNow', () => {
   cy.contains('Order Now').click();
   cy.wait(2000);

@@ -349,3 +349,402 @@ export const deletePicture = /* GraphQL */ `
     }
   }
 `;
+export const createBill = /* GraphQL */ `
+  mutation CreateBill(
+    $input: CreateBillInput!
+    $condition: ModelBillConditionInput
+  ) {
+    createBill(input: $input, condition: $condition) {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const updateBill = /* GraphQL */ `
+  mutation UpdateBill(
+    $input: UpdateBillInput!
+    $condition: ModelBillConditionInput
+  ) {
+    updateBill(input: $input, condition: $condition) {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const deleteBill = /* GraphQL */ `
+  mutation DeleteBill(
+    $input: DeleteBillInput!
+    $condition: ModelBillConditionInput
+  ) {
+    deleteBill(input: $input, condition: $condition) {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const createDelivery = /* GraphQL */ `
+  mutation CreateDelivery(
+    $input: CreateDeliveryInput!
+    $condition: ModelDeliveryConditionInput
+  ) {
+    createDelivery(input: $input, condition: $condition) {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDelivery = /* GraphQL */ `
+  mutation UpdateDelivery(
+    $input: UpdateDeliveryInput!
+    $condition: ModelDeliveryConditionInput
+  ) {
+    updateDelivery(input: $input, condition: $condition) {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDelivery = /* GraphQL */ `
+  mutation DeleteDelivery(
+    $input: DeleteDeliveryInput!
+    $condition: ModelDeliveryConditionInput
+  ) {
+    deleteDelivery(input: $input, condition: $condition) {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createOrder = /* GraphQL */ `
+  mutation CreateOrder(
+    $input: CreateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    createOrder(input: $input, condition: $condition) {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const updateOrder = /* GraphQL */ `
+  mutation UpdateOrder(
+    $input: UpdateOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    updateOrder(input: $input, condition: $condition) {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const deleteOrder = /* GraphQL */ `
+  mutation DeleteOrder(
+    $input: DeleteOrderInput!
+    $condition: ModelOrderConditionInput
+  ) {
+    deleteOrder(input: $input, condition: $condition) {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const createClient = /* GraphQL */ `
+  mutation CreateClient(
+    $input: CreateClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    createClient(input: $input, condition: $condition) {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateClient = /* GraphQL */ `
+  mutation UpdateClient(
+    $input: UpdateClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    updateClient(input: $input, condition: $condition) {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteClient = /* GraphQL */ `
+  mutation DeleteClient(
+    $input: DeleteClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    deleteClient(input: $input, condition: $condition) {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAddress = /* GraphQL */ `
+  mutation CreateAddress(
+    $input: CreateAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    createAddress(input: $input, condition: $condition) {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAddress = /* GraphQL */ `
+  mutation UpdateAddress(
+    $input: UpdateAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    updateAddress(input: $input, condition: $condition) {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAddress = /* GraphQL */ `
+  mutation DeleteAddress(
+    $input: DeleteAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    deleteAddress(input: $input, condition: $condition) {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createConfig = /* GraphQL */ `
+  mutation CreateConfig(
+    $input: CreateConfigInput!
+    $condition: ModelConfigConditionInput
+  ) {
+    createConfig(input: $input, condition: $condition) {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateConfig = /* GraphQL */ `
+  mutation UpdateConfig(
+    $input: UpdateConfigInput!
+    $condition: ModelConfigConditionInput
+  ) {
+    updateConfig(input: $input, condition: $condition) {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteConfig = /* GraphQL */ `
+  mutation DeleteConfig(
+    $input: DeleteConfigInput!
+    $condition: ModelConfigConditionInput
+  ) {
+    deleteConfig(input: $input, condition: $condition) {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;

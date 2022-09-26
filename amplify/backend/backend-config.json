@@ -18,5 +18,11 @@
         }
       }
     }
+  },
+  "custom": {
+    "batchOrderCreate": {
+      "service": "customCDK",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

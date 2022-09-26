@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useRecoilState } from 'recoil';
 import { orderState } from '../states/orders';
-import { removeItemAtIndex, replaceItemAtIndex } from '../utils';
+import { removeItemAtIndex, replaceItemAtIndex } from '../utils/util';
 
 const useOrders = ({
   label,

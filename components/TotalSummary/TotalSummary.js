@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
-import { convertToPHP } from '../../utils';
+import { convertToPHP } from '../../utils/util';
 import Quantity from '../Quantity/Quantity';
 import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
@@ -58,7 +58,7 @@ const Row = ({
   );
 };
 
-const TotalSummary = ({ className }) => {
+const TotalSummary = ({ className, shippingFee }) => {
   const orders = useRecoilValue(orderState);
   console.log('summary', orders);
   return (
@@ -105,8 +105,8 @@ const TotalSummary = ({ className }) => {
               </div>
             </div>
             <div className="text-sm bg-white flex justify-end">
-              <div className="p-2 ">Shipping:</div>
-              <div className="p-2 font-bold">Free</div>
+              <div className="p-2 ">Shipping Fee:</div>
+              <div className="p-2 font-bold">{convertToPHP(shippingFee)}</div>
             </div>
             <div className="text-xl bg-white flex gap-2 items-end justify-items-end justify-end">
               <div className="p-2 font-bold text-sm">Total:</div>
@@ -114,7 +114,7 @@ const TotalSummary = ({ className }) => {
                 {convertToPHP(
                   orders.reduce(
                     (prev, curr) => prev + curr.price * curr.quantity,
-                    0
+                    shippingFee
                   )
                 )}
               </div>

@@ -225,3 +225,264 @@ export const listPictures = /* GraphQL */ `
     }
   }
 `;
+export const getBill = /* GraphQL */ `
+  query GetBill($id: ID!) {
+    getBill(id: $id) {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const listBills = /* GraphQL */ `
+  query ListBills(
+    $filter: ModelBillFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        orders {
+          nextToken
+        }
+        delivery {
+          id
+          date
+          time
+          createdAt
+          updatedAt
+        }
+        client {
+          id
+          name
+          phoneNumber
+          email
+          createdAt
+          updatedAt
+        }
+        address {
+          id
+          houseNo
+          street
+          barangay
+          city
+          postalCode
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        billDeliveryId
+        billClientId
+        billAddressId
+      }
+      nextToken
+    }
+  }
+`;
+export const getDelivery = /* GraphQL */ `
+  query GetDelivery($id: ID!) {
+    getDelivery(id: $id) {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDeliveries = /* GraphQL */ `
+  query ListDeliveries(
+    $filter: ModelDeliveryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDeliveries(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getOrder = /* GraphQL */ `
+  query GetOrder($id: ID!) {
+    getOrder(id: $id) {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const listOrders = /* GraphQL */ `
+  query ListOrders(
+    $filter: ModelOrderFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        label
+        quantity
+        description
+        price
+        imgSrc
+        createdAt
+        updatedAt
+        billOrdersId
+      }
+      nextToken
+    }
+  }
+`;
+export const getClient = /* GraphQL */ `
+  query GetClient($id: ID!) {
+    getClient(id: $id) {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listClients = /* GraphQL */ `
+  query ListClients(
+    $filter: ModelClientFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getAddress = /* GraphQL */ `
+  query GetAddress($id: ID!) {
+    getAddress(id: $id) {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAddresses = /* GraphQL */ `
+  query ListAddresses(
+    $filter: ModelAddressFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAddresses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getConfig = /* GraphQL */ `
+  query GetConfig($id: ID!) {
+    getConfig(id: $id) {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listConfigs = /* GraphQL */ `
+  query ListConfigs(
+    $filter: ModelConfigFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listConfigs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        shippingFee
+        phoneNumber
+        gcash
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

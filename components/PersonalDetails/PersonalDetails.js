@@ -37,9 +37,9 @@ const PersonalDetails = ({ className, validate, errors }) => {
           placeholder="Phone number of contact person"
           testId="phone"
           validationError={'phone is a required field'}
-          onChange={(e) => handleChange(e, 'phone')}
-          onBlur={(e) => validate(e, 'phone')}
-          error={errors.includes('phone')}
+          onChange={(e) => handleChange(e, 'phoneNumber')}
+          onBlur={(e) => validate(e, 'phoneNumber')}
+          error={errors.includes('phoneNumber')}
           maxLength={20}
         />
         <FormInput

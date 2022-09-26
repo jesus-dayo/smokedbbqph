@@ -1,4 +1,4 @@
-import { isProductAvailableByDate } from '../../utils';
+import { isProductAvailableByDate } from '../../utils/util';
 import mockProducts from '../fixtures/products/products.json';
 
 describe('Order Catalog', () => {

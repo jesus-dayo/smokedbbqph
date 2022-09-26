@@ -17,9 +17,6 @@ export const removeItemAtIndex = (arr, index) => {
 };
 
 export const convertToPHP = (value) => {
-  if (value === 0) {
-    return value;
-  }
   return currencyFormatter.format(value, { code: 'PHP' });
 };
 
@@ -42,4 +39,9 @@ export const isProductAvailableByDate = (product, date) => {
     (item) => item.date === date && item.quantity > 0
   );
   return found !== undefined && found !== null;
+};
+
+export const generateBillNumber = () => {
+  const today = new Date();
+  return `${today.getMonth()}${today.getDay()}${today.getFullYear()}${today.getSeconds()}${today.getMilliseconds()}`;
 };

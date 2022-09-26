@@ -1,11 +1,7 @@
 import Image from 'next/image';
-import { useRecoilValue } from 'recoil';
-import { orderState } from '../../states/orders';
-import { convertToPHP } from '../../utils';
+import { convertToPHP } from '../../utils/util';
 
-const PurchaseSummary = () => {
-  const orders = useRecoilValue(orderState);
-
+const PurchaseSummary = ({ orders = [], shippingFee }) => {
   return (
     <div>
       <table border={2} className="table-auto w-full">
@@ -13,12 +9,14 @@ const PurchaseSummary = () => {
           {orders?.map((order) => (
             <tr key={`order.label`}>
               <td>
-                <Image
-                  src={order.picture}
-                  alt={order.label}
-                  width={100}
-                  height={100}
-                />
+                {order.picture && (
+                  <Image
+                    src={order.picture}
+                    alt={order.label}
+                    width={100}
+                    height={100}
+                  />
+                )}
               </td>
               <td className="p-2">
                 <div>
@@ -54,10 +52,10 @@ const PurchaseSummary = () => {
             <td></td>
             <td></td>
             <td>
-              <div className="p-2">Shipping</div>
+              <div className="p-2">Shipping Fee</div>
             </td>
             <td>
-              <div className="p-2 underline">Free</div>
+              <div className="p-2 underline">{convertToPHP(shippingFee)}</div>
             </td>
           </tr>
           <tr className="font-medium">
@@ -71,7 +69,7 @@ const PurchaseSummary = () => {
                 {convertToPHP(
                   orders.reduce(
                     (prev, curr) => prev + curr.price * curr.quantity,
-                    0
+                    shippingFee
                   )
                 )}
               </div>

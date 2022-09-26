@@ -1,40 +1,36 @@
-import { useRecoilValue } from 'recoil';
-import { personalState } from '../../states/personal';
-import { addressState } from '../../states/address';
-import { scheduleState } from '../../states/schedule';
-
-const DeliveryConfirmation = () => {
-  const personal = useRecoilValue(personalState);
-  const address = useRecoilValue(addressState);
-  const schedule = useRecoilValue(scheduleState);
-
+const DeliveryConfirmation = ({
+  personal = {},
+  address = {},
+  schedule = {},
+  supportPhone = '',
+}) => {
   return (
     <div>
       <div className="flex flex-col items-center">
         <div className="text-left p-2">
           Delivery will be on{' '}
           <span className="font-bold">
-            {schedule.date} ,{schedule.time}
+            {schedule?.date} ,{schedule?.time}
           </span>
         </div>
         <div className="text-left p-2">
           Your order will be delivered to this address.
           <span className="font-bold">
-            {address.houseNo},{address.barangay} ,{address.street},{' '}
-            {address.city}, {address.postalCode}
+            {address?.houseNo},{address?.barangay} ,{address?.street},{' '}
+            {address?.city}, {address?.postalCode}
           </span>
         </div>
         <div className="text-left p-2">
           We will contact &nbsp;
-          <span className="font-bold">{personal.name}</span>&nbsp; for further
+          <span className="font-bold">{personal?.name}</span>&nbsp; for further
           details at &nbsp;
-          <span className="font-bold">{personal.phoneNumber}</span>
+          <span className="font-bold">{personal?.phoneNumber}</span>
         </div>
         <div className="text-left p-2 text-sm">
           <p>
             <span className="font-bold">Note:</span> Any changes on Delivery or
             Cancellation, please contact{' '}
-            <span className="font-bold">+6584307286</span>&nbsp;and provide
+            <span className="font-bold">{supportPhone}</span>&nbsp;and provide
             confirmation number.
           </p>
           <p className="text-center">

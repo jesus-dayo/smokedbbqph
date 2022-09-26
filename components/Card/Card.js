@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Quantity from '../Quantity/Quantity';
 import { useEffect } from 'react';
-import { convertToPHP } from '../../utils/index';
+import { convertToPHP } from '../../utils/util';
 import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
 
@@ -13,7 +13,6 @@ const Card = ({ label, price, imgSrc, description, availableQuantity }) => {
     description,
     availableQuantity,
   });
-  console.log('order card', order);
   return (
     <div
       data-cy={`test-${label}-card`}

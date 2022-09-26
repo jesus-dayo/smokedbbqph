@@ -313,3 +313,348 @@ export const onDeletePicture = /* GraphQL */ `
     }
   }
 `;
+export const onCreateBill = /* GraphQL */ `
+  subscription OnCreateBill {
+    onCreateBill {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const onUpdateBill = /* GraphQL */ `
+  subscription OnUpdateBill {
+    onUpdateBill {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const onDeleteBill = /* GraphQL */ `
+  subscription OnDeleteBill {
+    onDeleteBill {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          createdAt
+          updatedAt
+          billOrdersId
+        }
+        nextToken
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+    }
+  }
+`;
+export const onCreateDelivery = /* GraphQL */ `
+  subscription OnCreateDelivery {
+    onCreateDelivery {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDelivery = /* GraphQL */ `
+  subscription OnUpdateDelivery {
+    onUpdateDelivery {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDelivery = /* GraphQL */ `
+  subscription OnDeleteDelivery {
+    onDeleteDelivery {
+      id
+      date
+      time
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateOrder = /* GraphQL */ `
+  subscription OnCreateOrder {
+    onCreateOrder {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const onUpdateOrder = /* GraphQL */ `
+  subscription OnUpdateOrder {
+    onUpdateOrder {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const onDeleteOrder = /* GraphQL */ `
+  subscription OnDeleteOrder {
+    onDeleteOrder {
+      id
+      label
+      quantity
+      description
+      price
+      imgSrc
+      createdAt
+      updatedAt
+      billOrdersId
+    }
+  }
+`;
+export const onCreateClient = /* GraphQL */ `
+  subscription OnCreateClient {
+    onCreateClient {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateClient = /* GraphQL */ `
+  subscription OnUpdateClient {
+    onUpdateClient {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteClient = /* GraphQL */ `
+  subscription OnDeleteClient {
+    onDeleteClient {
+      id
+      name
+      phoneNumber
+      email
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateAddress = /* GraphQL */ `
+  subscription OnCreateAddress {
+    onCreateAddress {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateAddress = /* GraphQL */ `
+  subscription OnUpdateAddress {
+    onUpdateAddress {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteAddress = /* GraphQL */ `
+  subscription OnDeleteAddress {
+    onDeleteAddress {
+      id
+      houseNo
+      street
+      barangay
+      city
+      postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateConfig = /* GraphQL */ `
+  subscription OnCreateConfig {
+    onCreateConfig {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateConfig = /* GraphQL */ `
+  subscription OnUpdateConfig {
+    onUpdateConfig {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteConfig = /* GraphQL */ `
+  subscription OnDeleteConfig {
+    onDeleteConfig {
+      id
+      shippingFee
+      phoneNumber
+      gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;

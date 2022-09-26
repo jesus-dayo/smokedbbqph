@@ -31,3 +31,49 @@ type Picture @model {
   mobile: String
   appearsIn: [Product]
 }
+
+type Bill @model {
+  id: ID!
+  orders: [Order] @hasMany
+  delivery: Delivery @hasOne
+  client: Client @hasOne
+  address: Address @hasOne
+}
+
+type Delivery @model {
+  id: ID!
+  date: String
+  time: String
+}
+
+type Order @model {
+  id: ID!
+  label: String
+  quantity: Int
+  description: String
+  price: Float
+  imgSrc: String
+}
+
+type Client @model {
+  id: ID!
+  name: String
+  phoneNumber: String
+  email: String
+}
+
+type Address @model {
+  id: ID!
+  houseNo: String
+  street: String
+  barangay: String
+  city: String
+  postalCode: String
+}
+
+type Config @model {
+  id: ID!
+  shippingFee: Int!
+  phoneNumber: String!
+  gcash: String!
+}

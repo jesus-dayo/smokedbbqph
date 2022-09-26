@@ -1,7 +1,7 @@
 import { ArrowSmRightIcon, ShoppingCartIcon } from '@heroicons/react/outline';
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
-import { convertToPHP } from '../../utils';
+import { convertToPHP } from '../../utils/util';
 
 const CheckoutButton = ({ onClick }) => {
   const orders = useRecoilValue(orderState);

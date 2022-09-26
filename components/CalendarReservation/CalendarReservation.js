@@ -5,7 +5,11 @@ import { useAlert } from 'react-alert';
 import { useRecoilState } from 'recoil';
 import { orderState } from '../../states/orders';
 import { scheduleState } from '../../states/schedule';
-import { DAYS, isProductAvailableByDate, removeItemAtIndex } from '../../utils';
+import {
+  DAYS,
+  isProductAvailableByDate,
+  removeItemAtIndex,
+} from '../../utils/util';
 
 const CalendarReservation = ({ availabilities = [], products, className }) => {
   const [schedule, setSchedule] = useRecoilState(scheduleState);

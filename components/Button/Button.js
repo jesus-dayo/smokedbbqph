@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { cls } from '../../utils';
+import { cls } from '../../utils/util';
 
 const classes = {
   base: 'focus:outline-none enabled:transition enabled:ease-in-out enabled:duration-300',

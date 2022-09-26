@@ -46,3 +46,61 @@ mutation updateAvailability {
     availabilityRangeId
   }
 }
+
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+mutation createBill {
+  createBill(input: {
+    id: "jed-1234"
+  }){
+    id
+    billClientId,
+    billAddressId,
+    billDeliveryId
+  }
+}
+
+mutation createOrder {
+  createOrder(input: {
+    id: "order-20220925123"
+    billOrdersId: "jed-1234"
+  }){
+    id
+    billOrdersId
+  }
+}
+
+mutation createConfig {
+  createConfig(input:{
+		 id: "config",
+     shippingFee: 0,
+     phoneNumber: "+639458567301",
+     gcash: "+639458567301"
+  }) {
+    id
+  }
+}
+
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+mutation createConfig {
+  createConfig(input:{
+		 id: "config",
+     shippingFee: 0,
+     phoneNumber: "+639458567301",
+     gcash: "+639458567301"
+  }) {
+    id
+  }
+}
+
+mutation updateConfig {
+  updateConfig(input:{
+		 id: "config",
+     shippingFee: 0,
+     phoneNumber: "+639458567301",
+     gcash: "+639458567301"
+  }) {
+    id
+  }
+}
