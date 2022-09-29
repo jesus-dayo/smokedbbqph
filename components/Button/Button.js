@@ -3,7 +3,7 @@ import { cls } from '../../utils/util';
 
 const classes = {
   base: 'focus:outline-none enabled:transition enabled:ease-in-out enabled:duration-300',
-  disabled: 'opacity-50 cursor-not-allowed bg-slate-400 hover:bg-slate-400',
+  disabled: 'opacity-50 cursor-not-allowed bg-slate-400 rounded-full',
   pill: 'rounded-full',
   size: {
     small: 'px-2 py-1 text-sm',
@@ -41,7 +41,7 @@ const Button = forwardRef(
       className={cls(`
                 ${!disabled ? classes.base : ''}
                 ${classes.size[size]}
-                ${classes.variant[variant]}
+                ${disabled ? '' : classes.variant[variant]}
                 ${pill && classes.pill}
                 ${disabled ? classes.disabled : ''} 
                 ${className}

@@ -31,6 +31,7 @@ const PersonalDetails = ({ className, validate, errors }) => {
           validationError={'name is a required field'}
           error={errors.includes('name')}
           maxLength={50}
+          required
         />
         <FormInput
           label="Phone Number"
@@ -41,6 +42,7 @@ const PersonalDetails = ({ className, validate, errors }) => {
           onBlur={(e) => validate(e, 'phoneNumber')}
           error={errors.includes('phoneNumber')}
           maxLength={20}
+          required
         />
         <FormInput
           label="Email"
@@ -52,6 +54,7 @@ const PersonalDetails = ({ className, validate, errors }) => {
           maxLength={50}
           testId="email"
           type="email"
+          required
         />
       </div>
     </FormContainer>

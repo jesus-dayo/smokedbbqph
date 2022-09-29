@@ -32,6 +32,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'houseNo')}
           error={errors.includes('houseNo')}
           maxLength={50}
+          required
         />
         <FormInput
           label="Street Address"
@@ -43,6 +44,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'street')}
           error={errors.includes('street')}
           maxLength={50}
+          required
         />
         <FormInput
           label="Barangay"
@@ -61,6 +63,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'city')}
           error={errors.includes('city')}
           maxLength={50}
+          required
         />
         <FormInput
           value={address.postalCode}

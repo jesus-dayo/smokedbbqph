@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
-import ContactUs from '../sections/contact-us/ContactUs';
+// import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
   const router = useRouter();
@@ -14,24 +14,24 @@ const HomePage = () => {
 
   return (
     <Layout full>
-      <div className="flex flex-col text-yellow-50 text-opacity-100">
+      <div className="flex flex-col text-slate-50 text-opacity-100">
         <Section>
-          <div className="w-full h-screen md:h-96 m-0 bg-slate-700 block bg-no-repeat bg-contain md:bg-cover md:bg-center bg-[url('/beef_brisket.jpg')]">
-            <div className="p-2 flex md:p-5">
-              <div className="flex-column w-full ">
+          <div className="w-full h-screen md:h-96 p-10 m-0 bg-slate-700 block bg-no-repeat bg-contain md:bg-cover md:bg-center bg-[url('/ribs2.jpg')]">
+            <div className="p-2 flex justify-around  md:p-5">
+              <div className="p-14 bg-slate-200 opacity-70">
                 <div
                   className="h-28 md:w-full
                     text-center font-serif"
                 >
-                  <p className="text-yellow-50 text-opacity-100 md:text-5xl font-extrabold font-serif ">
-                    The Best Smoked Barbeque Beef Brisket in Town
+                  <p className="text-slate-900 md:text-5xl font-extrabold font-serif ">
+                    The Best Smoked Barbeque Ribs in Town
                   </p>
-                  <p className="text-yellow-50 text-opacity-100 md:text-4xl font-serif p-10">
-                    Smoked Grilled for 20hrs to Perfection
+                  <p className="text-slate-800 text-opacity-100 md:text-4xl font-serif">
+                    Smoked Grilled for 12hrs to Perfection
                   </p>
                 </div>
               </div>
-              <div className="h-14 md:h-14 flex justify-end  text-xs md:w-10/12 text-white md:text-black text-center font-serif text-md md:text-2xl">
+              <div className="h-14 md:h-14 flex justify-end  text-xs md:w-6/12 text-white md:text-black text-center font-serif text-md md:text-2xl">
                 <Button onClick={routeToOrderPage}>Order Now</Button>
               </div>
             </div>
@@ -69,7 +69,7 @@ const HomePage = () => {
             </div>
           </div>
         </Section>
-        <Section>
+        {/* <Section>
           <div className="text-white text-lg md:text-2xl font-serif p-2 md:p-10 h-full">
             <p>What Our Clients Tell About Us</p>
             <div className="flex-column space-y-2 text-xs md:text-2xl">
@@ -100,14 +100,14 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        </Section>
-        <Section>
+        </Section> */}
+        {/* <Section>
           <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  text-center h-full md:text-2xl text-sm font-serif">
             <div className="flex flex-wrap justify-evenly gap-2">
               <ContactUs />
             </div>
           </div>
-        </Section>
+        </Section> */}
       </div>
     </Layout>
   );

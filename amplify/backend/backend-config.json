@@ -24,5 +24,12 @@
       "service": "customCDK",
       "providerPlugin": "awscloudformation"
     }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2022-09-29T04:38:43.345Z"
+    }
   }
 }

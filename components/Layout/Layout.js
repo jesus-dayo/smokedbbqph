@@ -6,7 +6,7 @@ export default function Layout({ medium, children }) {
     <div className={'h-full'}>
       <Head>
         <title>SmokedBBQ</title>
-        <link rel={'icon'} href={'/favicon.ico'} />
+        <link rel={'icon'} href={'/icon.png'} />
       </Head>
       <Header />
       <main className={`${medium ? 'max-h-auto h-auto' : 'h-full'} box-border`}>
