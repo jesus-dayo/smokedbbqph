@@ -395,11 +395,18 @@ export const createBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -449,11 +456,18 @@ export const updateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -503,11 +517,18 @@ export const deleteBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -698,6 +719,45 @@ export const deleteAddress = /* GraphQL */ `
       barangay
       city
       postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPaymentOption = /* GraphQL */ `
+  mutation CreatePaymentOption(
+    $input: CreatePaymentOptionInput!
+    $condition: ModelPaymentOptionConditionInput
+  ) {
+    createPaymentOption(input: $input, condition: $condition) {
+      id
+      option
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePaymentOption = /* GraphQL */ `
+  mutation UpdatePaymentOption(
+    $input: UpdatePaymentOptionInput!
+    $condition: ModelPaymentOptionConditionInput
+  ) {
+    updatePaymentOption(input: $input, condition: $condition) {
+      id
+      option
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePaymentOption = /* GraphQL */ `
+  mutation DeletePaymentOption(
+    $input: DeletePaymentOptionInput!
+    $condition: ModelPaymentOptionConditionInput
+  ) {
+    deletePaymentOption(input: $input, condition: $condition) {
+      id
+      option
       createdAt
       updatedAt
     }

@@ -356,11 +356,18 @@ export const onCreateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -407,11 +414,18 @@ export const onUpdateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -458,11 +472,18 @@ export const onDeleteBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -617,6 +638,36 @@ export const onDeleteAddress = /* GraphQL */ `
       barangay
       city
       postalCode
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreatePaymentOption = /* GraphQL */ `
+  subscription OnCreatePaymentOption {
+    onCreatePaymentOption {
+      id
+      option
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePaymentOption = /* GraphQL */ `
+  subscription OnUpdatePaymentOption {
+    onUpdatePaymentOption {
+      id
+      option
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePaymentOption = /* GraphQL */ `
+  subscription OnDeletePaymentOption {
+    onDeletePaymentOption {
+      id
+      option
       createdAt
       updatedAt
     }

@@ -55,7 +55,12 @@ const Confirmation = () => {
                     0
                   )
                 )}{' '}
-                via GCASH {currentConfig.gcash} within 24hrs.
+                via{' '}
+                {currentBill?.paymentOption?.option === 'gcash' ? (
+                  <span>GCASH {currentConfig.gcash} within 24hrs.</span>
+                ) : (
+                  <span>Cash on Delivery.</span>
+                )}
               </span>
             </div>
             <div className="p-2 text-xl">

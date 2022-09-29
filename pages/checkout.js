@@ -8,6 +8,7 @@ import {
   createClient,
   createOrder,
   createDelivery,
+  createPaymentOption,
 } from '../src/graphql/mutations';
 import { getConfig } from '../src/graphql/queries';
 import TotalSummary from '../components/TotalSummary/TotalSummary';
@@ -23,6 +24,8 @@ import { addressState } from '../states/address';
 import validateCheckOut from '../utils/validation';
 import { scheduleState } from '../states/schedule';
 import awsExports from '../src/aws-exports';
+import PaymentOption from '../components/PaymentOption/PaymentOption';
+import { paymentOptionState } from '../states/paymentOption';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -33,6 +36,7 @@ const Checkout = () => {
   const personal = useRecoilValue(personalState);
   const address = useRecoilValue(addressState);
   const schedule = useRecoilValue(scheduleState);
+  const paymentOption = useRecoilValue(paymentOptionState);
   const [currentConfig, setCurrentConfig] = useState({});
 
   useEffect(() => {
@@ -94,6 +98,14 @@ const Checkout = () => {
         },
       },
     });
+    const paymentOptionResponse = await API.graphql({
+      query: createPaymentOption,
+      variables: {
+        input: {
+          option: paymentOption?.option,
+        },
+      },
+    });
 
     await Promise.all(
       orders?.map((order) =>
@@ -118,6 +130,8 @@ const Checkout = () => {
           billClientId: clientResponse.data?.createClient?.id,
           billAddressId: addressResponse.data?.createAddress?.id,
           billDeliveryId: scheduleResponse.data?.createDelivery?.id,
+          billPaymentOptionId:
+            paymentOptionResponse.data?.createPaymentOption?.id,
         },
       },
     });
@@ -165,6 +179,7 @@ const Checkout = () => {
         </div>
         <div className="grid grid-cols-2 gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
           <div className="md:h-auto">
+            <PaymentOption gcashNo={currentConfig.gcash} />
             <PersonalDetails
               className="md:w-full"
               validate={validate}

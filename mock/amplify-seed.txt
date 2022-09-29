@@ -104,3 +104,19 @@ mutation updateConfig {
     id
   }
 }
+
+query MyQuery {
+  listBills {
+    items {
+      id
+      orders {
+        items {
+          label
+        }
+      }
+      paymentOption {
+        option
+      }
+    }
+  }
+}

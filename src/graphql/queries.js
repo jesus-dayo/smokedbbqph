@@ -268,11 +268,18 @@ export const getBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
       billDeliveryId
       billClientId
       billAddressId
+      billPaymentOptionId
     }
   }
 `;
@@ -313,11 +320,18 @@ export const listBills = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        paymentOption {
+          id
+          option
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
         billDeliveryId
         billClientId
         billAddressId
+        billPaymentOptionId
       }
       nextToken
     }
@@ -448,6 +462,33 @@ export const listAddresses = /* GraphQL */ `
         barangay
         city
         postalCode
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPaymentOption = /* GraphQL */ `
+  query GetPaymentOption($id: ID!) {
+    getPaymentOption(id: $id) {
+      id
+      option
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPaymentOptions = /* GraphQL */ `
+  query ListPaymentOptions(
+    $filter: ModelPaymentOptionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPaymentOptions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        option
         createdAt
         updatedAt
       }
