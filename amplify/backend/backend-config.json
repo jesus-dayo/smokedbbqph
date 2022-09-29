@@ -19,12 +19,6 @@
       }
     }
   },
-  "custom": {
-    "batchOrderCreate": {
-      "service": "customCDK",
-      "providerPlugin": "awscloudformation"
-    }
-  },
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",
