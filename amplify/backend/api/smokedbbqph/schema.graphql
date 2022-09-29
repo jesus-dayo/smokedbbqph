@@ -4,82 +4,25 @@ input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
 type Product @model {
-  name: String! @primaryKey
+  id: ID!
+  name: String!
   category: String!
   description: String
   price: Float
   currency: String
   isRecommended: Boolean
-  availabilityDate: ID
-  availability: [Availability] @hasMany(fields: ["availabilityDate"])
+  availability: [Availability]
   picture: [Picture]
 }
 
 type Availability @model {
-  date: ID! @primaryKey
-  range: Range @hasOne
+  date: String!
   quantity: Int!
-}
-
-type Range @model {
-  start: String
-  end: String
+  appearsIn: [Product]
 }
 
 type Picture @model {
   web: String
   mobile: String
   appearsIn: [Product]
-}
-
-type Bill @model {
-  id: ID!
-  orders: [Order] @hasMany
-  delivery: Delivery @hasOne
-  client: Client @hasOne
-  address: Address @hasOne
-  paymentOption: PaymentOption @hasOne
-}
-
-type Delivery @model {
-  id: ID!
-  date: String
-  time: String
-}
-
-type Order @model {
-  id: ID!
-  label: String
-  quantity: Int
-  description: String
-  price: Float
-  imgSrc: String
-}
-
-type Client @model {
-  id: ID!
-  name: String
-  phoneNumber: String
-  email: String
-}
-
-type Address @model {
-  id: ID!
-  houseNo: String
-  street: String
-  barangay: String
-  city: String
-  postalCode: String
-}
-
-type PaymentOption @model {
-  id: ID!
-  option: String
-}
-
-type Config @model {
-  id: ID!
-  shippingFee: Int!
-  phoneNumber: String!
-  gcash: String!
 }
