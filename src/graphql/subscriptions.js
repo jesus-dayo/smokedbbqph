@@ -10,35 +10,17 @@ export const onCreateProduct = /* GraphQL */ `
       price
       currency
       isRecommended
-      availabilityDate
       availability {
-        items {
-          date
-          quantity
-          createdAt
-          updatedAt
-          availabilityRangeId
-        }
         nextToken
       }
       picture {
+        id
         web
         mobile
-        appearsIn {
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          availabilityDate
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
+      id
       createdAt
       updatedAt
     }
@@ -53,35 +35,17 @@ export const onUpdateProduct = /* GraphQL */ `
       price
       currency
       isRecommended
-      availabilityDate
       availability {
-        items {
-          date
-          quantity
-          createdAt
-          updatedAt
-          availabilityRangeId
-        }
         nextToken
       }
       picture {
+        id
         web
         mobile
-        appearsIn {
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          availabilityDate
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
+      id
       createdAt
       updatedAt
     }
@@ -96,35 +60,17 @@ export const onDeleteProduct = /* GraphQL */ `
       price
       currency
       isRecommended
-      availabilityDate
       availability {
-        items {
-          date
-          quantity
-          createdAt
-          updatedAt
-          availabilityRangeId
-        }
         nextToken
       }
       picture {
+        id
         web
         mobile
-        appearsIn {
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          availabilityDate
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
+      id
       createdAt
       updatedAt
     }
@@ -142,8 +88,10 @@ export const onCreateAvailability = /* GraphQL */ `
         updatedAt
       }
       quantity
+      id
       createdAt
       updatedAt
+      productAvailabilityId
       availabilityRangeId
     }
   }
@@ -160,8 +108,10 @@ export const onUpdateAvailability = /* GraphQL */ `
         updatedAt
       }
       quantity
+      id
       createdAt
       updatedAt
+      productAvailabilityId
       availabilityRangeId
     }
   }
@@ -178,8 +128,10 @@ export const onDeleteAvailability = /* GraphQL */ `
         updatedAt
       }
       quantity
+      id
       createdAt
       updatedAt
+      productAvailabilityId
       availabilityRangeId
     }
   }
@@ -220,6 +172,7 @@ export const onDeleteRange = /* GraphQL */ `
 export const onCreatePicture = /* GraphQL */ `
   subscription OnCreatePicture {
     onCreatePicture {
+      id
       web
       mobile
       appearsIn {
@@ -229,21 +182,10 @@ export const onCreatePicture = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
-        availability {
-          nextToken
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
+        id
         createdAt
         updatedAt
       }
-      id
       createdAt
       updatedAt
     }
@@ -252,6 +194,7 @@ export const onCreatePicture = /* GraphQL */ `
 export const onUpdatePicture = /* GraphQL */ `
   subscription OnUpdatePicture {
     onUpdatePicture {
+      id
       web
       mobile
       appearsIn {
@@ -261,21 +204,10 @@ export const onUpdatePicture = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
-        availability {
-          nextToken
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
+        id
         createdAt
         updatedAt
       }
-      id
       createdAt
       updatedAt
     }
@@ -284,6 +216,7 @@ export const onUpdatePicture = /* GraphQL */ `
 export const onDeletePicture = /* GraphQL */ `
   subscription OnDeletePicture {
     onDeletePicture {
+      id
       web
       mobile
       appearsIn {
@@ -293,21 +226,10 @@ export const onDeletePicture = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
-        availability {
-          nextToken
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
+        id
         createdAt
         updatedAt
       }
-      id
       createdAt
       updatedAt
     }
@@ -318,17 +240,6 @@ export const onCreateBill = /* GraphQL */ `
     onCreateBill {
       id
       orders {
-        items {
-          id
-          label
-          quantity
-          description
-          price
-          imgSrc
-          createdAt
-          updatedAt
-          billOrdersId
-        }
         nextToken
       }
       delivery {
@@ -376,17 +287,6 @@ export const onUpdateBill = /* GraphQL */ `
     onUpdateBill {
       id
       orders {
-        items {
-          id
-          label
-          quantity
-          description
-          price
-          imgSrc
-          createdAt
-          updatedAt
-          billOrdersId
-        }
         nextToken
       }
       delivery {
@@ -434,17 +334,6 @@ export const onDeleteBill = /* GraphQL */ `
     onDeleteBill {
       id
       orders {
-        items {
-          id
-          label
-          quantity
-          description
-          price
-          imgSrc
-          createdAt
-          updatedAt
-          billOrdersId
-        }
         nextToken
       }
       delivery {

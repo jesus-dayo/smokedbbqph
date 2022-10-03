@@ -4,9 +4,10 @@ import DeliveryConfirmation from '../../components/DeliveryConfirmation/Delivery
 import { convertToPHP } from '../../utils/util';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getBill, getConfig } from '../../src/graphql/queries';
+import { getConfig } from '../../src/graphql/queries';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
+import { getBillWithAvail } from '../../src/graphql/custom_queries';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -19,7 +20,7 @@ const Confirmation = () => {
   useEffect(() => {
     const getBillAPI = async () => {
       const bill = await API.graphql({
-        query: getBill,
+        query: getBillWithAvail,
         variables: {
           id: cid,
         },

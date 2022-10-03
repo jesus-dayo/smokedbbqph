@@ -1,18 +1,10 @@
 export const listProductsWithAvailability = /* GraphQL */ `
   query ListProducts(
-    $name: String
     $filter: ModelProductFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listProducts(
-      name: $name
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         name
         category
@@ -20,7 +12,6 @@ export const listProductsWithAvailability = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
         availability {
           items {
             date
@@ -42,6 +33,62 @@ export const listProductsWithAvailability = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+
+export const getBillWithAvail = /* GraphQL */ `
+  query GetBill($id: ID!) {
+    getBill(id: $id) {
+      id
+      orders {
+        items {
+          id
+          label
+          quantity
+          description
+          price
+          imgSrc
+          billOrdersId
+        }
+      }
+      delivery {
+        id
+        date
+        time
+        createdAt
+        updatedAt
+      }
+      client {
+        id
+        name
+        phoneNumber
+        email
+        createdAt
+        updatedAt
+      }
+      address {
+        id
+        houseNo
+        street
+        barangay
+        city
+        postalCode
+        createdAt
+        updatedAt
+      }
+      paymentOption {
+        id
+        option
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+      billDeliveryId
+      billClientId
+      billAddressId
+      billPaymentOptionId
     }
   }
 `;

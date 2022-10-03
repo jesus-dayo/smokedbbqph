@@ -2,43 +2,25 @@
 // this is an auto generated file. This will be overwritten
 
 export const getProduct = /* GraphQL */ `
-  query GetProduct($name: String!) {
-    getProduct(name: $name) {
+  query GetProduct($id: ID!) {
+    getProduct(id: $id) {
       name
       category
       description
       price
       currency
       isRecommended
-      availabilityDate
       availability {
-        items {
-          date
-          quantity
-          createdAt
-          updatedAt
-          availabilityRangeId
-        }
         nextToken
       }
       picture {
+        id
         web
         mobile
-        appearsIn {
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          availabilityDate
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
+      id
       createdAt
       updatedAt
     }
@@ -46,19 +28,11 @@ export const getProduct = /* GraphQL */ `
 `;
 export const listProducts = /* GraphQL */ `
   query ListProducts(
-    $name: String
     $filter: ModelProductFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listProducts(
-      name: $name
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         name
         category
@@ -66,17 +40,7 @@ export const listProducts = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
-        availability {
-          nextToken
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
+        id
         createdAt
         updatedAt
       }
@@ -85,8 +49,8 @@ export const listProducts = /* GraphQL */ `
   }
 `;
 export const getAvailability = /* GraphQL */ `
-  query GetAvailability($date: ID!) {
-    getAvailability(date: $date) {
+  query GetAvailability($id: ID!) {
+    getAvailability(id: $id) {
       date
       range {
         start
@@ -96,39 +60,28 @@ export const getAvailability = /* GraphQL */ `
         updatedAt
       }
       quantity
+      id
       createdAt
       updatedAt
+      productAvailabilityId
       availabilityRangeId
     }
   }
 `;
 export const listAvailabilities = /* GraphQL */ `
   query ListAvailabilities(
-    $date: ID
     $filter: ModelAvailabilityFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listAvailabilities(
-      date: $date
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listAvailabilities(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         date
-        range {
-          start
-          end
-          id
-          createdAt
-          updatedAt
-        }
         quantity
+        id
         createdAt
         updatedAt
+        productAvailabilityId
         availabilityRangeId
       }
       nextToken
@@ -167,6 +120,7 @@ export const listRanges = /* GraphQL */ `
 export const getPicture = /* GraphQL */ `
   query GetPicture($id: ID!) {
     getPicture(id: $id) {
+      id
       web
       mobile
       appearsIn {
@@ -176,21 +130,10 @@ export const getPicture = /* GraphQL */ `
         price
         currency
         isRecommended
-        availabilityDate
-        availability {
-          nextToken
-        }
-        picture {
-          web
-          mobile
-          id
-          createdAt
-          updatedAt
-        }
+        id
         createdAt
         updatedAt
       }
-      id
       createdAt
       updatedAt
     }
@@ -204,20 +147,9 @@ export const listPictures = /* GraphQL */ `
   ) {
     listPictures(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        id
         web
         mobile
-        appearsIn {
-          name
-          category
-          description
-          price
-          currency
-          isRecommended
-          availabilityDate
-          createdAt
-          updatedAt
-        }
-        id
         createdAt
         updatedAt
       }
@@ -230,17 +162,6 @@ export const getBill = /* GraphQL */ `
     getBill(id: $id) {
       id
       orders {
-        items {
-          id
-          label
-          quantity
-          description
-          price
-          imgSrc
-          createdAt
-          updatedAt
-          billOrdersId
-        }
         nextToken
       }
       delivery {
@@ -292,40 +213,6 @@ export const listBills = /* GraphQL */ `
     listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        orders {
-          nextToken
-        }
-        delivery {
-          id
-          date
-          time
-          createdAt
-          updatedAt
-        }
-        client {
-          id
-          name
-          phoneNumber
-          email
-          createdAt
-          updatedAt
-        }
-        address {
-          id
-          houseNo
-          street
-          barangay
-          city
-          postalCode
-          createdAt
-          updatedAt
-        }
-        paymentOption {
-          id
-          option
-          createdAt
-          updatedAt
-        }
         createdAt
         updatedAt
         billDeliveryId

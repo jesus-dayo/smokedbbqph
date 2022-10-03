@@ -105,6 +105,17 @@ mutation updateConfig {
   }
 }
 
+query availQuery {
+  listAvailabilities{
+    items {
+      date
+      range {
+        id
+      }
+    }
+  }
+}
+
 query MyQuery {
   listBills {
     items {
