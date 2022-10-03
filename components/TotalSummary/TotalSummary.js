@@ -24,7 +24,7 @@ const Row = ({
   });
   return (
     <tr key={order.label} className="border-t-cyan-700 border-2">
-      <td width={'20%'} className="p-2">
+      <td width={'20%'} className="p-2 md:block hidden">
         {order.picture && (
           <Image
             src={order.picture}
@@ -34,7 +34,7 @@ const Row = ({
           />
         )}
       </td>
-      <td className="text-left" width={'20%'}>
+      <td className="text-left">
         <div className="text-sm">{order.label}</div>
         <div className="text-xs md:block hidden">{order.description}</div>
       </td>
@@ -65,14 +65,14 @@ const TotalSummary = ({ className, shippingFee }) => {
     <div className="p-1 h-full">
       <div className="h-full rounded-lg bg-white shadow-lg md:p-4 p-4 text-gray-700">
         <div>
-          <h1 className="text-left font-bold text:lg uppercase">
+          <h1 className="text-left font-bold text-sm md:text-lg uppercase">
             Shopping Cart
           </h1>
         </div>
         <table border={2} className="table-auto md:table-fixed">
           <thead className="text-sm">
             <th className="text-left">Product</th>
-            <th className="text-left"></th>
+            <th className="text-left hidden md:block"></th>
             <th className="text-center">Weight</th>
             <th className="text-center">Quantity</th>
             <th className="text-right p-2">Price</th>
@@ -82,7 +82,7 @@ const TotalSummary = ({ className, shippingFee }) => {
               orders?.map((order, index) => (
                 <Row {...order} key={`order-${index}`} />
               ))}
-            {(!orders || orders.length === 0) && (
+            {(!orders || orders?.length === 0) && (
               <tr>
                 <td colSpan={5}>
                   Nothing on the cart. Please return to order page to re-order.
@@ -91,7 +91,7 @@ const TotalSummary = ({ className, shippingFee }) => {
             )}
           </tbody>
         </table>
-        {orders && orders.length > 0 && (
+        {orders && orders?.length > 0 && (
           <div className="flex flex-col justify-end">
             <div className="text-sm bg-white flex justify-end w-full">
               <div className="p-2">Sub Total:</div>

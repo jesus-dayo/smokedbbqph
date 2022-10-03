@@ -133,7 +133,7 @@ const OrderPage = ({ products = [] }) => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="flex flex-wrap justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 md:w-full justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts().map((item) => (
             <Card
               key={`item-${item.name}`}

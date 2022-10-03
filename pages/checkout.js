@@ -15,7 +15,7 @@ import TotalSummary from '../components/TotalSummary/TotalSummary';
 import Layout from '../components/Layout/Layout';
 import PersonalDetails from '../components/PersonalDetails/PersonalDetails';
 import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { orderState } from '../states/orders';
 import { generateBillNumber } from '../utils/util';
 import { Amplify, API } from 'aws-amplify';
@@ -38,6 +38,11 @@ const Checkout = () => {
   const schedule = useRecoilValue(scheduleState);
   const paymentOption = useRecoilValue(paymentOptionState);
   const [currentConfig, setCurrentConfig] = useState({});
+  const resetOrders = useResetRecoilState(orderState);
+  const resetPersonal = useResetRecoilState(personalState);
+  const resetAddress = useResetRecoilState(addressState);
+  const resetSchedule = useResetRecoilState(scheduleState);
+  const resetPaymentOption = useResetRecoilState(paymentOptionState);
 
   useEffect(() => {
     const getConfigAPI = async () => {
@@ -135,19 +140,24 @@ const Checkout = () => {
         },
       },
     });
+    resetAddress();
+    resetOrders();
+    resetPaymentOption();
+    resetPersonal();
+    resetSchedule();
     router.push(`/confirmation/${billNumber}`);
   };
 
   return (
     <Layout medium>
-      <div className="p-4 md:p-4 flex justify-between">
+      <div className="p-4 md:pt-10 flex justify-center md:justify-between">
         <Button
           variant="secondary"
-          className="h-12 text-lg md:h-10 md:text-sm md:align-middle"
+          className="h-10 text-sm md:h-10 md:text-sm md:align-middle"
           onClick={handleBackToOrders}
         >
-          <div className="flex gap-4 md:gap-2">
-            <div className="w-8 md:w-6">
+          <div className="flex gap-2 md:gap-2">
+            <div className="w-6 md:w-6">
               <BackspaceIcon />
             </div>
             <div className="md:pt-1">Back to Orders</div>
@@ -161,23 +171,23 @@ const Checkout = () => {
             orders?.length === 0 ||
             !validateCheckOut({ address, personal })
           }
-          className="md:text-sm md:h-10"
+          className="hidden md:block text-sm h-10 md:text-sm md:h-10"
         >
           <div className="flex gap-2">
             <div className="text-right">Submit Order</div>
-            <div className="w-8 md:w-6">
+            <div className="w-6 md:w-6">
               <ArrowCircleRightIcon />
             </div>
           </div>
         </Button>
       </div>
       <div className=" text-white h-auto md:w-full text-center md:pl-5 md:pr-5 md:pb-2 pb-2">
-        <div className="w-full text-left">
-          <h5 className="font-bold text-sm">
+        <div className="w-full text-center md:text-left">
+          <h5 className="font-bold text-xs md:text-sm">
             Note: As of now, we only accept GCASH as mode of payment.
           </h5>
         </div>
-        <div className="grid grid-cols-2 gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
           <div className="md:h-auto">
             <PaymentOption gcashNo={currentConfig.gcash} />
             <PersonalDetails
@@ -198,6 +208,23 @@ const Checkout = () => {
             />
           </div>
         </div>
+        <Button
+          variant="primary"
+          onClick={handleSubmitOrders}
+          disabled={
+            !orders ||
+            orders?.length === 0 ||
+            !validateCheckOut({ address, personal })
+          }
+          className="mt-2 mb-2 md:hidden text-sm h-10 md:text-sm md:h-10"
+        >
+          <div className="flex gap-2">
+            <div className="text-right">Submit Order</div>
+            <div className="w-6 md:w-6">
+              <ArrowCircleRightIcon />
+            </div>
+          </div>
+        </Button>
       </div>
     </Layout>
   );

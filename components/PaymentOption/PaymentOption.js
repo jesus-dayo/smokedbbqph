@@ -12,12 +12,12 @@ const PaymentOption = ({ className, gcashNo }) => {
   return (
     <FormContainer className={className}>
       <div>
-        <h1 className="text-left font-bold text:lg uppercase ">
+        <h1 className="text-left font-bold text-sm md:text:lg uppercase ">
           Select Payment Option
         </h1>
       </div>
       <div>
-        <div className="flex justify-start gap-10 md:gap-10 p-2 md:p-0">
+        <div className="flex flex-col md:flex-row justify-start gap-1 md:gap-10 p-2 md:p-0">
           <div className="p-2 text-left">
             <input
               type="radio"

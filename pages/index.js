@@ -16,17 +16,17 @@ const HomePage = () => {
     <Layout full>
       <div className="flex flex-col text-slate-50 text-opacity-100">
         <Section>
-          <div className="w-full h-screen md:h-96 p-10 m-0 bg-slate-700 block bg-no-repeat bg-contain md:bg-cover md:bg-center bg-[url('/ribs2.jpg')]">
-            <div className="p-2 flex justify-around  md:p-5">
-              <div className="p-14 bg-slate-200 opacity-70">
+          <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 bg-slate-700 block bg-no-repeat bg-cover md:bg-cover md:bg-center bg-[url('/ribs2.jpg')]">
+            <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">
+              <div className="p-5 md:p-14 bg-slate-200 opacity-70">
                 <div
-                  className="h-28 md:w-full
+                  className="h-20 md:h-28 md:w-full
                     text-center font-serif"
                 >
-                  <p className="text-slate-900 md:text-5xl font-extrabold font-serif ">
+                  <p className="text-slate-900 text-sm md:text-5xl font-extrabold font-serif ">
                     The Best Smoked Barbeque Ribs in Town
                   </p>
-                  <p className="text-slate-800 text-opacity-100 md:text-4xl font-serif">
+                  <p className="text-slate-800 text-sm text-opacity-100 md:text-4xl font-serif">
                     Smoked Grilled for 12hrs to Perfection
                   </p>
                 </div>
@@ -38,7 +38,7 @@ const HomePage = () => {
           </div>
         </Section>
         <Section>
-          <div className="bg-gradient-to-r from-[#706f6f] to-[#888] h-full flex flex-row justify-evenly p-2 md:p-10">
+          <div className="bg-gradient-to-r from-[#706f6f] to-[#888] h-full flex flex-col md:flex-row justify-evenly p-2 md:p-10">
             <div className="w-full">
               <div className="p-2">
                 <p className="text-xs md:text-2xl font-serif">

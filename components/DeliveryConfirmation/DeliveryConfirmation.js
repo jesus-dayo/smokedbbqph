@@ -6,21 +6,21 @@ const DeliveryConfirmation = ({
 }) => {
   return (
     <div>
-      <div className="flex flex-col items-center">
-        <div className="text-left p-2">
+      <div className="flex flex-col md:items-center">
+        <div className="text-left p-2 md:text-lg text-sm">
           Delivery will be on{' '}
           <span className="font-bold">
             {schedule?.date} ,{schedule?.time}
           </span>
         </div>
-        <div className="text-left p-2">
+        <div className="text-left p-2 md:text-lg text-sm">
           Your order will be delivered to this address.
           <span className="font-bold">
             {address?.houseNo},{address?.barangay} ,{address?.street},{' '}
             {address?.city}, {address?.postalCode}
           </span>
         </div>
-        <div className="text-left p-2">
+        <div className="text-left p-2 md:text-lg text-sm">
           We will contact &nbsp;
           <span className="font-bold">{personal?.name}</span>&nbsp; for further
           details at &nbsp;
@@ -33,7 +33,7 @@ const DeliveryConfirmation = ({
             <span className="font-bold">{supportPhone}</span>&nbsp;and provide
             confirmation number.
           </p>
-          <p className="text-center">
+          <p className="md:text-center">
             Update or Cancellation can only be allowed 2 days before the actual
             date.
           </p>

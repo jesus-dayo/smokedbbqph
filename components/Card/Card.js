@@ -16,7 +16,7 @@ const Card = ({ label, price, imgSrc, description, availableQuantity }) => {
   return (
     <div
       data-cy={`test-${label}-card`}
-      className="bg-white w-full max-h-full h-full shadow-md flex-col md:w-2/12 md:h-full md:max-h-full"
+      className="bg-white w-full max-h-full h-full shadow-md flex-col md:h-full md:max-h-full"
     >
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>

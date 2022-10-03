@@ -40,13 +40,13 @@ const Confirmation = () => {
 
   return (
     <Layout full>
-      <div className="p-20 ">
+      <div className="p-5 md:p-20 ">
         <div className="bg-slate-100 text-center rounded-md min-h-full p-2">
-          <h5 className="font-medium text-xl">
+          <h5 className="font-medium text-sm md:text-xl">
             Your Order was Successful - {currentBill?.id}
           </h5>
           <div>
-            <div className="p-5 text-xl">
+            <div className="p-5 text-sm md:text-xl">
               Please provide payment of{' '}
               <span className="font-bold">
                 {' '}
@@ -64,18 +64,18 @@ const Confirmation = () => {
                 )}
               </span>
             </div>
-            <div className="p-2 text-xl">
+            <div className="p-2 text-sm md:text-xl">
               Thank you for your purchase. We will contact you for additional
               confirmation and delivery details.
             </div>
             <div className="grid grid-flow-row gap-4 justify-around">
-              <div className="col-span-3 border-2 border-slate-400 h-auto p-2">
+              <div className="col-span-3 border-2 border-slate-400 h-auto p-2 md:text-lg text-sm">
                 <PurchaseSummary
                   orders={currentBill?.orders?.items}
                   shippingFee={currentConfig.shippingFee}
                 />
               </div>
-              <div className="col-span-3 border-2 border-slate-400 min-h-56 h-auto p-5">
+              <div className="col-span-3 border-2 border-slate-400 min-h-56 h-auto md:p-5 ">
                 <DeliveryConfirmation
                   personal={currentBill?.client}
                   address={currentBill?.address}
