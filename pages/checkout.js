@@ -158,7 +158,7 @@ const Checkout = () => {
           onClick={handleSubmitOrders}
           disabled={
             !orders ||
-            orders.length === 0 ||
+            orders?.length === 0 ||
             !validateCheckOut({ address, personal })
           }
           className="md:text-sm md:h-10"

@@ -43,7 +43,7 @@ const OrderPage = ({ products = [] }) => {
   const orders = useRecoilValue(orderState);
 
   const routeToCheckoutPage = () => {
-    if (orders.length) {
+    if (orders?.length) {
       router.push('/checkout');
     }
   };

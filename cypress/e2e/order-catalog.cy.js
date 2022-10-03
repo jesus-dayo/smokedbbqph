@@ -22,7 +22,9 @@ describe('Order Catalog', () => {
       const availProdByDate = product.availability.items.filter(
         (item) => item.date === '21 Aug 2022'
       );
-      return availProdByDate.length === 0 || availProdByDate[0].quantity === 0;
+      return (
+        availProdByDate?.length === 0 || availProdByDate[0]?.quantity === 0
+      );
     });
     cy.quantity({ name: notAvailProduct.name }).should(
       'contain.text',

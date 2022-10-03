@@ -23,7 +23,8 @@ mutation createRange {
 }
 
 mutation seedAvailability {
-  createAvailability(input: {date: "21 Aug 2022", quantity: 2}){
+  createAvailability(input: {date: "21 Aug 2022", quantity: 2, 
+                      productAvailabilityId: '5af87148-fc60-4245-9e75-2444dc48c667'}){
     date
   }
 }

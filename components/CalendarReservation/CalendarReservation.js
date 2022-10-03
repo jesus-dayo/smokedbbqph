@@ -17,7 +17,7 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
   const alert = useAlert();
 
   useEffect(() => {
-    if (availabilities.length > 0 && !schedule?.date) {
+    if (availabilities?.length > 0 && !schedule?.date) {
       setSchedule(availabilities[0]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
