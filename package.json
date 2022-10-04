@@ -1,4 +1,5 @@
 {
+  "name": "pjsmokedbbq",
   "dependencies": {
     "@aws-amplify/ui-react": "^3.5.1",
     "@heroicons/react": "^1.0.6",
@@ -27,7 +28,8 @@
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "lint": "next lint --max-warnings=0",
     "prepare": "husky install",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "cypress:test": "cypress run"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
