@@ -14,6 +14,7 @@ import flatMap from 'lodash/flatMap';
 import { scheduleState } from '../states/schedule';
 import { listProductsWithAvailability } from '../src/graphql/custom_queries';
 import { productState } from '../states/product';
+import moment from 'moment';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -43,6 +44,8 @@ const OrderPage = ({ products = [] }) => {
   const availabilities = uniqBy(
     flatMap(products.map((product) => product.availability.items)),
     'date'
+  ).filter(
+    (avail) => moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
   );
   const router = useRouter();
   const orders = useRecoilValue(orderState);
