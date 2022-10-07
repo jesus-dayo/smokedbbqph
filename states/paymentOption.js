@@ -2,9 +2,7 @@ import { atom, selector } from 'recoil';
 
 const paymentOptionState = atom({
   key: 'paymentOptionState',
-  default: {
-    option: 'gcash',
-  },
+  default: 'gcash',
 });
 
 const getPaymentOption = selector({

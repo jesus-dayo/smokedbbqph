@@ -37,6 +37,7 @@ const OrderPage = ({ products = [] }) => {
 
   useEffect(() => {
     setProductValue(products);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
 
   const availabilities = uniqBy(

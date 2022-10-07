@@ -110,7 +110,7 @@ const Checkout = () => {
       query: createPaymentOption,
       variables: {
         input: {
-          option: paymentOption?.option,
+          option: paymentOption,
         },
       },
     });

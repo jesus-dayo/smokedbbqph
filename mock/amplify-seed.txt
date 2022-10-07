@@ -136,9 +136,12 @@ query listProductsQuery {
       name
       category
       description
+      productPictureId
       picture {
-        id
+        web
       }
+      originalPrice
+      price
       availability {
         items {
           id
@@ -153,6 +156,7 @@ query listProductsQuery {
     }
   }
 }
+
 
 mutation createPictureMutation {
   createPicture (input: {

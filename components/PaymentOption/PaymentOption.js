@@ -9,7 +9,7 @@ const PaymentOption = ({ className, gcashNo }) => {
   const onChangeValue = (e) => {
     setPaymentOption(e.target.value);
   };
-
+  console.log('paymentOption', paymentOption);
   return (
     <FormContainer className={className}>
       <div>
@@ -38,12 +38,12 @@ const PaymentOption = ({ className, gcashNo }) => {
             <input
               type="radio"
               value="gcash"
-              checked={paymentOption?.option === 'gcash'}
+              checked={paymentOption === 'gcash'}
               name="gcash"
               onChange={onChangeValue}
             />{' '}
             GCash
-            {paymentOption?.option === 'gcash' && (
+            {paymentOption === 'gcash' && (
               <div className="text-blue-500 text-sm text-left relative">
                 <p>Pay GCash to {gcashNo} within 24hrs.</p>
                 <p>You may send us a message at the same number once paid.</p>

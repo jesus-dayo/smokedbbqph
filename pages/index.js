@@ -27,7 +27,7 @@ const HomePage = () => {
                     The Best Smoked Barbeque Ribs in Town
                   </p>
                   <p className="text-slate-800 text-sm text-opacity-100 md:text-4xl font-serif">
-                    Smoked Grilled for 12hrs to Perfection
+                    Smoked Grilled to Perfection
                   </p>
                 </div>
               </div>
