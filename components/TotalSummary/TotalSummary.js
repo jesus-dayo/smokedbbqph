@@ -23,13 +23,14 @@ const Row = ({
   });
   return (
     <tr key={order.label} className="border-t-cyan-700 border-2">
-      <td width={'20%'} className="p-2 md:block hidden">
+      <td width={'20%'} className="p-2 hidden md:block">
         {order.picture && (
           <Image
             src={order.picture}
             alt={order.label}
             width={100}
             height={100}
+            layout={'fixed'}
           />
         )}
       </td>

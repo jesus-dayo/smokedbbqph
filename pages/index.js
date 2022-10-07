@@ -3,12 +3,21 @@ import Image from 'next/image';
 import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
+import { useEffect, useState } from 'react';
 // import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
   const router = useRouter();
+  const [inProgressOrder, setInProgressOrder] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setInProgressOrder(false);
+    };
+  }, []);
 
   const routeToOrderPage = () => {
+    setInProgressOrder(true);
     router.push('/order');
   };
 
@@ -32,7 +41,13 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="h-14 md:h-14 flex justify-end  text-xs md:w-6/12 text-white md:text-black text-center font-serif text-md md:text-2xl">
-                <Button onClick={routeToOrderPage}>Order Now</Button>
+                <Button
+                  onClick={routeToOrderPage}
+                  disabled={inProgressOrder}
+                  inProgress={inProgressOrder}
+                >
+                  Order Now
+                </Button>
               </div>
             </div>
           </div>

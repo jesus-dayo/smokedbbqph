@@ -9,7 +9,6 @@ const PaymentOption = ({ className, gcashNo }) => {
   const onChangeValue = (e) => {
     setPaymentOption(e.target.value);
   };
-  console.log('paymentOption', paymentOption);
   return (
     <FormContainer className={className}>
       <div>

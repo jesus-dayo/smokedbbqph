@@ -20,10 +20,10 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
     >
       {!notAvail && (
         <div className="flex flex-row justify-around h-6 md:h-6 w-full">
-          <div className="w-4 md:w-4 flex justify-center">
+          <div className="w-4 h-6 md:w-4 flex justify-center text-white">
             <MinusSmIcon
               onClick={onMinus}
-              className="cursor-pointer md:h-6"
+              className="cursor-pointer md:h-6 text-white"
               data-cy={`test-${id}-quantity-minus-id`}
             />
           </div>
@@ -33,13 +33,13 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
               value={value}
               data-cy={`test-${id}-quantity-input-id`}
               onChange={() => {}}
-              className="w-6 md:w-6 h-full md:h-6 text-center border-t-2 border-b-2 border-black"
+              className="w-6  md:w-6 h-full md:h-6 text-center border-t-2 border-b-2 border-black"
             />
           </div>
-          <div className="w-4 md:w-4 flex justify-center">
+          <div className="w-4 h-6 md:w-4 flex justify-center text-white">
             <PlusSmIcon
               onClick={onAdd}
-              className="cursor-pointer md:h-6"
+              className="cursor-pointer md:h-6 text-white"
               data-cy={`test-${id}-quantity-plus-id`}
             />
           </div>

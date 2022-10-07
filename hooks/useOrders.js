@@ -116,7 +116,6 @@ const useOrders = ({
       (prev, current) => prev + current.quantity,
       1
     );
-    console.log('totalQuantity', totalQuantity);
     if (totalQuantity > 10) {
       alert.show(`Sorry, but as of now our grills can only accomodate total 10. 
       If you need more for an event, please contact our hotline ${currentConfig?.phoneNumber} 
