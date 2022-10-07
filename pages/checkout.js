@@ -9,6 +9,7 @@ import {
   createOrder,
   createDelivery,
   createPaymentOption,
+  updateAvailability,
 } from '../src/graphql/mutations';
 import { getConfig } from '../src/graphql/queries';
 import TotalSummary from '../components/TotalSummary/TotalSummary';
@@ -26,6 +27,7 @@ import { scheduleState } from '../states/schedule';
 import awsExports from '../src/aws-exports';
 import PaymentOption from '../components/PaymentOption/PaymentOption';
 import { paymentOptionState } from '../states/paymentOption';
+import { productState } from '../states/product';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -38,6 +40,7 @@ const Checkout = () => {
   const schedule = useRecoilValue(scheduleState);
   const paymentOption = useRecoilValue(paymentOptionState);
   const [currentConfig, setCurrentConfig] = useState({});
+  const products = useRecoilValue(productState);
   const resetOrders = useResetRecoilState(orderState);
   const resetPersonal = useResetRecoilState(personalState);
   const resetAddress = useResetRecoilState(addressState);
@@ -118,6 +121,7 @@ const Checkout = () => {
           query: createOrder,
           variables: {
             input: {
+              productId: order.productId,
               label: order.label,
               quantity: order.quantity,
               price: order.price,
@@ -127,6 +131,23 @@ const Checkout = () => {
         })
       )
     );
+    orders?.forEach(async (order) => {
+      const product = products?.find((prod) => prod.id === order?.productId);
+      const availability = product?.availability?.items?.find(
+        (avail) => avail.date === schedule.date
+      );
+      const request = {
+        id: availability?.id,
+        quantity: order?.availableQuantity - order?.quantity,
+      };
+      await API.graphql({
+        query: updateAvailability,
+        variables: {
+          input: { ...request },
+        },
+      });
+    });
+
     await API.graphql({
       query: createBill,
       variables: {
@@ -140,12 +161,12 @@ const Checkout = () => {
         },
       },
     });
+    router.push(`/confirmation/${billNumber}`);
     resetAddress();
     resetOrders();
     resetPaymentOption();
     resetPersonal();
     resetSchedule();
-    router.push(`/confirmation/${billNumber}`);
   };
 
   return (

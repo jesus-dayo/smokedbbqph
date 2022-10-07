@@ -25,7 +25,14 @@ describe('Checkout', () => {
     cy.checkout().checkoutNow();
     cy.fillPersonalDetails();
     cy.fillAddress();
-    cy.submitOrder();
+    cy.submitOrder().then(() => {
+      cy.contains('Home').click();
+      cy.orderNow();
+      cy.get(`[data-cy='test-avail-21 Aug 2022-id']`).click();
+      cy.get(
+        `[data-cy='test-${mockProducts.products[0].name}-quantity-avail-id']`
+      ).should('have.text', '1 left');
+    });
   });
   it('should be able to minus quantity in checkout page', () => {
     cy.visit('/');

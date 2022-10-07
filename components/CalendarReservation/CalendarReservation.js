@@ -41,7 +41,7 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
             orders.findIndex((ord) => ord.label === order.label)
           ),
         ];
-        alert.show(`${order.label} is not available on this date.`);
+        alert.show(`${order.label} is Sold Out on this date.`);
       });
       setOrders(newOrders);
     }
@@ -60,7 +60,7 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
       <p className="text-left font-semibold text:lg md:text-xl  mb-2 text-white">
         Choose Delivery Date
       </p>
-      <div className="grid grid-cols-2  sm:grid-cols-4 md:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         {availabilities.map((avail, index) => (
           <div
             data-cy={`test-avail-${avail?.date}-id`}

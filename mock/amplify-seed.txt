@@ -71,12 +71,12 @@ mutation createOrder {
   }
 }
 
-mutation createConfig {
+mutation createConfigMutation {
   createConfig(input:{
 		 id: "config",
      shippingFee: 0,
-     phoneNumber: "+639458567301",
-     gcash: "+639458567301"
+     phoneNumber: "+639618981153",
+     gcash: "09618981153"
   }) {
     id
   }
@@ -84,16 +84,6 @@ mutation createConfig {
 
 # shift-option/alt-click on a query below to jump to it in the explorer
 # option/alt-click on a field in the explorer to select all subfields
-mutation createConfig {
-  createConfig(input:{
-		 id: "config",
-     shippingFee: 0,
-     phoneNumber: "+639458567301",
-     gcash: "+639458567301"
-  }) {
-    id
-  }
-}
 
 mutation updateConfig {
   updateConfig(input:{
@@ -129,6 +119,220 @@ query MyQuery {
       paymentOption {
         option
       }
+    }
+  }
+}
+
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+query listProductsQuery {
+  listProducts {
+    items {
+      id
+      name
+      category
+      description
+      picture {
+        id
+      }
+      availability {
+        items {
+          id
+          date
+          quantity
+          range {
+            start
+            end
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation createPictureMutation {
+  createPicture (input: {
+    web: "/ribs_memphis.jpg",
+    mobile: "/ribs_memphis.jpg"
+  }){
+    id
+  }
+}
+
+mutation createMemphisRibs {
+  createProduct(
+    input: { 
+      name: "Smoked Baby Back Ribs - Memphis", 
+      category: "pork", 
+      description: "Smoked for 6-7 hours, memphis style has a sweet and smoky flavour which makes it a crowd favorite. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", 
+      price: 1000, 
+      originalPrice: 1100
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+
+mutation createTexasRibs {
+  createProduct(
+    input: { 
+      name: "Smoked Baby Back Ribs - Texas", 
+      category: "pork", 
+      description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour, best paired with your favorite wine. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", 
+      price: 1000, 
+      originalPrice: 1100
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+
+mutation createRange {
+  createRange(input: {start:"6pm", end: "8pm"}){
+    id
+  }
+}
+
+mutation seedAvailability {
+  createAvailability(input: {
+    			date: "7 Oct 2022", 
+    			quantity: 10, 
+          productAvailabilityId: "80779ed0-3da3-4155-9afa-a44e35bd3fe0",
+  				availabilityRangeId: "e314586a-37b9-4979-ad31-4e782112864d"
+  }){
+    date
+  }
+}
+
+mutation updateAvailabilityMutation {
+  	updateAvailability(input: {
+      id: "e36d138b-c3c3-4cd1-b447-27b8177a06de"
+      quantity: 10
+    }) {
+  	  id
+  	}
+}
+
+
+query listAvailQuery {
+  listAvailabilities {
+    items {
+      date
+      id
+      productAvailabilityId
+      availabilityRangeId
+    }
+  }
+}
+
+
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+query listProductsQuery {
+  listProducts {
+    items {
+      id
+      name
+      category
+      description
+      productPictureId
+      availability {
+        items {
+          id
+          date
+          quantity
+          range {
+            start
+            end
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation createPictureMutation {
+  createPicture (input: {
+    web: "/ribs_memphis.jpg",
+    mobile: "/ribs_memphis.jpg"
+  }){
+    id
+  }
+}
+
+mutation updateProductMutation {
+  updateProduct(input: {
+    id: "80779ed0-3da3-4155-9afa-a44e35bd3fe0",
+    productPictureId: "46a857ed-4b1a-4c95-8ff1-c46e64b2b280"
+  }) {
+    id
+  }
+}
+
+mutation seedProducts {
+  createProduct(
+    input: { 
+      name: "Smoked Baby Back Ribs - Memphis", 
+      category: "pork", 
+      description: "Smoked for 6-7 hours, this is a crowd favorite. Best deeped with our special sauce. This usually weighs between 1 and 1.3kg ", 
+      price: 1000, 
+      originalPrice: 1100
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+
+mutation createRange {
+  createRange(input: {start:"6pm", end: "8pm"}){
+    id
+  }
+}
+
+mutation seedAvailability {
+  createAvailability(input: {
+    			date: "7 Oct 2022", 
+    			quantity: 10, 
+          productAvailabilityId: "80779ed0-3da3-4155-9afa-a44e35bd3fe0",
+  				availabilityRangeId: "e314586a-37b9-4979-ad31-4e782112864d"
+  }){
+    date
+  }
+}
+
+mutation updateAvailabilityMutation {
+  	updateAvailability(input: {
+      id: "e36d138b-c3c3-4cd1-b447-27b8177a06de"
+      quantity: 10
+    }) {
+  	  id
+  	}
+}
+
+
+query listAvailQuery {
+  listAvailabilities {
+    items {
+      date
+      id
+      productAvailabilityId
+      availabilityRangeId
     }
   }
 }

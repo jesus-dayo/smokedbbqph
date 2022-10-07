@@ -10,8 +10,10 @@
       "availability": {
         "items": [
           {
+            "id": "1",
             "date": "21 Aug 2022",
             "range": {
+              "id": "1",
               "start": "7pm",
               "end": "9pm"
             },
@@ -34,8 +36,10 @@
       "availability": {
         "items": [
           {
+            "id": "1",
             "date": "21 Aug 2022",
             "range": {
+              "id": "1",
               "start": "7pm",
               "end": "9pm"
             },
@@ -58,8 +62,10 @@
       "availability": {
         "items": [
           {
+            "id": "1",
             "date": "22 Aug 2022",
             "range": {
+              "id": "1",
               "start": "7pm",
               "end": "9pm"
             },
@@ -82,8 +88,10 @@
       "availability": {
         "items": [
           {
+            "id": "1",
             "date": "21 Aug 2022",
             "range": {
+              "id": "1",
               "start": "7pm",
               "end": "9pm"
             },

@@ -28,7 +28,7 @@ describe('Order Catalog', () => {
     });
     cy.quantity({ name: notAvailProduct.name }).should(
       'contain.text',
-      'Not Available'
+      'Sold Out'
     );
     cy.addQuantity({
       name: mockProducts.products[0].name,
@@ -105,10 +105,7 @@ describe('Order Catalog', () => {
     });
     mockProducts.products.forEach((product) => {
       if (!isProductAvailableByDate(product, '21 Aug 2022')) {
-        cy.quantity({ name: product.name }).should(
-          'contain.text',
-          'Not Available'
-        );
+        cy.quantity({ name: product.name }).should('contain.text', 'Sold Out');
       } else {
         if (product.isRecommended) {
           const availableQuantity = product.availability?.items[0].quantity;
@@ -158,10 +155,7 @@ describe('Order Catalog', () => {
     });
     cy.orderNow();
     cy.get(`[data-cy='test-avail-21 Aug 2022-id']`).click();
-    cy.quantity({ name: 'Blood Sausage' }).should(
-      'contain.text',
-      'Not Available'
-    );
+    cy.quantity({ name: 'Blood Sausage' }).should('contain.text', 'Sold Out');
     cy.get(`[data-cy='test-avail-22 Aug 2022-id']`).click();
     cy.inputQuantityVal({ name: 'Blood Sausage' }).then((val) =>
       expect(val).eq(0)
@@ -187,10 +181,7 @@ describe('Order Catalog', () => {
       expect(val).eq(1)
     );
     cy.get(`[data-cy='test-avail-21 Aug 2022-id']`).click();
-    cy.contains('Blood Sausage is not available on this date.');
-    cy.quantity({ name: 'Blood Sausage' }).should(
-      'contain.text',
-      'Not Available'
-    );
+    cy.contains('Blood Sausage is Sold Out on this date.');
+    cy.quantity({ name: 'Blood Sausage' }).should('contain.text', 'Sold Out');
   });
 });

@@ -159,5 +159,6 @@ Cypress.Commands.add('fillAddress', () => {
 Cypress.Commands.add('submitOrder', () => {
   cy.contains('Submit Order').should('exist');
   cy.contains('Submit Order').click();
+  cy.wait(2000);
   cy.url().should('include', '/confirmation');
 });

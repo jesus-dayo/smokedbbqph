@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { paymentOptionState } from '../../states/paymentOption';
 import FormContainer from '../FormContainer/FormContainer';
@@ -43,9 +44,17 @@ const PaymentOption = ({ className, gcashNo }) => {
             />{' '}
             GCash
             {paymentOption?.option === 'gcash' && (
-              <div className="text-blue-500 text-sm text-left">
+              <div className="text-blue-500 text-sm text-left relative">
                 <p>Pay GCash to {gcashNo} within 24hrs.</p>
-                <p> You may send us a message at the same number once paid.</p>
+                <p>You may send us a message at the same number once paid.</p>
+                <Image
+                  src={'/qr_code.jpeg'}
+                  alt={'qr-code'}
+                  objectFit="contain"
+                  layout="fixed"
+                  height={300}
+                  width={300}
+                />
               </div>
             )}
           </div>

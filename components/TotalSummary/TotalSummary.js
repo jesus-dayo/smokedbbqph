@@ -13,7 +13,6 @@ const Row = ({
   description,
   availableQuantity,
 }) => {
-  console.log('Row', quantity);
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     quantity,
     label,
@@ -60,7 +59,6 @@ const Row = ({
 
 const TotalSummary = ({ className, shippingFee }) => {
   const orders = useRecoilValue(orderState);
-  console.log('summary', orders);
   return (
     <div className="p-1 h-full">
       <div className="h-full rounded-lg bg-white shadow-lg md:p-4 p-4 text-gray-700">

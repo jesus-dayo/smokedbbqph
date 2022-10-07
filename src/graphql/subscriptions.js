@@ -8,6 +8,7 @@ export const onCreateProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -23,6 +24,7 @@ export const onCreateProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -33,6 +35,7 @@ export const onUpdateProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -48,6 +51,7 @@ export const onUpdateProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -58,6 +62,7 @@ export const onDeleteProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -73,6 +78,7 @@ export const onDeleteProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -180,11 +186,13 @@ export const onCreatePicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -202,11 +210,13 @@ export const onUpdatePicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -224,11 +234,13 @@ export const onDeletePicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -413,6 +425,7 @@ export const onCreateOrder = /* GraphQL */ `
   subscription OnCreateOrder {
     onCreateOrder {
       id
+      productId
       label
       quantity
       description
@@ -428,6 +441,7 @@ export const onUpdateOrder = /* GraphQL */ `
   subscription OnUpdateOrder {
     onUpdateOrder {
       id
+      productId
       label
       quantity
       description
@@ -443,6 +457,7 @@ export const onDeleteOrder = /* GraphQL */ `
   subscription OnDeleteOrder {
     onDeleteOrder {
       id
+      productId
       label
       quantity
       description

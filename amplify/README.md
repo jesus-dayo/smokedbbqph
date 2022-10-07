@@ -13,3 +13,11 @@ Helpful resources:
 
 - delete directory ./amplify/mock-data
 - rerun command "amplify mock api"
+
+# Updating the schema
+
+- amplify push --force --allow-destructive-graphql-schema-updates
+
+# wipe out mock data
+
+delete /amplify/mock-data

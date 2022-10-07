@@ -8,10 +8,11 @@ type Product @model {
   category: String!
   description: String
   price: Float
+  originalPrice: Float
   currency: String
   isRecommended: Boolean
   availability: [Availability] @hasMany
-  picture: [Picture]
+  picture: Picture @hasOne
 }
 
 type Availability @model {
@@ -49,6 +50,7 @@ type Delivery @model {
 
 type Order @model {
   id: ID!
+  productId: ID
   label: String
   quantity: Int
   description: String

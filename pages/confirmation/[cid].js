@@ -8,6 +8,7 @@ import { getConfig } from '../../src/graphql/queries';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
+import Image from 'next/image';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -46,10 +47,9 @@ const Confirmation = () => {
             Your Order was Successful - {currentBill?.id}
           </h5>
           <div>
-            <div className="p-5 text-sm md:text-xl">
-              Please provide payment of{' '}
-              <span className="font-bold">
-                {' '}
+            <div className="p-5 text-sm md:text-xl flex flex-col justify-center w-full">
+              <div className="font-bold">
+                Please provide payment of{' '}
                 {convertToPHP(
                   currentBill?.orders?.items?.reduce(
                     (prev, curr) => prev + curr.price * curr.quantity,
@@ -58,11 +58,25 @@ const Confirmation = () => {
                 )}{' '}
                 via{' '}
                 {currentBill?.paymentOption?.option === 'gcash' ? (
-                  <span>GCASH {currentConfig.gcash} within 24hrs.</span>
+                  <div>
+                    <span>GCASH {currentConfig.gcash} within 24hrs.</span>
+                  </div>
                 ) : (
                   <span>Cash on Delivery.</span>
                 )}
-              </span>
+              </div>
+              <div className="flex justify-center">
+                {currentBill?.paymentOption?.option === 'gcash' && (
+                  <div className="relative h-96 w-72 ">
+                    <Image
+                      src={'/qr_code.jpeg'}
+                      alt={'qr-code'}
+                      objectFit="fill"
+                      layout="fill"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <div className="p-2 text-sm md:text-xl">
               Thank you for your purchase. We will contact you for additional

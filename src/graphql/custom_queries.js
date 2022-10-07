@@ -6,17 +6,21 @@ export const listProductsWithAvailability = /* GraphQL */ `
   ) {
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        id
         name
         category
         description
+        originalPrice
         price
         currency
         isRecommended
         availability {
           items {
+            id
             date
             quantity
             range {
+              id
               start
               end
             }

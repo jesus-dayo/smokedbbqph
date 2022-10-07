@@ -8,6 +8,7 @@ export const getProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -23,6 +24,7 @@ export const getProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -38,11 +40,13 @@ export const listProducts = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       nextToken
     }
@@ -128,11 +132,13 @@ export const getPicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -257,6 +263,7 @@ export const getOrder = /* GraphQL */ `
   query GetOrder($id: ID!) {
     getOrder(id: $id) {
       id
+      productId
       label
       quantity
       description
@@ -277,6 +284,7 @@ export const listOrders = /* GraphQL */ `
     listOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        productId
         label
         quantity
         description

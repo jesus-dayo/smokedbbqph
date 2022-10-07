@@ -3,6 +3,11 @@ import { useAlert } from 'react-alert';
 import { useRecoilState } from 'recoil';
 import { orderState } from '../states/orders';
 import { removeItemAtIndex, replaceItemAtIndex } from '../utils/util';
+import { Amplify, API } from 'aws-amplify';
+import awsExports from '../src/aws-exports';
+import { getConfig } from '../src/graphql/queries';
+
+Amplify.configure({ ...awsExports, ssr: true });
 
 const useOrders = ({
   label,
@@ -10,8 +15,10 @@ const useOrders = ({
   price,
   imgSrc,
   availableQuantity,
+  productId,
 }) => {
   const [orders, setOrders] = useRecoilState(orderState);
+  const [currentConfig, setCurrentConfig] = useState();
   const getQuantity = () => {
     const foundOrder = orders.find((order) => order.label === label);
     return foundOrder?.quantity || 0;
@@ -23,8 +30,23 @@ const useOrders = ({
     price,
     imgSrc,
     availableQuantity,
+    productId,
   });
   const alert = useAlert();
+
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const config = await API.graphql({
+        query: getConfig,
+        variables: {
+          id: 'config',
+        },
+      });
+      setCurrentConfig(config?.data?.getConfig);
+    };
+    fetchConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const foundOrder = orders.find((order) => order.label === label);
@@ -40,6 +62,7 @@ const useOrders = ({
         price,
         imgSrc,
         availableQuantity,
+        productId,
       });
     }
   }, [orders]);
@@ -47,7 +70,6 @@ const useOrders = ({
   const updateOrders = (newQuantity) => {
     const foundOrderIndex = orders.findIndex((order) => order.label === label);
     if (newQuantity === 0) {
-      console.log('newQuantity is 0 removing', foundOrderIndex);
       setOrders(removeItemAtIndex(orders, foundOrderIndex));
     } else {
       if (foundOrderIndex === -1) {
@@ -60,6 +82,7 @@ const useOrders = ({
             quantity: newQuantity,
             picture: imgSrc,
             availableQuantity,
+            productId,
           },
         ]);
       } else {
@@ -71,10 +94,10 @@ const useOrders = ({
             quantity: newQuantity,
             picture: imgSrc,
             availableQuantity,
+            productId,
           })
         );
       }
-      console.log('newQuantity', newQuantity);
       setOrder({
         label,
         description,
@@ -82,12 +105,25 @@ const useOrders = ({
         quantity: newQuantity,
         picture: imgSrc,
         availableQuantity,
+        productId,
       });
     }
   };
 
   const handleAddQuantity = () => {
     alert.removeAll();
+    const totalQuantity = orders.reduce(
+      (prev, current) => prev + current.quantity,
+      1
+    );
+    console.log('totalQuantity', totalQuantity);
+    if (totalQuantity > 10) {
+      alert.show(`Sorry, but as of now our grills can only accomodate total 10. 
+      If you need more for an event, please contact our hotline ${currentConfig?.phoneNumber} 
+      and we can discuss on our event packages.`);
+      return;
+    }
+
     const newQuantity = getQuantity() + 1;
     if (newQuantity > availableQuantity) {
       alert.show('Max exceeded');
@@ -98,7 +134,6 @@ const useOrders = ({
 
   const handleMinusQuantity = () => {
     alert.removeAll();
-    console.log('try to minus 1', getQuantity());
     if (getQuantity() > 0) {
       updateOrders(getQuantity() - 1);
     }

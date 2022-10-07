@@ -11,6 +11,7 @@ export const createProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -26,6 +27,7 @@ export const createProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -39,6 +41,7 @@ export const updateProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -54,6 +57,7 @@ export const updateProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -67,6 +71,7 @@ export const deleteProduct = /* GraphQL */ `
       category
       description
       price
+      originalPrice
       currency
       isRecommended
       availability {
@@ -82,6 +87,7 @@ export const deleteProduct = /* GraphQL */ `
       id
       createdAt
       updatedAt
+      productPictureId
     }
   }
 `;
@@ -210,11 +216,13 @@ export const createPicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -235,11 +243,13 @@ export const updatePicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -260,11 +270,13 @@ export const deletePicture = /* GraphQL */ `
         category
         description
         price
+        originalPrice
         currency
         isRecommended
         id
         createdAt
         updatedAt
+        productPictureId
       }
       createdAt
       updatedAt
@@ -470,6 +482,7 @@ export const createOrder = /* GraphQL */ `
   ) {
     createOrder(input: $input, condition: $condition) {
       id
+      productId
       label
       quantity
       description
@@ -488,6 +501,7 @@ export const updateOrder = /* GraphQL */ `
   ) {
     updateOrder(input: $input, condition: $condition) {
       id
+      productId
       label
       quantity
       description
@@ -506,6 +520,7 @@ export const deleteOrder = /* GraphQL */ `
   ) {
     deleteOrder(input: $input, condition: $condition) {
       id
+      productId
       label
       quantity
       description

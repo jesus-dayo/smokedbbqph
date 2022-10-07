@@ -1,17 +1,25 @@
 import PropTypes from 'prop-types';
 import Quantity from '../Quantity/Quantity';
-import { useEffect } from 'react';
 import { convertToPHP } from '../../utils/util';
 import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
 
-const Card = ({ label, price, imgSrc, description, availableQuantity }) => {
+const Card = ({
+  label,
+  originalPrice,
+  price,
+  imgSrc,
+  description,
+  availableQuantity,
+  productId,
+}) => {
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     label,
     price,
     imgSrc,
     description,
     availableQuantity,
+    productId,
   });
   return (
     <div
@@ -23,13 +31,22 @@ const Card = ({ label, price, imgSrc, description, availableQuantity }) => {
       </div>
       <div className="p-1 border-2 h-36 w-full relative">
         {imgSrc && (
-          <Image src={imgSrc} alt={label} layout="fill" objectFit="contain" />
+          <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
         )}
       </div>
       <div className="text-xs p-2 h-28">{description}</div>
       <div className="text-md text-center opacity-80 p-2">
-        <p className="bg-gray-900 text-white ring-offset-2 ring-2">
-          <strong>{convertToPHP(price)}</strong>
+        <p className="bg-red-600 text-white ring-offset-2 ring-2">
+          <strong className="line-through">
+            Original Price: {convertToPHP(originalPrice)}
+          </strong>
+        </p>
+      </div>
+      <div className="text-md text-center opacity-80 p-2">
+        <p className="bg-green-600 text-white ring-offset-2 ring-2">
+          <strong>
+            Today's Price: <strikethrough>{convertToPHP(price)}</strikethrough>
+          </strong>
         </p>
       </div>
       <div className="p-2 flex items-center justify-center">

@@ -8,7 +8,7 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
         data-cy={`test-${id}-quantity-id`}
         className="h-full md:h-6 w-28 md:w-full flex justify-center text-align-center-center align-middle "
       >
-        Not Available
+        Sold Out
       </div>
     );
   }
@@ -51,7 +51,7 @@ const Quantity = ({ value = 0, onAdd, onMinus, className, id, notAvail }) => {
 
 Quantity.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.number,
+  id: PropTypes.string,
   onAdd: PropTypes.func,
   onMinus: PropTypes.func,
   value: PropTypes.number,

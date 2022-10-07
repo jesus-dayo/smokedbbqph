@@ -24,7 +24,7 @@ const PurchaseSummary = ({ orders = [], shippingFee }) => {
                 </div>
               </td>
               <td>
-                <div>1-2kg</div>
+                <div>1-1.5kg</div>
               </td>
               <td>
                 <div>{convertToPHP(order.price)}</div>

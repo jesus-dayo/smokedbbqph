@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import Card from '../components/Card/Card';
 import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
 import { Amplify, withSSRContext } from 'aws-amplify';
@@ -13,6 +13,7 @@ import uniqBy from 'lodash/uniqBy';
 import flatMap from 'lodash/flatMap';
 import { scheduleState } from '../states/schedule';
 import { listProductsWithAvailability } from '../src/graphql/custom_queries';
+import { productState } from '../states/product';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -21,7 +22,6 @@ export const getServerSideProps = async ({ req }) => {
   const response = await SSR.API.graphql({
     query: listProductsWithAvailability,
   });
-  console.log('response', response);
   return {
     props: {
       products: response.data.listProducts.items,
@@ -30,10 +30,14 @@ export const getServerSideProps = async ({ req }) => {
 };
 
 const OrderPage = ({ products = [] }) => {
-  console.log('products', products);
   const [filter, setFilter] = useState();
   const [recommended, setRecommended] = useState(true);
   const selectedSchedule = useRecoilValue(scheduleState);
+  const [productValue, setProductValue] = useRecoilState(productState);
+
+  useEffect(() => {
+    setProductValue(products);
+  }, [products]);
 
   const availabilities = uniqBy(
     flatMap(products.map((product) => product.availability.items)),
@@ -107,7 +111,6 @@ const OrderPage = ({ products = [] }) => {
     const avail = availability.find(
       (avail) => avail.date === selectedSchedule.date
     );
-    console.log('getQuantityBaseOnSchedule', avail);
     if (avail) {
       return avail.quantity;
     }
@@ -117,7 +120,7 @@ const OrderPage = ({ products = [] }) => {
   return (
     <Layout>
       <div className="p-2">
-        <div className="flex flex-wrap justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="flex flex-wrap justify-start md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           <CalendarReservation
             className="md:w-full"
             availabilities={availabilities}
@@ -133,7 +136,7 @@ const OrderPage = ({ products = [] }) => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 md:w-full justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-5 md:w-full justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts().map((item) => (
             <Card
               key={`item-${item.name}`}
@@ -144,6 +147,8 @@ const OrderPage = ({ products = [] }) => {
               availableQuantity={getQuantityBaseOnSchedule(
                 item.availability?.items
               )}
+              originalPrice={item.originalPrice}
+              productId={item.id}
             />
           ))}
         </div>
