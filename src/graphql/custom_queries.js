@@ -93,6 +93,7 @@ export const getBillWithAvail = /* GraphQL */ `
       billClientId
       billAddressId
       billPaymentOptionId
+      shippingFee
     }
   }
 `;

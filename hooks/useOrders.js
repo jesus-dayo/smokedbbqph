@@ -6,6 +6,7 @@ import { removeItemAtIndex, replaceItemAtIndex } from '../utils/util';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
 import { getConfig } from '../src/graphql/queries';
+import { MAX_RIBS } from '../common/staticConfigs';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -16,6 +17,8 @@ const useOrders = ({
   imgSrc,
   availableQuantity,
   productId,
+  isFrozen,
+  max = 0,
 }) => {
   const [orders, setOrders] = useRecoilState(orderState);
   const [currentConfig, setCurrentConfig] = useState();
@@ -63,6 +66,7 @@ const useOrders = ({
         imgSrc,
         availableQuantity,
         productId,
+        isFrozen,
       });
     }
   }, [orders]);
@@ -83,6 +87,7 @@ const useOrders = ({
             picture: imgSrc,
             availableQuantity,
             productId,
+            isFrozen,
           },
         ]);
       } else {
@@ -95,6 +100,7 @@ const useOrders = ({
             picture: imgSrc,
             availableQuantity,
             productId,
+            isFrozen,
           })
         );
       }
@@ -106,20 +112,14 @@ const useOrders = ({
         picture: imgSrc,
         availableQuantity,
         productId,
+        isFrozen,
       });
     }
   };
 
   const handleAddQuantity = () => {
     alert.removeAll();
-    const totalQuantity = orders.reduce(
-      (prev, current) => prev + current.quantity,
-      1
-    );
-    if (totalQuantity > 10) {
-      alert.show(`Sorry, but as of now our grills can only accomodate total 10. 
-      If you need more for an event, please contact our hotline ${currentConfig?.phoneNumber} 
-      and we can discuss on our event packages.`);
+    if (!validateMaxLimit()) {
       return;
     }
 
@@ -138,10 +138,27 @@ const useOrders = ({
     }
   };
 
+  const validateMaxLimit = () => {
+    alert.removeAll();
+    const totalQuantity = orders
+      .filter((order) => !order.isFrozen)
+      .reduce((prev, current) => prev + current.quantity, 1);
+    if (totalQuantity + max > MAX_RIBS) {
+      alert.show(`Sorry, as of now, we have max 10 limit in our smokers 
+        and someone has ordered alongside with you. 
+        Currenty, we have ${
+          MAX_RIBS - max
+        } available space for ribs in our smoker.`);
+      return false;
+    }
+    return true;
+  };
+
   return {
     order,
     handleAddQuantity,
     handleMinusQuantity,
+    validateMaxLimit,
   };
 };
 

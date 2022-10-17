@@ -1,6 +1,11 @@
+import moment from 'moment';
 import mockProducts from '../fixtures/products/products.json';
 
 describe('Checkout', () => {
+  beforeEach(() => {
+    const now = new Date(2022, 6, 14);
+    cy.clock(now, ['Date']);
+  });
   it('should be able to submit', () => {
     cy.visit('/');
     cy.fixture('products/products.json').as('productResponse');

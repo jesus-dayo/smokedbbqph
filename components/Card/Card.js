@@ -3,6 +3,7 @@ import Quantity from '../Quantity/Quantity';
 import { convertToPHP } from '../../utils/util';
 import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
+import { MAX_RIBS } from '../../common/staticConfigs';
 
 const Card = ({
   label,
@@ -12,6 +13,8 @@ const Card = ({
   description,
   availableQuantity,
   productId,
+  isFrozen,
+  max,
 }) => {
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     label,
@@ -20,6 +23,8 @@ const Card = ({
     description,
     availableQuantity,
     productId,
+    isFrozen,
+    max,
   });
   return (
     <div
@@ -55,7 +60,7 @@ const Card = ({
           onAdd={handleAddQuantity}
           onMinus={handleMinusQuantity}
           id={label}
-          notAvail={availableQuantity === 0}
+          notAvail={availableQuantity === 0 || (!isFrozen && max === MAX_RIBS)}
         />
       </div>
       <div
@@ -64,7 +69,9 @@ const Card = ({
           'h-8 text-center text-lg md:text-sm text-red-400 font-semibold'
         }
       >
-        {availableQuantity !== 0 && `${availableQuantity} left`}
+        {availableQuantity !== 0 &&
+          (isFrozen || max !== MAX_RIBS) &&
+          `${availableQuantity} left`}
       </div>
     </div>
   );
@@ -77,6 +84,7 @@ Card.propTypes = {
   price: PropTypes.string,
   quantityCount: PropTypes.number,
   availableQuantity: PropTypes.number,
+  isFrozen: PropTypes.bool,
 };
 
 export default Card;

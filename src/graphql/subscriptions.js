@@ -21,6 +21,7 @@ export const onCreateProduct = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      isFrozen
       id
       createdAt
       updatedAt
@@ -48,6 +49,7 @@ export const onUpdateProduct = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      isFrozen
       id
       createdAt
       updatedAt
@@ -75,6 +77,7 @@ export const onDeleteProduct = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      isFrozen
       id
       createdAt
       updatedAt
@@ -189,6 +192,7 @@ export const onCreatePicture = /* GraphQL */ `
         originalPrice
         currency
         isRecommended
+        isFrozen
         id
         createdAt
         updatedAt
@@ -213,6 +217,7 @@ export const onUpdatePicture = /* GraphQL */ `
         originalPrice
         currency
         isRecommended
+        isFrozen
         id
         createdAt
         updatedAt
@@ -237,6 +242,7 @@ export const onDeletePicture = /* GraphQL */ `
         originalPrice
         currency
         isRecommended
+        isFrozen
         id
         createdAt
         updatedAt
@@ -258,6 +264,7 @@ export const onCreateBill = /* GraphQL */ `
         id
         date
         time
+        scheduleId
         createdAt
         updatedAt
       }
@@ -285,6 +292,8 @@ export const onCreateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      status
+      shippingFee
       createdAt
       updatedAt
       billDeliveryId
@@ -305,6 +314,7 @@ export const onUpdateBill = /* GraphQL */ `
         id
         date
         time
+        scheduleId
         createdAt
         updatedAt
       }
@@ -332,6 +342,8 @@ export const onUpdateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      status
+      shippingFee
       createdAt
       updatedAt
       billDeliveryId
@@ -352,6 +364,7 @@ export const onDeleteBill = /* GraphQL */ `
         id
         date
         time
+        scheduleId
         createdAt
         updatedAt
       }
@@ -379,6 +392,8 @@ export const onDeleteBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      status
+      shippingFee
       createdAt
       updatedAt
       billDeliveryId
@@ -394,6 +409,7 @@ export const onCreateDelivery = /* GraphQL */ `
       id
       date
       time
+      scheduleId
       createdAt
       updatedAt
     }
@@ -405,6 +421,7 @@ export const onUpdateDelivery = /* GraphQL */ `
       id
       date
       time
+      scheduleId
       createdAt
       updatedAt
     }
@@ -416,6 +433,7 @@ export const onDeleteDelivery = /* GraphQL */ `
       id
       date
       time
+      scheduleId
       createdAt
       updatedAt
     }
@@ -431,6 +449,7 @@ export const onCreateOrder = /* GraphQL */ `
       description
       price
       imgSrc
+      isFrozen
       createdAt
       updatedAt
       billOrdersId
@@ -447,6 +466,7 @@ export const onUpdateOrder = /* GraphQL */ `
       description
       price
       imgSrc
+      isFrozen
       createdAt
       updatedAt
       billOrdersId
@@ -463,6 +483,7 @@ export const onDeleteOrder = /* GraphQL */ `
       description
       price
       imgSrc
+      isFrozen
       createdAt
       updatedAt
       billOrdersId
