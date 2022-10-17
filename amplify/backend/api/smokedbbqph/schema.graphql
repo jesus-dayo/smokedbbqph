@@ -13,6 +13,7 @@ type Product @model {
   isRecommended: Boolean
   availability: [Availability] @hasMany
   picture: Picture @hasOne
+  isFrozen: Boolean
 }
 
 type Availability @model {
@@ -40,12 +41,15 @@ type Bill @model {
   client: Client @hasOne
   address: Address @hasOne
   paymentOption: PaymentOption @hasOne
+  status: String
+  shippingFee: Int
 }
 
 type Delivery @model {
   id: ID!
   date: String
   time: String
+  scheduleId: ID
 }
 
 type Order @model {
@@ -56,6 +60,7 @@ type Order @model {
   description: String
   price: Float
   imgSrc: String
+  isFrozen: Boolean
 }
 
 type Client @model {

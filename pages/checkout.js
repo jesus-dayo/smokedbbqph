@@ -28,6 +28,9 @@ import awsExports from '../src/aws-exports';
 import PaymentOption from '../components/PaymentOption/PaymentOption';
 import { paymentOptionState } from '../states/paymentOption';
 import { productState } from '../states/product';
+import { PENDING } from '../common/status';
+import { CITY } from '../common/city';
+import useMaxOrders from '../hooks/useMaxOrders';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -47,6 +50,7 @@ const Checkout = () => {
   const resetAddress = useResetRecoilState(addressState);
   const resetSchedule = useResetRecoilState(scheduleState);
   const resetPaymentOption = useResetRecoilState(paymentOptionState);
+  const max = useMaxOrders(schedule?.id);
 
   useEffect(() => {
     const getConfigAPI = async () => {
@@ -60,6 +64,14 @@ const Checkout = () => {
     };
     getConfigAPI();
   }, []);
+
+  const getShippingFee = () => {
+    const foundCity = CITY.find((city) => city.label === address?.city);
+    if (!foundCity) {
+      return 0;
+    }
+    return foundCity.shippingFee;
+  };
 
   const validate = (e, fieldName) => {
     if (!e.target.value) {
@@ -99,10 +111,11 @@ const Checkout = () => {
       },
     });
 
-    const scheduleResponse = await API.graphql({
+    await API.graphql({
       query: createDelivery,
       variables: {
         input: {
+          scheduleId: schedule.id,
           date: schedule.date,
           time: `${schedule.range?.start}-${schedule.range?.end}`,
         },
@@ -128,6 +141,7 @@ const Checkout = () => {
               quantity: order.quantity,
               price: order.price,
               billOrdersId: billNumber,
+              isFrozen: order.isFrozen,
             },
           },
         })
@@ -157,9 +171,11 @@ const Checkout = () => {
           id: billNumber,
           billClientId: clientResponse.data?.createClient?.id,
           billAddressId: addressResponse.data?.createAddress?.id,
-          billDeliveryId: scheduleResponse.data?.createDelivery?.id,
+          billDeliveryId: schedule?.id,
           billPaymentOptionId:
             paymentOptionResponse.data?.createPaymentOption?.id,
+          status: PENDING,
+          shippingFee: getShippingFee(),
         },
       },
     });
@@ -228,7 +244,8 @@ const Checkout = () => {
           <div className="md:h-full">
             <TotalSummary
               className="md:w-full"
-              shippingFee={currentConfig.shippingFee}
+              shippingFee={getShippingFee()}
+              max={max}
             />
           </div>
         </div>

@@ -1,7 +1,9 @@
 import { useRecoilState } from 'recoil';
+import { CITY } from '../../common/city';
 import { addressState } from '../../states/address';
 import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
+import SelectInput from '../SelectInput/SelectInput';
 
 const Address = ({ className, validate, errors = [] }) => {
   const [address, setAddress] = useRecoilState(addressState);
@@ -53,10 +55,11 @@ const Address = ({ className, validate, errors = [] }) => {
           testId="barangay"
           onChange={(e) => handleChange(e, 'barangay')}
         />
-        <FormInput
+        <SelectInput
           label="City"
-          placeholder="City"
           value={address.city}
+          options={CITY}
+          placeholder="City"
           testId="city"
           validationError={'city is a required field'}
           onChange={(e) => handleChange(e, 'city')}

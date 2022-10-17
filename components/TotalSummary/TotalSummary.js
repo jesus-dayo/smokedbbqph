@@ -12,6 +12,7 @@ const Row = ({
   imgSrc,
   description,
   availableQuantity,
+  max,
 }) => {
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     quantity,
@@ -20,6 +21,7 @@ const Row = ({
     imgSrc,
     description,
     availableQuantity,
+    max,
   });
   return (
     <tr key={order.label} className="border-t-cyan-700 border-2">
@@ -58,7 +60,7 @@ const Row = ({
   );
 };
 
-const TotalSummary = ({ className, shippingFee }) => {
+const TotalSummary = ({ className, shippingFee, max }) => {
   const orders = useRecoilValue(orderState);
   return (
     <div className="p-1 h-full">
@@ -79,7 +81,7 @@ const TotalSummary = ({ className, shippingFee }) => {
           <tbody>
             {orders &&
               orders?.map((order, index) => (
-                <Row {...order} key={`order-${index}`} />
+                <Row {...order} key={`order-${index}`} max={max} />
               ))}
             {(!orders || orders?.length === 0) && (
               <tr>

@@ -21,6 +21,7 @@ export const getProduct = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      isFrozen
       id
       createdAt
       updatedAt
@@ -43,6 +44,7 @@ export const listProducts = /* GraphQL */ `
         originalPrice
         currency
         isRecommended
+        isFrozen
         id
         createdAt
         updatedAt
@@ -135,6 +137,7 @@ export const getPicture = /* GraphQL */ `
         originalPrice
         currency
         isRecommended
+        isFrozen
         id
         createdAt
         updatedAt
@@ -174,6 +177,7 @@ export const getBill = /* GraphQL */ `
         id
         date
         time
+        scheduleId
         createdAt
         updatedAt
       }
@@ -201,6 +205,8 @@ export const getBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      status
+      shippingFee
       createdAt
       updatedAt
       billDeliveryId
@@ -219,6 +225,8 @@ export const listBills = /* GraphQL */ `
     listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        status
+        shippingFee
         createdAt
         updatedAt
         billDeliveryId
@@ -236,6 +244,7 @@ export const getDelivery = /* GraphQL */ `
       id
       date
       time
+      scheduleId
       createdAt
       updatedAt
     }
@@ -252,6 +261,7 @@ export const listDeliveries = /* GraphQL */ `
         id
         date
         time
+        scheduleId
         createdAt
         updatedAt
       }
@@ -269,6 +279,7 @@ export const getOrder = /* GraphQL */ `
       description
       price
       imgSrc
+      isFrozen
       createdAt
       updatedAt
       billOrdersId
@@ -290,6 +301,7 @@ export const listOrders = /* GraphQL */ `
         description
         price
         imgSrc
+        isFrozen
         createdAt
         updatedAt
         billOrdersId

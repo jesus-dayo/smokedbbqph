@@ -53,7 +53,7 @@ const Confirmation = () => {
                 {convertToPHP(
                   currentBill?.orders?.items?.reduce(
                     (prev, curr) => prev + curr.price * curr.quantity,
-                    0
+                    currentBill.shippingFee
                   )
                 )}{' '}
                 via{' '}
@@ -86,7 +86,7 @@ const Confirmation = () => {
               <div className="col-span-3 border-2 border-slate-400 h-auto p-2 md:text-lg text-sm">
                 <PurchaseSummary
                   orders={currentBill?.orders?.items}
-                  shippingFee={currentConfig.shippingFee}
+                  shippingFee={currentBill?.shippingFee}
                 />
               </div>
               <div className="col-span-3 border-2 border-slate-400 min-h-56 h-auto md:p-5 ">

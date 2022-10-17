@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+import { CITY } from '../common/city';
 
 const addressState = atom({
   key: 'addressState',
@@ -6,7 +7,7 @@ const addressState = atom({
     houseNo: '',
     street: '',
     barangay: '',
-    city: '',
+    city: CITY[0].label,
     postalCode: '',
   },
 });
