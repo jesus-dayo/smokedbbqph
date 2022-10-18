@@ -81,7 +81,7 @@ Card.propTypes = {
   description: PropTypes.string,
   imgSrc: PropTypes.string,
   label: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   quantityCount: PropTypes.number,
   availableQuantity: PropTypes.number,
   isFrozen: PropTypes.bool,

@@ -17,6 +17,13 @@
           "appId": "d179tm4gs3d1mg",
           "type": "cicd"
         }
+      },
+      "function": {
+        "billEmailCopy": {
+          "sesEmail": "sales@pjsmokeandgrill.com",
+          "deploymentBucketName": "amplify-smokedbbqph-dev-215701-deployment",
+          "s3Key": "amplify-builds/billEmailCopy-752f47522f4148462b4c-build.zip"
+        }
       }
     }
   }

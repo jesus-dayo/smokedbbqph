@@ -24,5 +24,22 @@
       "service": "amplifyhosting",
       "type": "cicd"
     }
+  },
+  "function": {
+    "billEmailCopy": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "smokedbbqph",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
+    }
   }
 }
