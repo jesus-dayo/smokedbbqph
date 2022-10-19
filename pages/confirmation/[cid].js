@@ -35,9 +35,11 @@ const Confirmation = () => {
       setCurrentConfig(config?.data?.getConfig);
       setCurrentBill(bill?.data?.getBill);
     };
-    getBillAPI();
+    if (cid) {
+      getBillAPI();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cid]);
 
   return (
     <Layout full>
