@@ -30,5 +30,5 @@ exports.handler = async (event) => {
       });
     }
   }
-  return Promise.resolve(`Successfully sent email for bill ${billId}`);
+  return Promise.resolve('Successfully sent email for new bills');
 };
