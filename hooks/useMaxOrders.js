@@ -8,7 +8,7 @@ import { uiState } from '../states/uiState';
 const useMaxOrders = (deliveryId) => {
   const [max, setMax] = useState(0);
   const [_, setUI] = useRecoilState(uiState);
-
+  console.log('deliveryId', deliveryId);
   useEffect(() => {
     if (deliveryId) {
       computeMax();
@@ -36,6 +36,7 @@ const useMaxOrders = (deliveryId) => {
         });
         if (orders.data?.listOrders?.items?.length) {
           const orderItems = orders.data?.listOrders?.items;
+          console.log('orderItems', orderItems);
           const filteredUnfrozenOrders = orderItems.filter(
             (order) => !order.isFrozen
           );
@@ -48,12 +49,15 @@ const useMaxOrders = (deliveryId) => {
               );
           }
         }
+        console.log('newMax', newMax);
         if (newMax) {
           setMax(newMax);
-        } else {
+        } else if (newMax === undefined || newMax === null) {
           setMax(MAX_RIBS);
         }
       }
+    } else {
+      setMax(0);
     }
     setUI({ isQuantityLoading: false });
   };

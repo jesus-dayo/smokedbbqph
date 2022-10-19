@@ -14,6 +14,7 @@ export const listProductsWithAvailability = /* GraphQL */ `
         price
         currency
         isRecommended
+        isFrozen
         availability {
           items {
             id

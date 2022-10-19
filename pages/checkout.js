@@ -110,8 +110,7 @@ const Checkout = () => {
         },
       },
     });
-
-    await API.graphql({
+    const deliveryResponse = await API.graphql({
       query: createDelivery,
       variables: {
         input: {
@@ -171,7 +170,7 @@ const Checkout = () => {
           id: billNumber,
           billClientId: clientResponse.data?.createClient?.id,
           billAddressId: addressResponse.data?.createAddress?.id,
-          billDeliveryId: schedule?.id,
+          billDeliveryId: deliveryResponse.data?.createDelivery?.id,
           billPaymentOptionId:
             paymentOptionResponse.data?.createPaymentOption?.id,
           status: PENDING,
