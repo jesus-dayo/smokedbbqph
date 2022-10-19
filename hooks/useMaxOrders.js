@@ -1,7 +1,6 @@
 import { API } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { MAX_RIBS } from '../common/staticConfigs';
-import { CANCELLED } from '../common/status';
 import { listBills, listOrders } from '../src/graphql/queries';
 
 const useMaxOrders = (deliveryId) => {
@@ -50,8 +49,6 @@ const useMaxOrders = (deliveryId) => {
           setMax(MAX_RIBS);
         }
       }
-    } else {
-      setMax(MAX_RIBS);
     }
   };
 
