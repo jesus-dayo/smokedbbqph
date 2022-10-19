@@ -4,7 +4,6 @@ import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
-// import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
   const router = useRouter();

@@ -24,15 +24,11 @@ const PurchaseSummary = ({ orders = [], shippingFee }) => {
                 </div>
               </td>
               <td>
-                <div>1-1.5kg</div>
-              </td>
-              <td>
                 <div>{convertToPHP(order.price)}</div>
               </td>
             </tr>
           ))}
           <tr className="border-t-slate-400-200 border-t-2 font-medium">
-            <td></td>
             <td></td>
             <td>
               <div className="p-2">Sub Total</div>
@@ -50,7 +46,6 @@ const PurchaseSummary = ({ orders = [], shippingFee }) => {
           </tr>
           <tr className="font-medium">
             <td></td>
-            <td></td>
             <td>
               <div className="p-2">Shipping Fee</div>
             </td>
@@ -59,7 +54,6 @@ const PurchaseSummary = ({ orders = [], shippingFee }) => {
             </td>
           </tr>
           <tr className="font-medium">
-            <td></td>
             <td></td>
             <td>
               <div className="p-2">Total</div>

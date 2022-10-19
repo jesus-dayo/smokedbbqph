@@ -19,7 +19,7 @@ exports.handler = async (event) => {
         Source: process.env.SES_EMAIL,
         Message: {
           Subject: {
-            Data: `${updatedAt} - PJSmokeGrill - Thank You for your Purchase!`,
+            Data: `${process.env.ENV} - PJSmokeGrill - Thank You for your Purchase!`,
           },
           Body: {
             Text: {
