@@ -1,5 +1,5 @@
 const aws = require('aws-sdk');
-const ses = new aws.ses();
+const ses = new aws.SES();
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
