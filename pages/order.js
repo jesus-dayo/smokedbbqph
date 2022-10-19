@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
-import { Amplify, withSSRContext } from 'aws-amplify';
+import { Amplify, API, withSSRContext } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
 import FilterGroup from '../components/FilterGroup/FilterGroup';
 import CalendarReservation from '../components/CalendarReservation/CalendarReservation';
@@ -19,39 +19,53 @@ import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
 
-Amplify.configure({ ...awsExports, ssr: true });
+Amplify.configure({ ...awsExports, ssr: false });
 
-export const getServerSideProps = async ({ req }) => {
-  const SSR = withSSRContext({ req });
-  const response = await SSR.API.graphql({
-    query: listProductsWithAvailability,
-  });
-  return {
-    props: {
-      products: response.data.listProducts.items,
-    },
-  };
-};
-
-const OrderPage = ({ products = [] }) => {
+const OrderPage = () => {
   const [filter, setFilter] = useState();
   const [recommended, setRecommended] = useState(true);
   const selectedSchedule = useRecoilValue(scheduleState);
-  const [productValue, setProductValue] = useRecoilState(productState);
+  const [products, setProducts] = useState([]);
+  const [_, setProductValue] = useRecoilState(productState);
   const max = useMaxOrders(selectedSchedule?.id);
   const ui = useRecoilValue(uiState);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [availabilities, setAvailabilities] = useState([]);
 
   useEffect(() => {
-    setProductValue(products);
+    const fetchProducts = async () => {
+      const response = await API.graphql({
+        query: listProductsWithAvailability,
+      });
+      const responseData = response.data.listProducts.items;
+      setProducts(responseData);
+      setProductValue(responseData);
+      setAvailabilities(
+        uniqBy(
+          flatMap(responseData.map((product) => product.availability.items)),
+          'date'
+        ).filter(
+          (avail) =>
+            moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
+        )
+      );
+    };
+    fetchProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products]);
+  }, []);
 
-  const availabilities = uniqBy(
-    flatMap(products.map((product) => product.availability.items)),
-    'date'
-  ).filter(
-    (avail) => moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
-  );
+  useEffect(() => {
+    const filterProducts = () => {
+      if (recommended) {
+        return products.filter((prod) => prod.isRecommended);
+      }
+      if (filter) {
+        return products.filter((prod) => prod.category === filter);
+      }
+    };
+    setFilteredProducts(filterProducts());
+  }, [products, recommended, filter, selectedSchedule?.id]);
+
   const router = useRouter();
   const orders = useRecoilValue(orderState);
 
@@ -67,15 +81,6 @@ const OrderPage = ({ products = [] }) => {
   const handleFilter = (category) => {
     setRecommended(false);
     setFilter(category);
-  };
-
-  const filteredProducts = () => {
-    if (recommended) {
-      return products.filter((prod) => prod.isRecommended);
-    }
-    if (filter) {
-      return products.filter((prod) => prod.category === filter);
-    }
   };
 
   const filters = [
@@ -128,7 +133,6 @@ const OrderPage = ({ products = [] }) => {
     }
     return 0;
   };
-
   return (
     <Layout>
       <div className="p-2">
@@ -149,7 +153,7 @@ const OrderPage = ({ products = [] }) => {
       </div>
       <div className="p-2 mb-10">
         <div className="grid grid-cols-1 md:grid-cols-5 md:w-full justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
-          {filteredProducts().map((item) => (
+          {filteredProducts.map((item) => (
             <Card
               key={`item-${item.name}`}
               label={item.name}
@@ -163,6 +167,7 @@ const OrderPage = ({ products = [] }) => {
               productId={item.id}
               max={max}
               isQuantityLoading={ui.isQuantityLoading}
+              isFrozen={item.isFrozen}
             />
           ))}
         </div>

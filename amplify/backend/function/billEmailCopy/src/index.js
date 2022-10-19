@@ -23,7 +23,11 @@ exports.handler = async (event) => {
           },
           Body: {
             Text: {
-              Data: `Bill id is ${billId} - date is ${updatedAt}`,
+              Data: `link ${
+                process.env.ENV !== 'dev'
+                  ? 'https://www.pjsmokegrill.com/confirmation/' + billId
+                  : billId
+              }`,
             },
           },
         },

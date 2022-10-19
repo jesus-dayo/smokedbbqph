@@ -1,71 +1,48 @@
 mutation createConfigMutation {
-  createConfig(input:{
-	 id: "config",
-     shippingFee: 0,
-     phoneNumber: "+639618981153",
-     gcash: "09618981153"
-  }) {
+  createConfig(input: {id: "config", shippingFee: 0, phoneNumber: "+639618981153", gcash: "09618981153"}) {
     id
   }
 }
 
 mutation createRange1 {
-  createRange(input: {start:"6pm", end: "8pm"}){
+  createRange(input: {start: "6pm", end: "8pm"}) {
     id
   }
 }
-# 5854a933-20d8-493d-aac1-bf9960e2e054
+
+mutation createRange10to1 {
+  createRange(input: {start: "10am", end: "1pm"}) {
+    id
+  }
+}
+# 32d749df-bb78-4559-b033-82d20b04e264
 
 mutation createRange2 {
-  createRange(input: {start:"11am", end: "2pm"}){
+  createRange(input: {start: "11am", end: "2pm"}) {
     id
   }
 }
-# 92cf9dd2-a35f-413d-b4a6-1116fb768c38
 
 mutation createMemphisRibs {
-  createProduct(
-    input: { 
-      name: "Smoked Baby Back Ribs - Memphis", 
-      category: "pork", 
-      description: "Smoked for 6-7 hours, memphis style has a sweet and smoky flavour which makes it a crowd favorite. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", 
-      price: 1000, 
-      originalPrice: 1100
-      currency: "php", 
-      isRecommended: true,
-    }
-  ) {
+  createProduct(input: {name: "Smoked Baby Back Ribs - Memphis", category: "pork", description: "Smoked for 6-7 hours, memphis style has a sweet and smoky flavour which makes it a crowd favorite. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", price: 1000, originalPrice: 1100, currency: "php", isRecommended: true}) {
     id
   }
 }
-# 8d13de0d-8879-4635-9618-763074056aa9
 
 mutation createAvailabilityMemphis {
-  createAvailability(input: {
-    			date: "7 Oct 2022", 
-    			quantity: 10, 
-          productAvailabilityId: "8d13de0d-8879-4635-9618-763074056aa9",
-  				availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"
-  }){
+  createAvailability(input: {date: "22 Oct 2022", quantity: 10, productAvailabilityId: "8d13de0d-8879-4635-9618-763074056aa9", availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"}) {
     date
   }
 }
 
 mutation createPictureMemphisMutation {
-  createPicture (input: {
-    web: "/ribs_memphis.jpg",
-    mobile: "/ribs_memphis.jpg"
-  }){
+  createPicture(input: {web: "/ribs_memphis.jpg", mobile: "/ribs_memphis.jpg"}) {
     id
   }
 }
-# f5cc035-e0b1-4c29-a0ec-ef9407e66c53
 
 mutation updateProductMemphisMutation {
-  updateProduct(input: {
-    id: "8d13de0d-8879-4635-9618-763074056aa9",
-    productPictureId: "3f5cc035-e0b1-4c29-a0ec-ef9407e66c53"
-  }) {
+  updateProduct(input: {id: "8d13de0d-8879-4635-9618-763074056aa9", productPictureId: "3f5cc035-e0b1-4c29-a0ec-ef9407e66c53"}) {
     id
   }
 }
@@ -98,50 +75,26 @@ query listProductsQuery {
   }
 }
 
-
 mutation createTexasRibs {
-  createProduct(
-    input: { 
-      name: "Smoked Baby Back Ribs - Texas", 
-      category: "pork", 
-      description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour, best paired with your favorite wine. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", 
-      price: 1000, 
-      originalPrice: 1100
-      currency: "php", 
-      isRecommended: true,
-    }
-  ) {
+  createProduct(input: {name: "Smoked Baby Back Ribs - Texas", category: "pork", description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour, best paired with your favorite wine. Best deeped with our special sauce. This usually weighs in between 1 to 1.3kg. ", price: 1000, originalPrice: 1100, currency: "php", isRecommended: true}) {
     id
   }
 }
-# 42bca46f-103f-42ca-bfcb-c7edf71a3bd9
 
 mutation createAvailabilityTexas {
-  createAvailability(input: {
-    			date: "7 Oct 2022", 
-    			quantity: 10, 
-          productAvailabilityId: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9",
-  				availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"
-  }){
+  createAvailability(input: {date: "22 Oct 2022", quantity: 10, productAvailabilityId: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9", availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"}) {
     date
   }
 }
 
 mutation createPictureTexasMutation {
-  createPicture (input: {
-    web: "/ribs_texas.jpg",
-    mobile: "/ribs_texas.jpg"
-  }){
+  createPicture(input: {web: "/ribs_texas.jpg", mobile: "/ribs_texas.jpg"}) {
     id
   }
 }
-# c9f680a6-78a4-438d-958a-1502f9bb80d5
 
 mutation updateProductTexasMutation {
-  updateProduct(input: {
-    id: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9",
-    productPictureId: "c9f680a6-78a4-438d-958a-1502f9bb80d5"
-  }) {
+  updateProduct(input: {id: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9", productPictureId: "c9f680a6-78a4-438d-958a-1502f9bb80d5"}) {
     id
   }
 }
@@ -152,5 +105,70 @@ query listPictureQuery {
       id
       web
     }
+  }
+}
+
+query listBillsQuery {
+  listBills {
+    items {
+      id
+      createdAt
+    }
+  }
+}
+
+query listAvailQuery {
+  listAvailabilities {
+    items {
+      date
+      quantity
+      id
+      range {
+        id
+      }
+    }
+  }
+}
+
+mutation createLongganisa {
+  createProduct(
+    input: { 
+      name: "Homemade Longganisa", 
+      category: "pork", 
+      description: "Another crowd favorite and a 100% better than your usual pork Longganisa. Try our frozen longganisa and experience the happiness on each bite. Best paired with rice. Each order weighs in about 1kg.", 
+      price: 400, 
+      originalPrice: 450
+      currency: "php", 
+      isRecommended: true,
+      isFrozen: true
+    }
+  ) {
+    id
+  }
+}
+# a8c8e550-f685-4cbb-b4b2-6d775ab7028a"
+
+mutation createPictureLongganisaMutation {
+  createPicture (input: {
+    web: "/longganisa.jpg",
+    mobile: "/longganisa.jpg"
+  }){
+    id
+  }
+}
+# 7b1da36d-d13b-49a6-ad5b-30b3d38b8f64
+
+mutation updateProductLongganisaMutation {
+  updateProduct(input: {
+    id: "a8c8e550-f685-4cbb-b4b2-6d775ab7028a",
+    productPictureId: "7b1da36d-d13b-49a6-ad5b-30b3d38b8f64"
+  }) {
+    id
+  }
+}
+
+mutation createAvailabilityLongganissa {
+  createAvailability(input: {date: "22 Oct 2022", quantity: 0, productAvailabilityId: "a8c8e550-f685-4cbb-b4b2-6d775ab7028a", availabilityRangeId: "32d749df-bb78-4559-b033-82d20b04e264"}) {
+    date
   }
 }
