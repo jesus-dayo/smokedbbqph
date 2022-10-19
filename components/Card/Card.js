@@ -15,6 +15,7 @@ const Card = ({
   productId,
   isFrozen,
   max,
+  isQuantityLoading,
 }) => {
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     label,
@@ -61,6 +62,7 @@ const Card = ({
           onMinus={handleMinusQuantity}
           id={label}
           notAvail={availableQuantity === 0 || (!isFrozen && max === MAX_RIBS)}
+          isLoading={isQuantityLoading}
         />
       </div>
       <div

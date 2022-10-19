@@ -40,9 +40,6 @@ const Row = ({
         <div className="text-sm">{order.label}</div>
         <div className="text-xs md:block hidden">{order.description}</div>
       </td>
-      <td className="text-center text-sm" width={'20%'}>
-        1 kilo
-      </td>
       <td width={'10%'} className="text-center">
         <div>
           <Quantity
@@ -74,7 +71,6 @@ const TotalSummary = ({ className, shippingFee, max }) => {
           <thead className="text-sm">
             <th className="text-left">Product</th>
             <th className="text-left hidden md:block"></th>
-            <th className="text-center">Weight</th>
             <th className="text-center">Quantity</th>
             <th className="text-right p-2">Price</th>
           </thead>

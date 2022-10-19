@@ -17,6 +17,7 @@ import { productState } from '../states/product';
 import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
+import { uiState } from '../states/uiState';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -38,6 +39,8 @@ const OrderPage = ({ products = [] }) => {
   const selectedSchedule = useRecoilValue(scheduleState);
   const [productValue, setProductValue] = useRecoilState(productState);
   const max = useMaxOrders(selectedSchedule?.id);
+  const ui = useRecoilValue(uiState);
+
   useEffect(() => {
     setProductValue(products);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,6 +162,7 @@ const OrderPage = ({ products = [] }) => {
               originalPrice={item.originalPrice}
               productId={item.id}
               max={max}
+              isQuantityLoading={ui.isQuantityLoading}
             />
           ))}
         </div>

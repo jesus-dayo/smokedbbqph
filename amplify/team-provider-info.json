@@ -22,7 +22,7 @@
         "billEmailCopy": {
           "sesEmail": "sales@pjsmokeandgrill.com",
           "deploymentBucketName": "amplify-smokedbbqph-dev-215701-deployment",
-          "s3Key": "amplify-builds/billEmailCopy-71516d667a6c697a6937-build.zip"
+          "s3Key": "amplify-builds/billEmailCopy-65483447324846335033-build.zip"
         }
       }
     }

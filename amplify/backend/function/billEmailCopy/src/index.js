@@ -10,17 +10,20 @@ exports.handler = async (event) => {
     console.log(record.eventName);
     console.log('DynamoDB Record: %j', record.dynamodb);
     if (record.eventName === 'INSERT') {
-      const billId = record.dynamodb.Bill.billId.S;
+      const billId = record.dynamodb.NewImage.id.S;
+      const updatedAt = record.dynamodb.NewImage.updatedAt.S;
       await ses.sendEmail({
         Destination: {
           ToAddresses: [process.env.SES_EMAIL],
         },
         Source: process.env.SES_EMAIL,
         Message: {
-          Subject: { Data: 'PJSmokeGrill - Thank You for your Purchase!' },
+          Subject: {
+            Data: `${updatedAt} - PJSmokeGrill - Thank You for your Purchase!`,
+          },
           Body: {
             Text: {
-              Data: `Bill id is ${billId}`,
+              Data: `Bill id is ${billId} - date is ${updatedAt}`,
             },
           },
         },
