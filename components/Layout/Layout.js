@@ -6,7 +6,7 @@ export default function Layout({ medium, children }) {
     <div className={'h-full'}>
       <Head>
         <title>SmokedBBQ</title>
-        <link rel={'icon'} href={'/icon.png'} />
+        <link rel={'icon'} href={'/iconOnly.png'} />
         <meta
           name="google-site-verification"
           content="mtTiWMy_eswEz02jbwbsDYG6bCjY6mfenTvfD_m1zIc"

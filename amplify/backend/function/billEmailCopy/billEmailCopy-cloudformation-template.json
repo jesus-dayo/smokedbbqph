@@ -87,7 +87,10 @@
           }
         },
         "Role": {
-          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaExecutionRole",
+            "Arn"
+          ]
         },
         "Runtime": "nodejs14.x",
         "Layers": [],
@@ -121,16 +124,22 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": ["lambda.amazonaws.com"]
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
               },
-              "Action": ["sts:AssumeRole"]
+              "Action": [
+                "sts:AssumeRole"
+              ]
             }
           ]
         }
       }
     },
     "lambdaexecutionpolicy": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
@@ -167,17 +176,23 @@
               }
             },
             {
-              "Action": ["ses:SendEmail"],
+              "Action": [
+                "ses:SendEmail"
+              ],
               "Effect": "Allow",
               "Resource": "arn:aws:ses:ap-southeast-1:872691224069:identity/sales@pjsmokeandgrill.com"
             },
             {
-              "Action": ["ses:SendEmail"],
+              "Action": [
+                "ses:SendEmail"
+              ],
               "Effect": "Allow",
               "Resource": "arn:aws:ses:ap-southeast-1:872691224069:identity/pm.mangaser@gmail.com"
             },
             {
-              "Action": ["ses:SendEmail"],
+              "Action": [
+                "ses:SendEmail"
+              ],
               "Effect": "Allow",
               "Resource": "arn:aws:ses:ap-southeast-1:872691224069:identity/jesus_dayo@yahoo.com"
             }
@@ -186,7 +201,9 @@
       }
     },
     "LambdaTriggerPolicyBill": {
-      "DependsOn": ["LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "amplify-lambda-execution-policy-Bill",
@@ -218,7 +235,10 @@
     },
     "LambdaEventSourceMappingBill": {
       "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": ["LambdaTriggerPolicyBill", "LambdaExecutionRole"],
+      "DependsOn": [
+        "LambdaTriggerPolicyBill",
+        "LambdaExecutionRole"
+      ],
       "Properties": {
         "BatchSize": 100,
         "Enabled": true,
@@ -228,7 +248,10 @@
           }
         },
         "FunctionName": {
-          "Fn::GetAtt": ["LambdaFunction", "Arn"]
+          "Fn::GetAtt": [
+            "LambdaFunction",
+            "Arn"
+          ]
         },
         "StartingPosition": "LATEST"
       }
@@ -242,7 +265,10 @@
     },
     "Arn": {
       "Value": {
-        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+        "Fn::GetAtt": [
+          "LambdaFunction",
+          "Arn"
+        ]
       }
     },
     "Region": {
