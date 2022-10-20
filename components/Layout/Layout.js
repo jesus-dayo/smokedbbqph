@@ -7,6 +7,10 @@ export default function Layout({ medium, children }) {
       <Head>
         <title>SmokedBBQ</title>
         <link rel={'icon'} href={'/icon.png'} />
+        <meta
+          name="google-site-verification"
+          content="mtTiWMy_eswEz02jbwbsDYG6bCjY6mfenTvfD_m1zIc"
+        />
       </Head>
       <Header />
       <main className={`${medium ? 'max-h-auto h-auto' : 'h-full'} box-border`}>
