@@ -14,14 +14,14 @@ mutation createRange1 {
     id
   }
 }
-# 5854a933-20d8-493d-aac1-bf9960e2e054
+# 24148887-049e-4df9-897a-1a2b15593c09
 
 mutation createRange2 {
   createRange(input: {start:"11am", end: "2pm"}){
     id
   }
 }
-# 92cf9dd2-a35f-413d-b4a6-1116fb768c38
+# 5de6b91b-4458-4ad0-8d69-f2b1e1df0af3
 
 mutation createMemphisRibs {
   createProduct(
@@ -38,14 +38,14 @@ mutation createMemphisRibs {
     id
   }
 }
-# 8d13de0d-8879-4635-9618-763074056aa9
+# 0d628f09-ecd8-4ab1-9da7-4e66db3f91fd
 
 mutation createAvailabilityMemphis {
   createAvailability(input: {
     			date: "7 Oct 2022", 
     			quantity: 10, 
-          productAvailabilityId: "8d13de0d-8879-4635-9618-763074056aa9",
-  				availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"
+          productAvailabilityId: "0d628f09-ecd8-4ab1-9da7-4e66db3f91fd",
+  				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
   }){
     date
   }
@@ -59,12 +59,23 @@ mutation createPictureMemphisMutation {
     id
   }
 }
-# f5cc035-e0b1-4c29-a0ec-ef9407e66c53
+# de8d88b3-1767-4546-8353-56bc933aa89c
 
 mutation updateProductMemphisMutation {
   updateProduct(input: {
-    id: "8d13de0d-8879-4635-9618-763074056aa9",
-    productPictureId: "3f5cc035-e0b1-4c29-a0ec-ef9407e66c53"
+    id: "0d628f09-ecd8-4ab1-9da7-4e66db3f91fd",
+    productPictureId: "de8d88b3-1767-4546-8353-56bc933aa89c"
+  }) {
+    id
+  }
+}
+
+mutation updateProductMemphisMutationNewPrice {
+  updateProduct(input: {
+    id: "0d628f09-ecd8-4ab1-9da7-4e66db3f91fd",
+    description: "Smoked for 6-7 hours, memphis style has a sweet and smoky flavour which makes it a crowd favorite. Best dipped with our special sauce. You get a full slab per order and a mixed veggie side."
+  	originalPrice: 1200,
+    price: 1100
   }) {
     id
   }
@@ -114,14 +125,14 @@ mutation createTexasRibs {
     id
   }
 }
-# 42bca46f-103f-42ca-bfcb-c7edf71a3bd9
+# 73b3ac50-33f6-4321-bb33-b010e132d9cc
 
 mutation createAvailabilityTexas {
   createAvailability(input: {
     			date: "7 Oct 2022", 
     			quantity: 10, 
-          productAvailabilityId: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9",
-  				availabilityRangeId: "5854a933-20d8-493d-aac1-bf9960e2e054"
+          productAvailabilityId: "73b3ac50-33f6-4321-bb33-b010e132d9cc",
+  				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
   }){
     date
   }
@@ -135,12 +146,23 @@ mutation createPictureTexasMutation {
     id
   }
 }
-# c9f680a6-78a4-438d-958a-1502f9bb80d5
+# 1f63797b-02e6-4d21-9f40-3d7e2ce07b0a
 
 mutation updateProductTexasMutation {
   updateProduct(input: {
-    id: "42bca46f-103f-42ca-bfcb-c7edf71a3bd9",
-    productPictureId: "c9f680a6-78a4-438d-958a-1502f9bb80d5"
+    id: "73b3ac50-33f6-4321-bb33-b010e132d9cc",
+    productPictureId: "1f63797b-02e6-4d21-9f40-3d7e2ce07b0a"
+  }) {
+    id
+  }
+}
+
+mutation updateProductTexasMutationNewPrice {
+  updateProduct(input: {
+    id: "73b3ac50-33f6-4321-bb33-b010e132d9cc",
+    description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour, best paired with your favorite wine. Best dipped with our special sauce. You get a full slab per order and a mixed veggie side."
+  	originalPrice: 1200,
+    price: 1100
   }) {
     id
   }
@@ -151,6 +173,103 @@ query listPictureQuery {
     items {
       id
       web
+    }
+  }
+}
+
+
+mutation createLongganisa {
+  createProduct(
+    input: { 
+      name: "Homemade Longganisa", 
+      category: "pork", 
+      description: "Another crowd favorite and a 100% better than your usual pork Longganisa. Try our frozen longganisa and experience the happiness on each bite. Best paired with rice. Each order weighs in about 1kg.", 
+      price: 400, 
+      originalPrice: 450
+      currency: "php", 
+      isRecommended: true,
+      isFrozen: true
+    }
+  ) {
+    id
+  }
+}
+# 0e1c86b6-6393-4ac4-bf65-5cf539ad2d5f
+
+mutation createPictureLongganisaMutation {
+  createPicture (input: {
+    web: "/longganisa.jpg",
+    mobile: "/longganisa.jpg"
+  }){
+    id
+  }
+}
+# 17eaee86-48b3-4a32-ab9d-87a33587d0ab
+
+mutation updateProductLongganisaMutation {
+  updateProduct(input: {
+    id: "0e1c86b6-6393-4ac4-bf65-5cf539ad2d5f",
+    productPictureId: "17eaee86-48b3-4a32-ab9d-87a33587d0ab"
+  }) {
+    id
+  }
+}
+
+query listRangeQuery {
+  listRanges {
+    items {
+      id
+      start
+      end
+    }
+  }
+}
+
+5de6b91b-4458-4ad0-8d69-f2b1e1df0af3
+
+
+
+mutation createBeefBrisket {
+  createProduct(
+    input: { 
+      name: "Beef Brisket", 
+      category: "beef", 
+      description: "Our beef briskets are smoked for 16hrs and marinated with our special rub. Enjoy the tenderness and smoky flavour of our beef briskets, best paired with your favorite wine. Per Order weighs from 200g to 250g and comes with a free mixed veggie sides.", 
+      price: 2400, 
+      originalPrice: 2500
+      currency: "php", 
+      isRecommended: true,
+      isFrozen: true
+    }
+  ) {
+    id
+  }
+}
+# f9a65baa-fc00-49ba-8893-8b86a5fce31a
+mutation createPictureBeefBrisketMutation {
+  createPicture (input: {
+    web: "/sliced_beef_brisket.jpg",
+    mobile: "/sliced_beef_brisket.jpg"
+  }){
+    id
+  }
+}
+# 19af869f-37ed-4733-8aff-0b01f530e7b7
+mutation updateProductBeefBrisketMutation {
+  updateProduct(input: {
+    id: "f9a65baa-fc00-49ba-8893-8b86a5fce31a",
+    productPictureId: "19af869f-37ed-4733-8aff-0b01f530e7b7"
+  }) {
+    id
+  }
+}
+
+query listRangeQuery {
+  listRanges {
+    items {
+      id
+      start
+      end
     }
   }
 }
