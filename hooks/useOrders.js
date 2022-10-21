@@ -20,7 +20,6 @@ const useOrders = ({
   isFrozen,
   max = 0,
 }) => {
-  console.log('isFrozen', isFrozen);
   const [orders, setOrders] = useRecoilState(orderState);
   const [currentConfig, setCurrentConfig] = useState();
   const getQuantity = () => {
@@ -144,7 +143,6 @@ const useOrders = ({
     const totalQuantity = orders
       .filter((order) => !order.isFrozen)
       .reduce((prev, current) => prev + current.quantity, 1);
-    console.log('orders', orders);
     if (totalQuantity + max > MAX_RIBS) {
       alert.show(`Sorry, as of now, we have max 10 limit in our smokers 
         and someone has ordered alongside with you. 

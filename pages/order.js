@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
-import { Amplify, API, withSSRContext } from 'aws-amplify';
+import { Amplify, API } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
 import FilterGroup from '../components/FilterGroup/FilterGroup';
 import CalendarReservation from '../components/CalendarReservation/CalendarReservation';
@@ -40,15 +40,23 @@ const OrderPage = () => {
       const responseData = response.data.listProducts.items;
       setProducts(responseData);
       setProductValue(responseData);
-      setAvailabilities(
-        uniqBy(
-          flatMap(responseData.map((product) => product.availability.items)),
-          'date'
-        ).filter(
+      const uniqAvail = uniqBy(
+        flatMap(responseData.map((product) => product.availability.items)),
+        'date'
+      )
+        .filter(
           (avail) =>
             moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
         )
-      );
+        .sort((prev, next) => {
+          if (prev.date > next.date) {
+            return 1;
+          } else if (prev.date < next.date) {
+            return -1;
+          }
+          return 0;
+        });
+      setAvailabilities(uniqAvail);
     };
     fetchProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -143,6 +151,9 @@ const OrderPage = () => {
             products={products}
           />
         </div>
+        <div className="flex p-2 text-white font-serif">
+          Placing of orders closes 8hrs before the selected delivery date.
+        </div>
       </div>
       <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
         <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 ">
@@ -152,7 +163,7 @@ const OrderPage = () => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-5 md:w-full justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-5 md:w-full lg:grid-cols-6 xl:grid-cols-7 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts.map((item) => (
             <Card
               key={`item-${item.name}`}

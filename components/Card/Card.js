@@ -17,7 +17,6 @@ const Card = ({
   max,
   isQuantityLoading,
 }) => {
-  console.log('Card', isFrozen);
   const { order, handleAddQuantity, handleMinusQuantity } = useOrders({
     label,
     price,
