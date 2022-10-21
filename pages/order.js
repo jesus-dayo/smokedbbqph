@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { orderState } from '../states/orders';
 import CheckoutButton from '../components/CheckoutButton/CheckoutButton';
-import { Amplify, API, withSSRContext } from 'aws-amplify';
+import { Amplify, API } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
 import FilterGroup from '../components/FilterGroup/FilterGroup';
 import CalendarReservation from '../components/CalendarReservation/CalendarReservation';
@@ -56,7 +56,6 @@ const OrderPage = () => {
           }
           return 0;
         });
-      console.log('uniqAvail', uniqAvail);
       setAvailabilities(uniqAvail);
     };
     fetchProducts();
@@ -151,6 +150,9 @@ const OrderPage = () => {
             availabilities={availabilities}
             products={products}
           />
+        </div>
+        <div className="flex p-2 text-white font-serif">
+          Placing of orders closes 8hrs before the selected delivery date.
         </div>
       </div>
       <div className="flex border-gray-800 border-t-2 border-b-2 p-2">

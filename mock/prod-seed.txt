@@ -288,16 +288,6 @@ query listAvailQuery {
   }
 }
 
-query listRangeQuery {
-  listRanges {
-    items {
-      id
-      start
-      end
-    }
-  }
-}
-
 mutation updateAvailability {
   updateAvailability(input: {
     id: "3c8197cb-7d92-45f9-a6cb-072fb786b419"
