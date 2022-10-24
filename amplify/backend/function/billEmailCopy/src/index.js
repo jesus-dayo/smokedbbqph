@@ -13,7 +13,7 @@ exports.handler = async (event) => {
       const billId = record.dynamodb.NewImage.id.S;
       const updatedAt = record.dynamodb.NewImage.updatedAt.S;
       console.log('sending email ...', updatedAt);
-      const response = await ses.sendEmail({
+      await ses.sendEmail({
         Destination: {
           ToAddresses: [process.env?.SES_EMAIL],
         },
@@ -24,17 +24,12 @@ exports.handler = async (event) => {
           },
           Body: {
             Text: {
-              Data: `link ${
-                process.env?.ENV !== 'dev'
-                  ? 'https://www.pjsmokegrill.com/confirmation/' + billId
-                  : billId
-              }`,
+              Data: 'test',
             },
           },
         },
         ConfigurationSetName: 'sending-email',
       });
-      console.log('response', response);
     }
   }
   return Promise.resolve(`Successfully sent email to ${process.env.SES_EMAIL}`);
