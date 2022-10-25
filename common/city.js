@@ -1,6 +1,8 @@
 export const CITY = [
   { label: 'Muntinlupa (FREE)', shippingFee: 0 },
   { label: 'Cavite - Daang Hari/Molino (+₱50)', shippingFee: 50 },
+  { label: 'Cavite - Bacoor (+₱100)', shippingFee: 100 },
+  { label: 'Cavite - Imus (+₱150)', shippingFee: 150 },
   { label: 'San Pedro, Laguna (+₱50)', shippingFee: 50 },
   { label: 'Paranaque (+₱100)', shippingFee: 100 },
   { label: 'Las Pinas (+₱80)', shippingFee: 80 },
