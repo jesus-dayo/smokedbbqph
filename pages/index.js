@@ -31,7 +31,7 @@ const HomePage = () => {
         <Section>
           <div className="flex justify-center bg-slate-500">
             <div className="p-5">
-              We currently deliver to this places{' '}
+              We currently deliver to these places{' '}
               <span className="text-zinc-200 font-bold">
                 {CITY.map((c) => c.name).join(', ')}
               </span>

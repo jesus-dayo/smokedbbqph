@@ -151,7 +151,7 @@ const OrderPage = () => {
       <div className="p-2">
         <div className="flex justify-start bg-slate-500">
           <div className="p-5 text-white">
-            We currently deliver to this places{' '}
+            We currently deliver to these places{' '}
             <span className="text-zinc-200 font-bold">
               {CITY.map((c) => c.name).join(', ')}
             </span>
