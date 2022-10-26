@@ -19,6 +19,7 @@ import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
 import { G_TRACKING_ID } from './_app';
+import { CITY } from '../common/city';
 
 Amplify.configure({ ...awsExports, ssr: false });
 
@@ -148,6 +149,14 @@ const OrderPage = () => {
   return (
     <Layout>
       <div className="p-2">
+        <div className="flex justify-start bg-slate-500">
+          <div className="p-5 text-white">
+            We currently deliver to this places{' '}
+            <span className="text-zinc-200 font-bold">
+              {CITY.map((c) => c.name).join(', ')}
+            </span>
+          </div>
+        </div>
         <div className="flex flex-wrap justify-start md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           <CalendarReservation
             className="md:w-full"

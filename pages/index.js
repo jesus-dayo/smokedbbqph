@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
 import { G_TRACKING_ID } from './_app';
+import { CITY } from '../common/city';
 
 const HomePage = () => {
   const router = useRouter();
@@ -28,6 +29,16 @@ const HomePage = () => {
     <Layout full>
       <div className="flex flex-col text-slate-50 text-opacity-100">
         <Section>
+          <div className="flex justify-center bg-slate-500">
+            <div className="p-5">
+              We currently deliver to this places{' '}
+              <span className="text-zinc-200 font-bold">
+                {CITY.map((c) => c.name).join(', ')}
+              </span>
+            </div>
+          </div>
+        </Section>
+        <Section>
           <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 bg-slate-700 block bg-no-repeat bg-cover md:bg-cover md:bg-center bg-[url('/ribs2.jpg')]">
             <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">
               <div className="p-5 md:p-14 bg-slate-200 opacity-70">
@@ -48,6 +59,7 @@ const HomePage = () => {
                   onClick={routeToOrderPage}
                   disabled={inProgressOrder}
                   inProgress={inProgressOrder}
+                  className={'animate-bounce'}
                 >
                   Order Now
                 </Button>
