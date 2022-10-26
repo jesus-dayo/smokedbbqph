@@ -4,12 +4,16 @@ import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
+import { G_TRACKING_ID } from './_app';
 
 const HomePage = () => {
   const router = useRouter();
   const [inProgressOrder, setInProgressOrder] = useState(false);
 
   useEffect(() => {
+    if (process?.env?.ENV === 'prod') {
+      window.gtag('config', G_TRACKING_ID, { page_path: 'home' });
+    }
     return () => {
       setInProgressOrder(false);
     };

@@ -31,6 +31,7 @@ import { productState } from '../states/product';
 import { PENDING } from '../common/status';
 import { CITY } from '../common/city';
 import useMaxOrders from '../hooks/useMaxOrders';
+import { G_TRACKING_ID } from './_app';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -53,6 +54,9 @@ const Checkout = () => {
   const max = useMaxOrders(schedule?.id);
 
   useEffect(() => {
+    if (process?.env?.ENV === 'prod') {
+      window.gtag('config', G_TRACKING_ID, { page_path: 'checkout' });
+    }
     const getConfigAPI = async () => {
       const config = await API.graphql({
         query: getConfig,

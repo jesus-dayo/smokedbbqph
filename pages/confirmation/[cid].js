@@ -9,6 +9,7 @@ import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
 import Image from 'next/image';
+import { G_TRACKING_ID } from '../_app';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -19,6 +20,9 @@ const Confirmation = () => {
   const [currentConfig, setCurrentConfig] = useState({});
 
   useEffect(() => {
+    if (process?.env?.ENV === 'prod') {
+      window.gtag('config', G_TRACKING_ID, { page_path: 'confirmation' });
+    }
     const getBillAPI = async () => {
       const bill = await API.graphql({
         query: getBillWithAvail,

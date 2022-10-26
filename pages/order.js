@@ -18,6 +18,7 @@ import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
+import { G_TRACKING_ID } from './_app';
 
 Amplify.configure({ ...awsExports, ssr: false });
 
@@ -33,6 +34,9 @@ const OrderPage = () => {
   const [availabilities, setAvailabilities] = useState([]);
 
   useEffect(() => {
+    if (process?.env?.ENV === 'prod') {
+      window.gtag('config', G_TRACKING_ID, { page_path: 'orders' });
+    }
     const fetchProducts = async () => {
       const response = await API.graphql({
         query: listProductsWithAvailability,
