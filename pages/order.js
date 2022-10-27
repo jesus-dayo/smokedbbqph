@@ -33,6 +33,9 @@ const OrderPage = () => {
   const ui = useRecoilValue(uiState);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [availabilities, setAvailabilities] = useState([]);
+  const router = useRouter();
+  const orders = useRecoilValue(orderState);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
@@ -79,10 +82,8 @@ const OrderPage = () => {
     setFilteredProducts(filterProducts());
   }, [products, recommended, filter, selectedSchedule?.id]);
 
-  const router = useRouter();
-  const orders = useRecoilValue(orderState);
-
-  const routeToCheckoutPage = () => {
+  const routeToCheckoutPage = async () => {
+    setInProgress(true);
     if (max > MAX_RIBS) {
       return;
     }
@@ -198,7 +199,10 @@ const OrderPage = () => {
       </div>
       {orders.length > 0 && (
         <div className="pt-1 pb-4 fixed -bottom-4 right-7 animate-bounce">
-          <CheckoutButton onClick={routeToCheckoutPage} />
+          <CheckoutButton
+            onClick={routeToCheckoutPage}
+            inProgress={inProgress}
+          />
         </div>
       )}
     </Layout>
