@@ -15,6 +15,18 @@ const Bills = () => {
       {
         Header: 'ID',
         accessor: 'id', // accessor is the "key" in the data
+        Cell: ({ value }) => (
+          <a
+            className="text-blue-600 underline"
+            target={'_blank'}
+            href={`https://${window.location.hostname}${
+              window.location.port ? ':' + window.location.port : ''
+            }/confirmation/${value}`}
+            rel="noreferrer"
+          >
+            {value}
+          </a>
+        ),
       },
       {
         Header: 'Delivery',
@@ -31,6 +43,19 @@ const Bills = () => {
       {
         Header: 'Address',
         accessor: 'address.city', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Orders',
+        accessor: 'orders.items',
+        Cell: ({ value }) => (
+          <div>
+            {value.map((val) => (
+              <li key={val.label}>
+                {val.label}(x{val.quantity})
+              </li>
+            ))}
+          </div>
+        ),
       },
     ],
     []
@@ -52,7 +77,7 @@ const Bills = () => {
         items
           .filter(
             (item) =>
-              moment(item?.delivery?.date, 'DD MMM YYYY').toDate() >
+              moment(item?.delivery?.date, 'DD MMM YYYY').toDate() >=
               moment().toDate()
           )
           .sort((prev, next) => {
@@ -71,8 +96,8 @@ const Bills = () => {
 
   return (
     <Layout full>
-      <div className="bg-white p-5">
-        <table className="p-2 border-2" {...getTableProps()}>
+      <div className="bg-white p-5 w-full box-border">
+        <table className="p-2 border-2 box-border w-full" {...getTableProps()}>
           <thead>
             {
               // Loop over the header rows
