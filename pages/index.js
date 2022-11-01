@@ -13,7 +13,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
-      window.gtag('config', G_TRACKING_ID, { page_path: 'home' });
+      window.gtag('event', 'screen_view', { screen_name: 'Home' });
     }
     return () => {
       setInProgressOrder(false);

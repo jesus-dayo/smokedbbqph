@@ -55,7 +55,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
-      window.gtag('config', G_TRACKING_ID, { page_path: 'checkout' });
+      window.gtag('event', 'screen_view', { screen_name: 'Checkout' });
     }
     const getConfigAPI = async () => {
       const config = await API.graphql({

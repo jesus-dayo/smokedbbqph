@@ -39,7 +39,7 @@ const OrderPage = () => {
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
-      window.gtag('config', G_TRACKING_ID, { page_path: 'orders' });
+      window.gtag('event', 'screen_view', { screen_name: 'Orders' });
     }
     const fetchProducts = async () => {
       const response = await API.graphql({

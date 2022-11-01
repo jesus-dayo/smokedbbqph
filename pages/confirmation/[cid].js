@@ -21,7 +21,7 @@ const Confirmation = () => {
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
-      window.gtag('config', G_TRACKING_ID, { page_path: 'confirmation' });
+      window.gtag('event', 'screen_view', { screen_name: 'Confirmation' });
     }
     const getBillAPI = async () => {
       const bill = await API.graphql({
