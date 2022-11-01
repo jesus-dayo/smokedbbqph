@@ -75,11 +75,11 @@ const Bills = () => {
       const items = bill?.data?.listBills?.items || [];
       setBills(
         items
-          .filter(
-            (item) =>
-              moment(item?.delivery?.date, 'DD MMM YYYY').toDate() >=
-              moment().toDate()
-          )
+          .filter((item) => {
+            const today = moment();
+            const deliveryDay = moment(item?.delivery?.date, 'DD MMM YYYY');
+            return deliveryDay.isSameOrAfter(today);
+          })
           .sort((prev, next) => {
             if (prev.delivery?.date > next.delivery?.date) {
               return 1;
