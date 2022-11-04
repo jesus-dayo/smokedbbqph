@@ -51,19 +51,14 @@ const OrderPage = () => {
       const uniqAvail = uniqBy(
         flatMap(responseData.map((product) => product.availability.items)),
         'date'
-      )
-        .filter(
-          (avail) =>
-            moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
-        )
-        .sort((prev, next) => {
-          if (prev.date > next.date) {
-            return 1;
-          } else if (prev.date < next.date) {
-            return -1;
-          }
-          return 0;
-        });
+      ).sort((prev, next) => {
+        if (prev.date > next.date) {
+          return 1;
+        } else if (prev.date < next.date) {
+          return -1;
+        }
+        return 0;
+      });
       setAvailabilities(uniqAvail);
     };
     fetchProducts();
