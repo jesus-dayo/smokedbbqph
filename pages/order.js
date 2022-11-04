@@ -58,9 +58,9 @@ const OrderPage = () => {
         )
         .sort((prev, next) => {
           if (prev.date > next.date) {
-            return 1;
-          } else if (prev.date < next.date) {
             return -1;
+          } else if (prev.date < next.date) {
+            return 1;
           }
           return 0;
         });
