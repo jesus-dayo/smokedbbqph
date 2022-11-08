@@ -66,9 +66,9 @@ const OrderPage = () => {
             moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
         )
         .sort((prev, next) => {
-          if (prev.date > next.date) {
+          if (prev.date < next.date) {
             return -1;
-          } else if (prev.date < next.date) {
+          } else if (prev.date > next.date) {
             return 1;
           }
           return 0;

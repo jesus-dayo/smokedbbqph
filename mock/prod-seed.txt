@@ -301,7 +301,7 @@ mutation updateAvailability {
 
 mutation createDiscountCode {
   createDiscountCode(input:{
-    id: "bestribs2022",
+    id: "sweetnov",
     percentage: 0.1,
     expiration: "30 Nov 2022"
   }){

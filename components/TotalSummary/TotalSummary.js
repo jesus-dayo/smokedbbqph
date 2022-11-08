@@ -133,9 +133,11 @@ const TotalSummary = ({
             Shopping Cart
           </h1>
         </div>
-        <div>
-          <div className="p-2 text-left">
-            <div className="font-bold text-sm text-left">Discount Code</div>
+        <div className="pt-2">
+          <div className="text-left">
+            <div className="font-bold text-sm text-left text-green-600">
+              Discount Code
+            </div>
             <div className="flex gap-2">
               <input
                 className="md:h-8 px-3 py-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
