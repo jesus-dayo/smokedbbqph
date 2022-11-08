@@ -5,7 +5,7 @@ import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
 import SelectInput from '../SelectInput/SelectInput';
 
-const Address = ({ className, validate, errors = [] }) => {
+const Address = ({ className, validate, errors = [], disabled }) => {
   const [address, setAddress] = useRecoilState(addressState);
 
   const handleChange = (e, fieldName) => {
@@ -34,6 +34,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'houseNo')}
           error={errors.includes('houseNo')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
@@ -46,6 +47,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'street')}
           error={errors.includes('street')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
@@ -53,6 +55,7 @@ const Address = ({ className, validate, errors = [] }) => {
           value={address.barangay}
           placeholder="Barangay"
           testId="barangay"
+          disabled={disabled}
           onChange={(e) => handleChange(e, 'barangay')}
         />
         <SelectInput
@@ -66,6 +69,7 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'city')}
           error={errors.includes('city')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
@@ -73,6 +77,7 @@ const Address = ({ className, validate, errors = [] }) => {
           label="Postal Code"
           placeholder="Postal"
           onChange={(e) => handleChange(e, 'postalCode')}
+          disabled={disabled}
           testId="postal"
         />
       </div>

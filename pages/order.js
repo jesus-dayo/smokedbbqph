@@ -18,7 +18,6 @@ import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
-import { G_TRACKING_ID } from './_app';
 import { CITY } from '../common/city';
 
 Amplify.configure({ ...awsExports, ssr: false });
@@ -45,7 +44,17 @@ const OrderPage = () => {
       const response = await API.graphql({
         query: listProductsWithAvailability,
       });
-      const responseData = response.data.listProducts.items;
+      let responseData = response.data.listProducts.items;
+      if (responseData) {
+        responseData = responseData?.sort((prev, next) => {
+          if (prev.name > next.name) {
+            return -1;
+          } else if (prev.name < next.name) {
+            return 1;
+          }
+          return 0;
+        });
+      }
       setProducts(responseData);
       setProductValue(responseData);
       const uniqAvail = uniqBy(

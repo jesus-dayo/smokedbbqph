@@ -4,7 +4,7 @@ import DeliveryConfirmation from '../../components/DeliveryConfirmation/Delivery
 import { convertToPHP } from '../../utils/util';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getConfig } from '../../src/graphql/queries';
+import { getConfig, getDiscountCode } from '../../src/graphql/queries';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
@@ -18,6 +18,7 @@ const Confirmation = () => {
   const { cid } = router.query;
   const [currentBill, setCurrentBill] = useState({});
   const [currentConfig, setCurrentConfig] = useState({});
+  const [discountPercentage, setDiscountPercentage] = useState();
 
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
@@ -30,6 +31,17 @@ const Confirmation = () => {
           id: cid,
         },
       });
+      const billResponse = bill?.data?.getBill;
+      if (billResponse && billResponse.discountCode) {
+        const discountResponse = await API.graphql({
+          query: getDiscountCode,
+          variables: {
+            id: billResponse.discountCode,
+          },
+        });
+        const discountCode = discountResponse?.data?.getDiscountCode;
+        setDiscountPercentage(discountCode?.percentage);
+      }
       const config = await API.graphql({
         query: getConfig,
         variables: {
@@ -37,13 +49,24 @@ const Confirmation = () => {
         },
       });
       setCurrentConfig(config?.data?.getConfig);
-      setCurrentBill(bill?.data?.getBill);
+      setCurrentBill(billResponse);
     };
     if (cid) {
       getBillAPI();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cid]);
+
+  const getTotal = () => {
+    const total = currentBill?.orders?.items?.reduce(
+      (prev, curr) => prev + curr.price * curr.quantity,
+      currentBill.shippingFee
+    );
+    if (discountPercentage > 0) {
+      return total - total * discountPercentage;
+    }
+    return total;
+  };
 
   return (
     <Layout full>
@@ -55,14 +78,7 @@ const Confirmation = () => {
           <div>
             <div className="p-5 text-sm md:text-xl flex flex-col justify-center w-full">
               <div className="font-bold">
-                Please provide payment of{' '}
-                {convertToPHP(
-                  currentBill?.orders?.items?.reduce(
-                    (prev, curr) => prev + curr.price * curr.quantity,
-                    currentBill.shippingFee
-                  )
-                )}{' '}
-                via{' '}
+                Please provide payment of {convertToPHP(getTotal())} via{' '}
                 {currentBill?.paymentOption?.option === 'gcash' ? (
                   <div>
                     <span>GCASH {currentConfig.gcash} within 24hrs.</span>
@@ -92,6 +108,7 @@ const Confirmation = () => {
               <div className="col-span-3 border-2 border-slate-400 h-auto p-2 md:text-lg text-sm">
                 <PurchaseSummary
                   orders={currentBill?.orders?.items}
+                  discountPercentage={discountPercentage}
                   shippingFee={currentBill?.shippingFee}
                 />
               </div>

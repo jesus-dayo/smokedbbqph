@@ -46,6 +46,7 @@ export const getBillWithAvail = /* GraphQL */ `
   query GetBill($id: ID!) {
     getBill(id: $id) {
       id
+      discountCode
       orders {
         items {
           id

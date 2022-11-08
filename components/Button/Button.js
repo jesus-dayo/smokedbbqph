@@ -17,6 +17,8 @@ const classes = {
       'bg-teal-900 hover:bg-rose-600 focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50 text-white enabled:hover:text-white rounded-full',
     danger:
       'bg-red-500 hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white rounded-full',
+    green:
+      'bg-green-500 hover:bg-green-800 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 text-white rounded-full',
   },
 };
 

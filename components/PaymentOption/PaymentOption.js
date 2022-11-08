@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { paymentOptionState } from '../../states/paymentOption';
 import FormContainer from '../FormContainer/FormContainer';
 
-const PaymentOption = ({ className, gcashNo }) => {
+const PaymentOption = ({ className, gcashNo, disabled }) => {
   const [paymentOption, setPaymentOption] = useRecoilState(paymentOptionState);
 
   const onChangeValue = (e) => {
@@ -25,6 +25,7 @@ const PaymentOption = ({ className, gcashNo }) => {
               checked={paymentOption === 'cash'}
               name="cash"
               onChange={onChangeValue}
+              disabled={disabled}
             />
             &nbsp; Cash On Delivery
             {paymentOption === 'cash' && (
@@ -40,6 +41,7 @@ const PaymentOption = ({ className, gcashNo }) => {
               checked={paymentOption === 'gcash'}
               name="gcash"
               onChange={onChangeValue}
+              disabled={disabled}
             />{' '}
             GCash
             {paymentOption === 'gcash' && (

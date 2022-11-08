@@ -205,6 +205,7 @@ export const getBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -225,6 +226,7 @@ export const listBills = /* GraphQL */ `
     listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        discountCode
         status
         shippingFee
         createdAt
@@ -427,6 +429,35 @@ export const listConfigs = /* GraphQL */ `
         shippingFee
         phoneNumber
         gcash
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getDiscountCode = /* GraphQL */ `
+  query GetDiscountCode($id: ID!) {
+    getDiscountCode(id: $id) {
+      id
+      expiration
+      percentage
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listDiscountCodes = /* GraphQL */ `
+  query ListDiscountCodes(
+    $filter: ModelDiscountCodeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDiscountCodes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        expiration
+        percentage
         createdAt
         updatedAt
       }

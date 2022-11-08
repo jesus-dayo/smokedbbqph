@@ -31,7 +31,6 @@ import { productState } from '../states/product';
 import { PENDING } from '../common/status';
 import { CITY } from '../common/city';
 import useMaxOrders from '../hooks/useMaxOrders';
-import { G_TRACKING_ID } from './_app';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -51,6 +50,7 @@ const Checkout = () => {
   const resetAddress = useResetRecoilState(addressState);
   const resetSchedule = useResetRecoilState(scheduleState);
   const resetPaymentOption = useResetRecoilState(paymentOptionState);
+  const [discountCode, setDiscountCode] = useState(null);
   const max = useMaxOrders(schedule?.id);
 
   useEffect(() => {
@@ -167,18 +167,27 @@ const Checkout = () => {
       });
     });
 
+    const billInput = {
+      id: billNumber,
+      billClientId: clientResponse.data?.createClient?.id,
+      billAddressId: addressResponse.data?.createAddress?.id,
+      billDeliveryId: deliveryResponse.data?.createDelivery?.id,
+      billPaymentOptionId: paymentOptionResponse.data?.createPaymentOption?.id,
+      status: PENDING,
+      shippingFee: getShippingFee(),
+    };
+
+    if (discountCode) {
+      billInput.discountCode = discountCode;
+    } else {
+      delete billInput.discountCode;
+    }
+
     await API.graphql({
       query: createBill,
       variables: {
         input: {
-          id: billNumber,
-          billClientId: clientResponse.data?.createClient?.id,
-          billAddressId: addressResponse.data?.createAddress?.id,
-          billDeliveryId: deliveryResponse.data?.createDelivery?.id,
-          billPaymentOptionId:
-            paymentOptionResponse.data?.createPaymentOption?.id,
-          status: PENDING,
-          shippingFee: getShippingFee(),
+          ...billInput,
         },
       },
     });
@@ -198,6 +207,7 @@ const Checkout = () => {
           variant="secondary"
           className="h-10 text-sm md:h-10 md:text-sm md:align-middle"
           onClick={handleBackToOrders}
+          disabled={checkoutInProgress}
         >
           <div className="flex gap-2 md:gap-2">
             <div className="w-6 md:w-6">
@@ -212,7 +222,8 @@ const Checkout = () => {
           disabled={
             !orders ||
             orders?.length === 0 ||
-            !validateCheckOut({ address, personal })
+            !validateCheckOut({ address, personal }) ||
+            checkoutInProgress
           }
           className="hidden md:block text-sm h-10 md:text-sm md:h-10"
         >
@@ -232,16 +243,21 @@ const Checkout = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
           <div className="md:h-auto">
-            <PaymentOption gcashNo={currentConfig.gcash} />
+            <PaymentOption
+              gcashNo={currentConfig.gcash}
+              disabled={checkoutInProgress}
+            />
             <PersonalDetails
               className="md:w-full"
               validate={validate}
               errors={errors}
+              disabled={checkoutInProgress}
             />
             <Address
               className="md:w-full w-full"
               validate={validate}
               errors={errors}
+              disabled={checkoutInProgress}
             />
           </div>
           <div className="md:h-full">
@@ -249,44 +265,51 @@ const Checkout = () => {
               className="md:w-full"
               shippingFee={getShippingFee()}
               max={max}
+              setTotalDiscountCode={setDiscountCode}
+              disabled={checkoutInProgress}
             />
           </div>
         </div>
-        <Button
-          variant="primary"
-          onClick={handleSubmitOrders}
-          disabled={
-            !orders ||
-            orders?.length === 0 ||
-            !validateCheckOut({ address, personal }) ||
-            checkoutInProgress
-          }
-          className="mt-2 mb-2 md:hidden text-sm h-10 md:text-sm md:h-10"
-        >
-          <div className="flex gap-2">
-            <div className="text-right">Submit Order</div>
-            <div className="w-6 md:w-6">
-              {!checkoutInProgress && <ArrowCircleRightIcon />}
-              {checkoutInProgress && (
-                <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              )}
+        <div className="p-2 mb-2">
+          <Button
+            variant="primary"
+            onClick={handleSubmitOrders}
+            disabled={
+              !orders ||
+              orders?.length === 0 ||
+              !validateCheckOut({ address, personal }) ||
+              checkoutInProgress
+            }
+            className="mt-2 mb-2 md:hidden text-sm h-10 md:text-sm md:h-10"
+          >
+            <div className="flex gap-2">
+              <div className="text-right">Submit Order</div>
+              <div className="w-6 md:w-6">
+                {!checkoutInProgress && <ArrowCircleRightIcon />}
+                {checkoutInProgress && (
+                  <svg
+                    className="animate-spin h-5 w-5 mr-3"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                )}
+              </div>
             </div>
-          </div>
-        </Button>
+          </Button>
+        </div>
       </div>
     </Layout>
   );

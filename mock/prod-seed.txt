@@ -42,7 +42,7 @@ mutation createMemphisRibs {
 
 mutation createAvailabilityMemphis {
   createAvailability(input: {
-    			date: "7 Oct 2022", 
+    			date: "12 Nov 2022", 
     			quantity: 10, 
           productAvailabilityId: "0d628f09-ecd8-4ab1-9da7-4e66db3f91fd",
   				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
@@ -295,5 +295,17 @@ mutation updateAvailability {
   }) {
     id
     date
+  }
+}
+
+
+mutation createDiscountCode {
+  createDiscountCode(input:{
+    id: "bestribs2022",
+    percentage: 0.1,
+    expiration: "30 Nov 2022"
+  }){
+    id
+    percentage
   }
 }

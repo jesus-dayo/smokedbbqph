@@ -11,6 +11,7 @@ const FormInput = ({
   maxLength,
   required,
   type = 'text',
+  disabled,
 }) => {
   return (
     <div
@@ -30,6 +31,7 @@ const FormInput = ({
           onBlur={onBlur}
           data-cy={`test-${testId}-input`}
           maxLength={maxLength}
+          disabled={disabled}
         />
         {error && <div className="text-red-500 text-sm">{validationError}</div>}
       </div>

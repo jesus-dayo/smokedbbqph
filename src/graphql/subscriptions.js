@@ -292,6 +292,7 @@ export const onCreateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -342,6 +343,7 @@ export const onUpdateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -392,6 +394,7 @@ export const onDeleteBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -629,6 +632,39 @@ export const onDeleteConfig = /* GraphQL */ `
       shippingFee
       phoneNumber
       gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateDiscountCode = /* GraphQL */ `
+  subscription OnCreateDiscountCode {
+    onCreateDiscountCode {
+      id
+      expiration
+      percentage
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDiscountCode = /* GraphQL */ `
+  subscription OnUpdateDiscountCode {
+    onUpdateDiscountCode {
+      id
+      expiration
+      percentage
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDiscountCode = /* GraphQL */ `
+  subscription OnDeleteDiscountCode {
+    onDeleteDiscountCode {
+      id
+      expiration
+      percentage
       createdAt
       updatedAt
     }
