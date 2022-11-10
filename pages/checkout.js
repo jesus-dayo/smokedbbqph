@@ -238,7 +238,8 @@ const Checkout = () => {
       <div className=" text-white h-auto md:w-full text-center md:pl-5 md:pr-5 md:pb-2 pb-2">
         <div className="w-full text-center md:text-left">
           <h5 className="font-bold text-xs md:text-sm">
-            Note: As of now, we only accept GCASH as mode of payment.
+            Note: As of now, we only accept GCASH and Cash On Delivery (COD) as
+            mode of payment.
           </h5>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-20 md:w-full min-h-0 overflow-auto h-auto md:h-auto">
