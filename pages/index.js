@@ -28,7 +28,7 @@ const HomePage = () => {
   return (
     <Layout full>
       <div className="flex flex-col text-slate-50 text-opacity-100">
-        <Section>
+        {/* <Section>
           <div className="flex justify-center bg-slate-500">
             <div className="p-5">
               We currently deliver to these places{' '}
@@ -37,7 +37,7 @@ const HomePage = () => {
               </span>
             </div>
           </div>
-        </Section>
+        </Section> */}
         <Section>
           <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 bg-slate-700 block bg-no-repeat bg-cover md:bg-cover md:bg-center bg-[url('/pork_ribs.jpg')]">
             <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">

@@ -24,4 +24,9 @@ export const CITY = [
     label: 'Sta.Rosa, Laguna (+₱130)',
     shippingFee: 130,
   },
+  {
+    name: 'Shouldered-By-Buyer',
+    label: 'Shipping Handled By Buyer',
+    shippingFee: 0,
+  },
 ];

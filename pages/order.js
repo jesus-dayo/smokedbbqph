@@ -159,14 +159,14 @@ const OrderPage = () => {
   return (
     <Layout>
       <div className="p-2">
-        <div className="flex justify-start bg-slate-500">
+        {/* <div className="flex justify-start bg-slate-500">
           <div className="p-5 text-white">
             We currently deliver to these places{' '}
             <span className="text-zinc-200 font-bold">
               {CITY.map((c) => c.name).join(', ')}
             </span>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-wrap justify-start md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           <CalendarReservation
             className="md:w-full"

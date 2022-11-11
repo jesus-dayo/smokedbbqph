@@ -45,6 +45,7 @@ const PersonalDetails = ({ className, validate, errors, disabled }) => {
           maxLength={20}
           disabled={disabled}
           required
+          type="tel"
         />
         <FormInput
           label="Email"

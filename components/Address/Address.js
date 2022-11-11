@@ -15,7 +15,7 @@ const Address = ({ className, validate, errors = [], disabled }) => {
     });
     validate(e, fieldName);
   };
-
+  console.log('address.city', address.city);
   return (
     <FormContainer className={className}>
       <div>
@@ -25,6 +25,8 @@ const Address = ({ className, validate, errors = [], disabled }) => {
       </div>
       <div className="flex flex-col gap-1 p-2">
         <FormInput
+          name={'houseNumber'}
+          type="address-line1"
           label="House No"
           placeholder="House No"
           testId="houseNo"
@@ -38,6 +40,8 @@ const Address = ({ className, validate, errors = [], disabled }) => {
           required
         />
         <FormInput
+          name="street"
+          type="street-address"
           label="Street Address"
           placeholder="Street Address"
           testId="streetAddress"
@@ -51,6 +55,8 @@ const Address = ({ className, validate, errors = [], disabled }) => {
           required
         />
         <FormInput
+          name="barangay"
+          type="address-level1"
           label="Barangay"
           value={address.barangay}
           placeholder="Barangay"
@@ -72,7 +78,14 @@ const Address = ({ className, validate, errors = [], disabled }) => {
           disabled={disabled}
           required
         />
+        {address.city === 'Shipping Handled By Buyer' && (
+          <div className="text-left text-sm text-green-500">
+            You agree to arrange your own lalamove/grab/foodpanda to pickup item
+            once ready.
+          </div>
+        )}
         <FormInput
+          type="postal-code"
           value={address.postalCode}
           label="Postal Code"
           placeholder="Postal"

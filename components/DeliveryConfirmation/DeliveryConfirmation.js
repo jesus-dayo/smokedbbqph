@@ -13,13 +13,22 @@ const DeliveryConfirmation = ({
             {schedule?.date} ,{schedule?.time}
           </span>
         </div>
-        <div className="text-left p-2 md:text-lg text-sm">
-          Your order will be delivered to this address.
-          <span className="font-bold">
-            {address?.houseNo},{address?.barangay} ,{address?.street},{' '}
-            {address?.city}, {address?.postalCode}
-          </span>
-        </div>
+        {address.city === 'Shipping Handled By Buyer' && (
+          <div className="text-left p-2 md:text-lg text-sm">
+            You agree to arrange your own lalamove/grab/foodpanda to pickup item
+            once ready. We will message you once order is ready for pickup. You
+            may also text this number {supportPhone} if you have any question.
+          </div>
+        )}
+        {address.city !== 'Shipping Handled By Buyer' && (
+          <div className="text-left p-2 md:text-lg text-sm">
+            Your order will be delivered to this address.
+            <span className="font-bold">
+              {address?.houseNo},{address?.barangay} ,{address?.street},{' '}
+              {address?.city}, {address?.postalCode}
+            </span>
+          </div>
+        )}
         <div className="text-left p-2 md:text-lg text-sm">
           We will contact &nbsp;
           <span className="font-bold">{personal?.name}</span>&nbsp; for further
