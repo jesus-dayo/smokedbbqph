@@ -309,3 +309,54 @@ mutation createDiscountCode {
     percentage
   }
 }
+
+
+------ chicken
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+mutation createChicken {
+  createProduct(
+    input: { 
+      name: "Smoked Chicken - bucket of 6", 
+      category: "chicken", 
+      description: "Marinated with our homemade secret rub and then smoked for 3 hours with maple wood, the chicken is so tender and tasty, for sure this will be one of your favorites. For every order, comes with 6 pcs chicken leg part, 6 mixed veggies, and rice good for 4-6 persons. Serving Suggestion: 4-6 pax.", 
+      price: 1100, 
+      originalPrice: 1200
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+# ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a
+
+mutation createAvailabilityChicken {
+  createAvailability(input: {
+    			date: "19 Nov 2022", 
+    			quantity: 2, 
+          productAvailabilityId: "ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a",
+  				availabilityRangeId: "e314586a-37b9-4979-ad31-4e782112864d"
+  }){
+    date
+  }
+}
+
+mutation createPictureChickenMutation {
+  createPicture (input: {
+    web: "/chicken_smoked.jpg",
+    mobile: "/chicken_smoked.jpg"
+  }){
+    id
+  }
+}
+# de8d88b3-1767-4546-8353-56bc933aa89c
+
+mutation updateProductChickenMutation {
+  updateProduct(input: {
+    id: "ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a",
+    productPictureId: "33f7c8e0-f15e-49e2-aa85-1fdfd0207185"
+  }) {
+    id
+  }
+}

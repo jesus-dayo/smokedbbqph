@@ -129,19 +129,26 @@ const OrderPage = () => {
       },
     },
     {
-      label: 'Seafood',
-      click: () => handleFilter('seafood'),
+      label: 'Chicken',
+      click: () => handleFilter('chicken'),
       props: {
-        dataCy: 'test-category-seafood-id',
+        dataCy: 'test-category-chicken-id',
       },
     },
     {
-      label: 'Rubs',
-      click: () => handleFilter('rubs'),
+      label: 'Platter',
+      click: () => handleFilter('platter'),
       props: {
-        dataCy: 'test-category-rubs-id',
+        dataCy: 'test-category-platter-id',
       },
     },
+    // {
+    //   label: 'Rubs',
+    //   click: () => handleFilter('rubs'),
+    //   props: {
+    //     dataCy: 'test-category-rubs-id',
+    //   },
+    // },
   ];
 
   const getQuantityBaseOnSchedule = (availability) => {

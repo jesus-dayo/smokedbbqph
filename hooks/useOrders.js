@@ -5,7 +5,6 @@ import { orderState } from '../states/orders';
 import { removeItemAtIndex, replaceItemAtIndex } from '../utils/util';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../src/aws-exports';
-import { getConfig } from '../src/graphql/queries';
 import { MAX_RIBS } from '../common/staticConfigs';
 
 Amplify.configure({ ...awsExports, ssr: true });
@@ -21,7 +20,6 @@ const useOrders = ({
   max = 0,
 }) => {
   const [orders, setOrders] = useRecoilState(orderState);
-  const [currentConfig, setCurrentConfig] = useState();
   const getQuantity = () => {
     const foundOrder = orders.find((order) => order.label === label);
     return foundOrder?.quantity || 0;
@@ -36,20 +34,6 @@ const useOrders = ({
     productId,
   });
   const alert = useAlert();
-
-  useEffect(() => {
-    const fetchConfig = async () => {
-      const config = await API.graphql({
-        query: getConfig,
-        variables: {
-          id: 'config',
-        },
-      });
-      setCurrentConfig(config?.data?.getConfig);
-    };
-    fetchConfig();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const foundOrder = orders.find((order) => order.label === label);
