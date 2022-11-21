@@ -360,3 +360,51 @@ mutation updateProductChickenMutation {
     id
   }
 }
+
+--- platter
+mutation createPlatter {
+  createProduct(
+    input: { 
+      name: "Smoked Combo Platter - 1", 
+      category: "platter", 
+      description: "The best family platter of smoked meats you will ever have. For every order, comes with 2 baby back ribs - texas and memphis style, 6 pcs chicken leg part, 6 mixed veggies, and rice good for 6-7 pax. Serving Suggestion: 6-7 pax.", 
+      price: 3100, 
+      originalPrice: 3200
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+# 83aa9bc7-42a0-4bf1-97de-2e7556929fd8
+
+mutation createAvailabilityPlatter {
+  createAvailability(input: {
+    			date: "19 Nov 2022", 
+    			quantity: 2, 
+          productAvailabilityId: "83aa9bc7-42a0-4bf1-97de-2e7556929fd8",
+  				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
+  }){
+    date
+  }
+}
+
+mutation createPicturePlatterMutation {
+  createPicture (input: {
+    web: "/platter_combo_1.jpg",
+    mobile: "/platter_combo_1.jpg"
+  }){
+    id
+  }
+}
+# b2e2c8fb-9d66-46fd-a8b2-7d08550d9253
+
+mutation updateProductPlatter {
+  updateProduct(input: {
+    id: "83aa9bc7-42a0-4bf1-97de-2e7556929fd8",
+    productPictureId: "b2e2c8fb-9d66-46fd-a8b2-7d08550d9253"
+  }) {
+    id
+  }
+}

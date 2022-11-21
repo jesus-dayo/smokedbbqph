@@ -35,7 +35,7 @@ const Card = ({
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 h-52 w-full relative">
+      <div className="p-1 border-2 h-96 md:h-60 lg:h-60 xl:h-60 w-full  relative">
         {imgSrc && (
           <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
         )}
@@ -70,7 +70,7 @@ const Card = ({
       <div
         data-cy={`test-${label}-quantity-avail-id`}
         className={
-          'h-8 text-center text-lg md:text-sm text-red-400 font-semibold'
+          'h-7 text-center text-lg md:text-sm text-red-400 font-semibold'
         }
       >
         {availableQuantity !== 0 &&
