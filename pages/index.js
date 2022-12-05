@@ -6,6 +6,7 @@ import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
 import { G_TRACKING_ID } from './_app';
 import { CITY } from '../common/city';
+import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
   const router = useRouter();
@@ -131,13 +132,13 @@ const HomePage = () => {
             </div>
           </div>
         </Section>
-        {/* <Section>
+        <Section>
           <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  text-center h-full md:text-2xl text-sm font-serif">
-            <div className="flex flex-wrap justify-evenly gap-2">
+            <div className="flex justify-evenly gap-2">
               <ContactUs />
             </div>
           </div>
-        </Section> */}
+        </Section>
       </div>
     </Layout>
   );

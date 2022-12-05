@@ -10,6 +10,7 @@ import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
 import Image from 'next/image';
 import { G_TRACKING_ID } from '../_app';
+import ContactUs from '../../sections/contact-us/ContactUs';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -71,7 +72,7 @@ const Confirmation = () => {
   return (
     <Layout full>
       <div className="p-5 md:p-20 ">
-        <div className="bg-slate-100 text-center rounded-md min-h-full p-2">
+        <div className="bg-slate-100 text-center min-h-full p-2">
           <h5 className="font-medium text-sm md:text-xl">
             Your Order was Successful - {currentBill?.id}
           </h5>
@@ -122,6 +123,9 @@ const Confirmation = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="rounded-md">
+          <ContactUs overrides={'bg-white'} />
         </div>
       </div>
     </Layout>
