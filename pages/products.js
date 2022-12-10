@@ -1,13 +1,21 @@
 import useProducts from '../hooks/useProducts';
 import Layout from '../components/Layout/Layout';
-import React, { useEffect, useMemo, useState } from 'react';
-import { Amplify, API } from 'aws-amplify';
-import awsExports from '../src/aws-exports';
+import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
+import { convertToPHP } from '../utils/util';
 
 const Products = () => {
   const products = useProducts();
-  console.log('products', products);
+
+  const copyProducts = () => {
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(
+      products
+        .map((prod) => prod.name + ' - ' + convertToPHP(prod.price))
+        .join('\n')
+    );
+  };
+
   const columns = useMemo(
     () => [
       //   {
@@ -48,6 +56,9 @@ const Products = () => {
   return (
     <Layout full>
       <div className="bg-white p-5 w-full box-border">
+        <div>
+          <button onClick={copyProducts}>Copy Products</button>
+        </div>
         <table className="p-2 border-2 box-border w-full" {...getTableProps()}>
           <thead>
             {
