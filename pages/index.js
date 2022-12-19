@@ -4,8 +4,6 @@ import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
-import { G_TRACKING_ID } from './_app';
-import { CITY } from '../common/city';
 import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
@@ -13,9 +11,6 @@ const HomePage = () => {
   const [inProgressOrder, setInProgressOrder] = useState(false);
 
   useEffect(() => {
-    if (process?.env?.ENV === 'prod') {
-      window.gtag('event', 'screen_view', { screen_name: 'Home' });
-    }
     return () => {
       setInProgressOrder(false);
     };
@@ -29,18 +24,15 @@ const HomePage = () => {
   return (
     <Layout full>
       <div className="flex flex-col text-slate-50 text-opacity-100">
-        {/* <Section>
-          <div className="flex justify-center bg-slate-500">
-            <div className="p-5">
-              We currently deliver to these places{' '}
-              <span className="text-zinc-200 font-bold">
-                {CITY.map((c) => c.name).join(', ')}
-              </span>
-            </div>
-          </div>
-        </Section> */}
         <Section>
-          <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 bg-slate-700 block bg-no-repeat bg-cover md:bg-cover md:bg-center bg-[url('/pork_ribs.jpg')]">
+          <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 block relative">
+            <Image
+              src={'/pork_ribs.webp'}
+              alt="pork_ribs"
+              layout="fill"
+              objectFit="cover"
+              className={'-z-10'}
+            />
             <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">
               <div className="p-5 md:p-14 bg-slate-200 opacity-70">
                 <div

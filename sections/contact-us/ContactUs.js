@@ -1,6 +1,4 @@
 import React from 'react';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-import InstagramEmbed from 'react-instagram-embed';
 
 const ContactUs = ({
   overrides = 'bg-gradient-to-r from-[#706f6f] to-[#888]',
