@@ -42,7 +42,7 @@ mutation createMemphisRibs {
 
 mutation createAvailabilityMemphis {
   createAvailability(input: {
-    			date: "7 Oct 2022", 
+    			date: "12 Nov 2022", 
     			quantity: 10, 
           productAvailabilityId: "0d628f09-ecd8-4ab1-9da7-4e66db3f91fd",
   				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
@@ -290,10 +290,121 @@ query listAvailQuery {
 
 mutation updateAvailability {
   updateAvailability(input: {
-    id: "3c8197cb-7d92-45f9-a6cb-072fb786b419"
-    date: "29 Oct 2022",
+    id: "db8ed479-e0a3-4cc2-840b-f466f16ee970"
+    quantity: 6,
   }) {
     id
     date
+  }
+}
+
+
+mutation createDiscountCode {
+  createDiscountCode(input:{
+    id: "smokinholidays",
+    percentage: 0.08,
+    expiration: "31 Dec 2022"
+  }){
+    id
+    percentage
+  }
+}
+
+
+------ chicken
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+mutation createChicken {
+  createProduct(
+    input: { 
+      name: "Smoked Chicken - bucket of 6", 
+      category: "chicken", 
+      description: "Marinated with our homemade secret rub and then smoked for 3 hours with maple wood, the chicken is so tender and tasty, for sure this will be one of your favorites. For every order, comes with 6 pcs chicken leg part, 6 mixed veggies, and rice good for 4-6 persons. Serving Suggestion: 4-6 pax.", 
+      price: 1100, 
+      originalPrice: 1200
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+# ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a
+
+mutation createAvailabilityChicken {
+  createAvailability(input: {
+    			date: "19 Nov 2022", 
+    			quantity: 2, 
+          productAvailabilityId: "ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a",
+  				availabilityRangeId: "e314586a-37b9-4979-ad31-4e782112864d"
+  }){
+    date
+  }
+}
+
+mutation createPictureChickenMutation {
+  createPicture (input: {
+    web: "/chicken_smoked.jpg",
+    mobile: "/chicken_smoked.jpg"
+  }){
+    id
+  }
+}
+# de8d88b3-1767-4546-8353-56bc933aa89c
+
+mutation updateProductChickenMutation {
+  updateProduct(input: {
+    id: "ac980d21-1d6e-4a80-b1a3-8dfd7ce2653a",
+    productPictureId: "33f7c8e0-f15e-49e2-aa85-1fdfd0207185"
+  }) {
+    id
+  }
+}
+
+--- platter
+mutation createPlatter {
+  createProduct(
+    input: { 
+      name: "Smoked Combo Platter - 1", 
+      category: "platter", 
+      description: "The best family platter of smoked meats you will ever have. For every order, comes with 2 baby back ribs - texas and memphis style, 6 pcs chicken leg part, 6 mixed veggies, and rice good for 6-7 pax. Serving Suggestion: 6-7 pax.", 
+      price: 3100, 
+      originalPrice: 3200
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+# 83aa9bc7-42a0-4bf1-97de-2e7556929fd8
+
+mutation createAvailabilityPlatter {
+  createAvailability(input: {
+    			date: "19 Nov 2022", 
+    			quantity: 2, 
+          productAvailabilityId: "83aa9bc7-42a0-4bf1-97de-2e7556929fd8",
+  				availabilityRangeId: "24148887-049e-4df9-897a-1a2b15593c09"
+  }){
+    date
+  }
+}
+
+mutation createPicturePlatterMutation {
+  createPicture (input: {
+    web: "/platter_combo_1.jpg",
+    mobile: "/platter_combo_1.jpg"
+  }){
+    id
+  }
+}
+# b2e2c8fb-9d66-46fd-a8b2-7d08550d9253
+
+mutation updateProductPlatter {
+  updateProduct(input: {
+    id: "83aa9bc7-42a0-4bf1-97de-2e7556929fd8",
+    productPictureId: "b2e2c8fb-9d66-46fd-a8b2-7d08550d9253"
+  }) {
+    id
   }
 }

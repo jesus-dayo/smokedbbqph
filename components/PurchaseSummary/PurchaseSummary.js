@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import { convertToPHP } from '../../utils/util';
 
-const PurchaseSummary = ({ orders = [], shippingFee }) => {
+const PurchaseSummary = ({ orders = [], shippingFee, discountPercentage }) => {
+  const getTotal = () =>
+    orders.reduce(
+      (prev, curr) => prev + curr.price * curr.quantity,
+      shippingFee
+    );
   return (
     <div>
       <table border={2} className="table-auto w-full">
@@ -59,16 +64,41 @@ const PurchaseSummary = ({ orders = [], shippingFee }) => {
               <div className="p-2">Total</div>
             </td>
             <td>
-              <div className="p-2 underline">
-                {convertToPHP(
-                  orders.reduce(
-                    (prev, curr) => prev + curr.price * curr.quantity,
-                    shippingFee
-                  )
-                )}
+              <div
+                className={`p-2 underline ${
+                  discountPercentage > 0 ? 'line-through' : ''
+                }`}
+              >
+                {convertToPHP(getTotal())}
               </div>
             </td>
           </tr>
+          {discountPercentage > 0 && (
+            <tr className="font-medium">
+              <td></td>
+              <td>
+                <div className="p-2">Discount</div>
+              </td>
+              <td>
+                <div className="p-2 underline">
+                  {convertToPHP(getTotal() * discountPercentage)}
+                </div>
+              </td>
+            </tr>
+          )}
+          {discountPercentage > 0 && (
+            <tr className="font-medium">
+              <td></td>
+              <td>
+                <div className="p-2">Discounted Total</div>
+              </td>
+              <td>
+                <div className="p-2 underline">
+                  {convertToPHP(getTotal() - getTotal() * discountPercentage)}
+                </div>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

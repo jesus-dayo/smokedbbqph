@@ -11,6 +11,7 @@ const SelectInput = ({
   validationError,
   error,
   required,
+  disabled,
 }) => {
   return (
     <div
@@ -27,6 +28,7 @@ const SelectInput = ({
           placeholder={placeholder}
           onChange={onChange}
           data-cy={`test-${testId}-input`}
+          disabled={disabled}
           className='className="w-full md:w-4/5 md:h-8 px-3 py-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"'
         >
           {options.map((option) => (

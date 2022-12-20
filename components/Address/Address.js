@@ -5,7 +5,7 @@ import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
 import SelectInput from '../SelectInput/SelectInput';
 
-const Address = ({ className, validate, errors = [] }) => {
+const Address = ({ className, validate, errors = [], disabled }) => {
   const [address, setAddress] = useRecoilState(addressState);
 
   const handleChange = (e, fieldName) => {
@@ -15,7 +15,7 @@ const Address = ({ className, validate, errors = [] }) => {
     });
     validate(e, fieldName);
   };
-
+  console.log('address.city', address.city);
   return (
     <FormContainer className={className}>
       <div>
@@ -25,6 +25,8 @@ const Address = ({ className, validate, errors = [] }) => {
       </div>
       <div className="flex flex-col gap-1 p-2">
         <FormInput
+          name={'houseNumber'}
+          type="address-line1"
           label="House No"
           placeholder="House No"
           testId="houseNo"
@@ -34,9 +36,12 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'houseNo')}
           error={errors.includes('houseNo')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
+          name="street"
+          type="street-address"
           label="Street Address"
           placeholder="Street Address"
           testId="streetAddress"
@@ -46,13 +51,17 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'street')}
           error={errors.includes('street')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
+          name="barangay"
+          type="address-level1"
           label="Barangay"
           value={address.barangay}
           placeholder="Barangay"
           testId="barangay"
+          disabled={disabled}
           onChange={(e) => handleChange(e, 'barangay')}
         />
         <SelectInput
@@ -66,13 +75,22 @@ const Address = ({ className, validate, errors = [] }) => {
           onBlur={(e) => validate(e, 'city')}
           error={errors.includes('city')}
           maxLength={50}
+          disabled={disabled}
           required
         />
+        {address.city === 'Shipping Handled By Buyer' && (
+          <div className="text-left text-sm text-green-500">
+            You agree to arrange your own lalamove/grab/foodpanda to pickup item
+            once ready.
+          </div>
+        )}
         <FormInput
+          type="postal-code"
           value={address.postalCode}
           label="Postal Code"
           placeholder="Postal"
           onChange={(e) => handleChange(e, 'postalCode')}
+          disabled={disabled}
           testId="postal"
         />
       </div>

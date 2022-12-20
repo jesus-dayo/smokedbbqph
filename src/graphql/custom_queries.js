@@ -46,6 +46,7 @@ export const getBillWithAvail = /* GraphQL */ `
   query GetBill($id: ID!) {
     getBill(id: $id) {
       id
+      discountCode
       orders {
         items {
           id
@@ -95,6 +96,70 @@ export const getBillWithAvail = /* GraphQL */ `
       billAddressId
       billPaymentOptionId
       shippingFee
+    }
+  }
+`;
+
+export const listBillsWithDelivery = /* GraphQL */ `
+  query ListBills(
+    $filter: ModelBillFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBills(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        orders {
+          items {
+            id
+            label
+            quantity
+            description
+            price
+            imgSrc
+            billOrdersId
+          }
+        }
+        delivery {
+          id
+          date
+          time
+          createdAt
+          updatedAt
+        }
+        client {
+          id
+          name
+          phoneNumber
+          email
+          createdAt
+          updatedAt
+        }
+        address {
+          id
+          houseNo
+          street
+          barangay
+          city
+          postalCode
+          createdAt
+          updatedAt
+        }
+        paymentOption {
+          id
+          option
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        billDeliveryId
+        billClientId
+        billAddressId
+        billPaymentOptionId
+        shippingFee
+      }
+      nextToken
     }
   }
 `;

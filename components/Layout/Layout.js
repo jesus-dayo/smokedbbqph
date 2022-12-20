@@ -3,10 +3,10 @@ import Head from 'next/head';
 
 export default function Layout({ medium, children }) {
   return (
-    <div className={'h-full'}>
+    <div className={'h-full z-10'}>
       <Head>
         <title>SmokedBBQ</title>
-        <link rel={'icon'} href={'/iconOnly.png'} />
+        <link rel={'icon'} href={'/favicon.png'} />
         <meta
           name="google-site-verification"
           content="mtTiWMy_eswEz02jbwbsDYG6bCjY6mfenTvfD_m1zIc"

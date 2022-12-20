@@ -18,6 +18,7 @@ import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
+import { CITY } from '../common/city';
 
 Amplify.configure({ ...awsExports, ssr: false });
 
@@ -31,13 +32,29 @@ const OrderPage = () => {
   const ui = useRecoilValue(uiState);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [availabilities, setAvailabilities] = useState([]);
+  const router = useRouter();
+  const orders = useRecoilValue(orderState);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
+    if (process?.env?.ENV === 'prod') {
+      window.gtag('event', 'screen_view', { screen_name: 'Orders' });
+    }
     const fetchProducts = async () => {
       const response = await API.graphql({
         query: listProductsWithAvailability,
       });
-      const responseData = response.data.listProducts.items;
+      let responseData = response.data.listProducts.items;
+      if (responseData) {
+        responseData = responseData?.sort((prev, next) => {
+          if (prev.name > next.name) {
+            return -1;
+          } else if (prev.name < next.name) {
+            return 1;
+          }
+          return 0;
+        });
+      }
       setProducts(responseData);
       setProductValue(responseData);
       const uniqAvail = uniqBy(
@@ -49,10 +66,10 @@ const OrderPage = () => {
             moment(avail.date, 'DD MMM YYYY').toDate() > moment().toDate()
         )
         .sort((prev, next) => {
-          if (prev.date > next.date) {
-            return 1;
-          } else if (prev.date < next.date) {
+          if (prev.date < next.date) {
             return -1;
+          } else if (prev.date > next.date) {
+            return 1;
           }
           return 0;
         });
@@ -74,10 +91,8 @@ const OrderPage = () => {
     setFilteredProducts(filterProducts());
   }, [products, recommended, filter, selectedSchedule?.id]);
 
-  const router = useRouter();
-  const orders = useRecoilValue(orderState);
-
-  const routeToCheckoutPage = () => {
+  const routeToCheckoutPage = async () => {
+    setInProgress(true);
     if (max > MAX_RIBS) {
       return;
     }
@@ -114,19 +129,26 @@ const OrderPage = () => {
       },
     },
     {
-      label: 'Seafood',
-      click: () => handleFilter('seafood'),
+      label: 'Chicken',
+      click: () => handleFilter('chicken'),
       props: {
-        dataCy: 'test-category-seafood-id',
+        dataCy: 'test-category-chicken-id',
       },
     },
     {
-      label: 'Rubs',
-      click: () => handleFilter('rubs'),
+      label: 'Platter',
+      click: () => handleFilter('platter'),
       props: {
-        dataCy: 'test-category-rubs-id',
+        dataCy: 'test-category-platter-id',
       },
     },
+    // {
+    //   label: 'Rubs',
+    //   click: () => handleFilter('rubs'),
+    //   props: {
+    //     dataCy: 'test-category-rubs-id',
+    //   },
+    // },
   ];
 
   const getQuantityBaseOnSchedule = (availability) => {
@@ -144,6 +166,14 @@ const OrderPage = () => {
   return (
     <Layout>
       <div className="p-2">
+        {/* <div className="flex justify-start bg-slate-500">
+          <div className="p-5 text-white">
+            We currently deliver to these places{' '}
+            <span className="text-zinc-200 font-bold">
+              {CITY.map((c) => c.name).join(', ')}
+            </span>
+          </div>
+        </div> */}
         <div className="flex flex-wrap justify-start md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           <CalendarReservation
             className="md:w-full"
@@ -163,7 +193,7 @@ const OrderPage = () => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-5 md:w-full lg:grid-cols-6 xl:grid-cols-7 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 md:w-full lg:grid-cols-4 xl:grid-cols-5 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts.map((item) => (
             <Card
               key={`item-${item.name}`}
@@ -184,8 +214,11 @@ const OrderPage = () => {
         </div>
       </div>
       {orders.length > 0 && (
-        <div className="pt-1 pb-4 fixed -bottom-4 right-7 animate-bounce">
-          <CheckoutButton onClick={routeToCheckoutPage} />
+        <div className="pt-1 pb-4 fixed -bottom-0 right-7 animate-bounce">
+          <CheckoutButton
+            onClick={routeToCheckoutPage}
+            inProgress={inProgress}
+          />
         </div>
       )}
     </Layout>

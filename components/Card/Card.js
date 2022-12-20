@@ -35,19 +35,21 @@ const Card = ({
       <div className="text-sm pl-2 pr-2">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 h-36 w-full relative">
+      <div className="p-1 border-2 h-96 md:h-60 lg:h-60 xl:h-60 w-full  relative">
         {imgSrc && (
           <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
         )}
       </div>
-      <div className="text-xs p-2 h-28">{description}</div>
-      <div className="text-md text-center opacity-80 p-2">
+      <div className="text-sm md:text-xs xl:text-xs p-2 h-36">
+        {description}
+      </div>
+      {/* <div className="text-md text-center opacity-80 p-2">
         <p className="bg-red-600 text-white ring-offset-2 ring-2">
           <strong className="line-through">
             Original Price: {convertToPHP(originalPrice)}
           </strong>
         </p>
-      </div>
+      </div> */}
       <div className="text-md text-center opacity-80 p-2">
         <p className="bg-green-600 text-white ring-offset-2 ring-2">
           <strong>
@@ -68,7 +70,7 @@ const Card = ({
       <div
         data-cy={`test-${label}-quantity-avail-id`}
         className={
-          'h-8 text-center text-lg md:text-sm text-red-400 font-semibold'
+          'h-7 text-center text-lg md:text-sm text-red-400 font-semibold'
         }
       >
         {availableQuantity !== 0 &&

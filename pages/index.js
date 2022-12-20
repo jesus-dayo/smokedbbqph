@@ -4,6 +4,7 @@ import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
+import ContactUs from '../sections/contact-us/ContactUs';
 
 const HomePage = () => {
   const router = useRouter();
@@ -24,7 +25,14 @@ const HomePage = () => {
     <Layout full>
       <div className="flex flex-col text-slate-50 text-opacity-100">
         <Section>
-          <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 bg-slate-700 block bg-no-repeat bg-cover md:bg-cover md:bg-center bg-[url('/ribs2.jpg')]">
+          <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 block relative">
+            <Image
+              src={'/pork_ribs.webp'}
+              alt="pork_ribs"
+              layout="fill"
+              objectFit="cover"
+              className={'-z-10'}
+            />
             <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">
               <div className="p-5 md:p-14 bg-slate-200 opacity-70">
                 <div
@@ -44,6 +52,7 @@ const HomePage = () => {
                   onClick={routeToOrderPage}
                   disabled={inProgressOrder}
                   inProgress={inProgressOrder}
+                  className={'animate-bounce'}
                 >
                   Order Now
                 </Button>
@@ -60,7 +69,7 @@ const HomePage = () => {
                   provide the Best Smoky Flavour to Our Meat
                 </p>
                 <Image
-                  src={'/charcoal_wood.jpg'}
+                  src={'/charcoal_wood.webp'}
                   alt="charcoal_wood"
                   height={'400'}
                   width={'700'}
@@ -70,7 +79,7 @@ const HomePage = () => {
             <div className="h-full w-full">
               <div className="p-2">
                 <Image
-                  src={'/sliced_beef_brisket.jpg'}
+                  src={'/sliced_beef_brisket.webp'}
                   alt="sliced_beef_brisket"
                   height={'400'}
                   width={'700'}
@@ -83,45 +92,45 @@ const HomePage = () => {
             </div>
           </div>
         </Section>
-        {/* <Section>
+        <Section>
           <div className="text-white text-lg md:text-2xl font-serif p-2 md:p-10 h-full">
             <p>What Our Clients Tell About Us</p>
             <div className="flex-column space-y-2 text-xs md:text-2xl">
               <div className="flex space-x-2 italic">
                 <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  font-thin p-2">
                   <p>
-                    "The beef brisket just made my stressful day into the best
-                    day of my life. :)"
+                    "I ordered Smoked Baby Back Ribs - Texas style, grabe lambot
+                    at malasa. Totoong usok pa lang, ulam na!"
                   </p>
                 </div>
                 <div className="bg-gradient-to-r from-[#706f6f] to-[#888]   font-thin p-2">
                   <p>
-                    "I wished I could just marry the beef brisket and eat it
-                    forever till my last dying day!"
+                    "Ang sarap nung memphis style Smoked Baby Back Ribs! Lalo
+                    nung binuhos ko yung secret sauce! Nakakakilig!"
                   </p>
                 </div>
               </div>
               <div className="flex space-x-2 italic">
                 <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  font-thin p-2">
-                  <p>"The woody flavour really made it super special!"</p>
+                  <p>"Panalo ung longganisa, halos araw araw ko ng agahan!"</p>
                 </div>
                 <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  font-thin p-2">
                   <p>
-                    "The quality was still at the top, even after it was
-                    delivered to my place here in Rizal!"
+                    "Grabe ung beef brisket, bagay na bagay sa red wine.
+                    Siguradong uulet ako. Panalo!"
                   </p>
                 </div>
               </div>
             </div>
           </div>
-        </Section> */}
-        {/* <Section>
+        </Section>
+        <Section>
           <div className="bg-gradient-to-r from-[#706f6f] to-[#888]  text-center h-full md:text-2xl text-sm font-serif">
-            <div className="flex flex-wrap justify-evenly gap-2">
+            <div className="flex justify-evenly gap-2">
               <ContactUs />
             </div>
           </div>
-        </Section> */}
+        </Section>
       </div>
     </Layout>
   );

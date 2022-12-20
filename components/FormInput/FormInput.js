@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 const FormInput = ({
+  name,
   label,
   placeholder,
   onChange,
@@ -11,6 +12,7 @@ const FormInput = ({
   maxLength,
   required,
   type = 'text',
+  disabled,
 }) => {
   return (
     <div
@@ -23,6 +25,7 @@ const FormInput = ({
       </label>
       <div className="p-1">
         <input
+          name={name}
           className="w-full md:w-4/5 md:h-8 px-3 py-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
           placeholder={placeholder}
           type={type}
@@ -30,6 +33,7 @@ const FormInput = ({
           onBlur={onBlur}
           data-cy={`test-${testId}-input`}
           maxLength={maxLength}
+          disabled={disabled}
         />
         {error && <div className="text-red-500 text-sm">{validationError}</div>}
       </div>

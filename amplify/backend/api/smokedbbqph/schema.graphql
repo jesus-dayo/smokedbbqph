@@ -41,6 +41,7 @@ type Bill @model {
   client: Client @hasOne
   address: Address @hasOne
   paymentOption: PaymentOption @hasOne
+  discountCode: String
   status: String
   shippingFee: Int
 }
@@ -89,4 +90,10 @@ type Config @model {
   shippingFee: Int!
   phoneNumber: String!
   gcash: String!
+}
+
+type DiscountCode @model {
+  id: ID!
+  expiration: String!
+  percentage: Float
 }

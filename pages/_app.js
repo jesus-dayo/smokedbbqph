@@ -3,7 +3,6 @@ import { makeServer } from '../mock/server';
 import '../styles/globals.css';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
-import Script from 'next/script';
 
 makeServer(process.env.NEXT_PUBLIC_ENV);
 
@@ -20,24 +19,6 @@ const options = {
 function App({ Component, pageProps }) {
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-H21XR297LE"
-      />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-H21XR297LE', {
-            page_path: window.location.pathname,
-          });
-        `,
-        }}
-      />
       <RecoilRoot>
         <AlertProvider template={AlertTemplate} {...options}>
           <Component {...pageProps} />

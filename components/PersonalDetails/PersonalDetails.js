@@ -3,7 +3,7 @@ import FormContainer from '../FormContainer/FormContainer';
 import FormInput from '../FormInput/FormInput';
 import { personalState } from '../../states/personal';
 
-const PersonalDetails = ({ className, validate, errors }) => {
+const PersonalDetails = ({ className, validate, errors, disabled }) => {
   const [personal, setPersonal] = useRecoilState(personalState);
 
   const handleChange = (e, fieldName) => {
@@ -31,6 +31,7 @@ const PersonalDetails = ({ className, validate, errors }) => {
           validationError={'name is a required field'}
           error={errors.includes('name')}
           maxLength={50}
+          disabled={disabled}
           required
         />
         <FormInput
@@ -42,7 +43,9 @@ const PersonalDetails = ({ className, validate, errors }) => {
           onBlur={(e) => validate(e, 'phoneNumber')}
           error={errors.includes('phoneNumber')}
           maxLength={20}
+          disabled={disabled}
           required
+          type="tel"
         />
         <FormInput
           label="Email"
@@ -54,6 +57,7 @@ const PersonalDetails = ({ className, validate, errors }) => {
           maxLength={50}
           testId="email"
           type="email"
+          disabled={disabled}
           required
         />
       </div>

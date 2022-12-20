@@ -50,7 +50,7 @@
         "billEmailCopy": {
           "sesEmail": "sales@pjsmokeandgrill.com",
           "deploymentBucketName": "amplify-smokedbbqph-prod-40329-deployment",
-          "s3Key": "amplify-builds/billEmailCopy-593059616363516a2f68-build.zip"
+          "s3Key": "amplify-builds/billEmailCopy-31554955574c51723469-build.zip"
         }
       }
     }

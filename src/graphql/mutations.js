@@ -331,6 +331,7 @@ export const createBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -384,6 +385,7 @@ export const updateBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -437,6 +439,7 @@ export const deleteBill = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      discountCode
       status
       shippingFee
       createdAt
@@ -728,6 +731,48 @@ export const deleteConfig = /* GraphQL */ `
       shippingFee
       phoneNumber
       gcash
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createDiscountCode = /* GraphQL */ `
+  mutation CreateDiscountCode(
+    $input: CreateDiscountCodeInput!
+    $condition: ModelDiscountCodeConditionInput
+  ) {
+    createDiscountCode(input: $input, condition: $condition) {
+      id
+      expiration
+      percentage
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateDiscountCode = /* GraphQL */ `
+  mutation UpdateDiscountCode(
+    $input: UpdateDiscountCodeInput!
+    $condition: ModelDiscountCodeConditionInput
+  ) {
+    updateDiscountCode(input: $input, condition: $condition) {
+      id
+      expiration
+      percentage
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteDiscountCode = /* GraphQL */ `
+  mutation DeleteDiscountCode(
+    $input: DeleteDiscountCodeInput!
+    $condition: ModelDiscountCodeConditionInput
+  ) {
+    deleteDiscountCode(input: $input, condition: $condition) {
+      id
+      expiration
+      percentage
       createdAt
       updatedAt
     }

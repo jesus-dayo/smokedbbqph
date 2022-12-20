@@ -9,6 +9,7 @@ const Quantity = ({
   id,
   notAvail,
   isLoading,
+  disabled,
 }) => {
   if (isLoading) {
     return (
@@ -54,27 +55,43 @@ const Quantity = ({
       {!notAvail && (
         <div className="flex flex-row justify-around h-6 md:h-6 w-full">
           <div className="w-4 h-6 md:w-4 flex justify-center text-white">
-            <MinusSmIcon
-              onClick={onMinus}
-              className="cursor-pointer md:h-6 text-white"
-              data-cy={`test-${id}-quantity-minus-id`}
-            />
+            {!disabled && (
+              <MinusSmIcon
+                onClick={onMinus}
+                className="cursor-pointer md:h-6 text-white"
+                data-cy={`test-${id}-quantity-minus-id`}
+              />
+            )}
+            {disabled && (
+              <MinusSmIcon
+                className="md:h-6 text-white"
+                data-cy={`test-${id}-quantity-minus-id`}
+              />
+            )}
           </div>
           <div className="text-center text-black">
             <input
               type={'text'}
               value={value}
               data-cy={`test-${id}-quantity-input-id`}
-              onChange={() => {}}
+              disabled={disabled}
               className="w-6  md:w-6 h-full md:h-6 text-center border-t-2 border-b-2 border-black"
             />
           </div>
           <div className="w-4 h-6 md:w-4 flex justify-center text-white">
-            <PlusSmIcon
-              onClick={onAdd}
-              className="cursor-pointer md:h-6 text-white"
-              data-cy={`test-${id}-quantity-plus-id`}
-            />
+            {!disabled && (
+              <PlusSmIcon
+                onClick={onAdd}
+                className="cursor-pointer md:h-6 text-white"
+                data-cy={`test-${id}-quantity-plus-id`}
+              />
+            )}
+            {disabled && (
+              <PlusSmIcon
+                className="md:h-6 text-white"
+                data-cy={`test-${id}-quantity-plus-id`}
+              />
+            )}
           </div>
         </div>
       )}
