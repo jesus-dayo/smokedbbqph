@@ -73,16 +73,18 @@ const Bills = () => {
         },
       });
       const items = bill?.data?.listBills?.items || [];
-      setBills(
-        items.sort((prev, next) => {
-          if (prev.delivery?.date > next.delivery?.date) {
-            return 1;
-          } else if (prev.delivery?.date < next.delivery?.date) {
-            return -1;
-          }
-          return 0;
-        })
-      );
+      items.sort((prev, next) => {
+        const prevDate = moment(prev.delivery?.date, 'DD MMM YYYY').toDate();
+        const nextDate = moment(next.delivery?.date, 'DD MMM YYYY').toDate();
+        if (prevDate > nextDate) {
+          return -1;
+        } else if (prevDate < nextDate) {
+          return 1;
+        }
+        return 0;
+      });
+      console.log(items);
+      setBills(items);
     };
     listBillAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
