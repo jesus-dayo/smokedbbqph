@@ -69,7 +69,7 @@ const HomePage = () => {
                   provide the Best Smoky Flavour to Our Meat
                 </p>
                 <Image
-                  src={'/charcoal_wood.jpg'}
+                  src={'/charcoal_wood.webp'}
                   alt="charcoal_wood"
                   height={'400'}
                   width={'700'}
@@ -79,7 +79,7 @@ const HomePage = () => {
             <div className="h-full w-full">
               <div className="p-2">
                 <Image
-                  src={'/sliced_beef_brisket.jpg'}
+                  src={'/sliced_beef_brisket.webp'}
                   alt="sliced_beef_brisket"
                   height={'400'}
                   width={'700'}
