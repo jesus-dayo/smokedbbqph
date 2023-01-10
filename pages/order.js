@@ -18,7 +18,6 @@ import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
-import { CITY } from '../common/city';
 
 Amplify.configure({ ...awsExports, ssr: false });
 
@@ -35,7 +34,7 @@ const OrderPage = () => {
   const router = useRouter();
   const orders = useRecoilValue(orderState);
   const [inProgress, setInProgress] = useState(false);
-
+  console.log(products);
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
       window.gtag('event', 'screen_view', { screen_name: 'Orders' });
@@ -142,13 +141,6 @@ const OrderPage = () => {
         dataCy: 'test-category-platter-id',
       },
     },
-    // {
-    //   label: 'Rubs',
-    //   click: () => handleFilter('rubs'),
-    //   props: {
-    //     dataCy: 'test-category-rubs-id',
-    //   },
-    // },
   ];
 
   const getQuantityBaseOnSchedule = (availability) => {
@@ -193,7 +185,7 @@ const OrderPage = () => {
         </div>
       </div>
       <div className="p-2 mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 md:w-full lg:grid-cols-4 xl:grid-cols-5 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-4 md:w-full lg:grid-cols-4 xl:grid-cols-5 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts.map((item) => (
             <Card
               key={`item-${item.name}`}

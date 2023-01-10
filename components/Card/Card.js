@@ -32,15 +32,15 @@ const Card = ({
       data-cy={`test-${label}-card`}
       className="bg-white w-full max-h-full h-full shadow-md flex-col md:h-full md:max-h-full"
     >
-      <div className="text-sm pl-2 pr-2">
+      <div className="text-lg lg:text-sm xl:text-sm pl-1 pr-1 h-10">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 h-96 md:h-60 lg:h-60 xl:h-60 w-full  relative">
+      <div className="p-1 border-2 h-96 md:h-96 lg:h-96 xl:h-96 w-full  relative">
         {imgSrc && (
           <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
         )}
       </div>
-      <div className="text-sm md:text-xs xl:text-xs p-2 h-36">
+      <div className="text-sm md:text-xs lg:text-xs xl:text-sm p-2 h-44">
         {description}
       </div>
       {/* <div className="text-md text-center opacity-80 p-2">
@@ -57,7 +57,7 @@ const Card = ({
           </strong>
         </p>
       </div>
-      <div className="p-2 flex items-center justify-center">
+      <div className="p-1 flex items-center justify-center">
         <Quantity
           value={order.quantity}
           onAdd={handleAddQuantity}
@@ -70,7 +70,7 @@ const Card = ({
       <div
         data-cy={`test-${label}-quantity-avail-id`}
         className={
-          'h-7 text-center text-lg md:text-sm text-red-400 font-semibold'
+          'h-6 text-center text-lg md:text-sm text-red-400 font-semibold'
         }
       >
         {availableQuantity !== 0 &&
