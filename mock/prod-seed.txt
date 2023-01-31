@@ -408,3 +408,69 @@ mutation updateProductPlatter {
     id
   }
 }
+
+# new 
+mutation createPremadeRibs {
+  createProduct(
+    input: { 
+      name: "Vacuum Sealed - Pork Ribs Texas", 
+      category: "pork", 
+      description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour. Comes with special sauce. Note: Keep refrigerated and consume within 2 weeks. Reheating: Remove meat from vacuum seal, Microwave for 15 minutes. Reheating: Remove meat from vacuum seal, Oven wrap with foil, preheat 250-275 degrees and lower to temperature 145 degrees for 15 minutes.", 
+      price: 900, 
+      originalPrice: 1000
+      currency: "php", 
+      isRecommended: true,
+    }
+  ) {
+    id
+  }
+}
+ # d9fdbbe3-7770-456a-b423-7bd238cd41e7
+mutation createAvailabilityTexas {
+  createAvailability(input: {
+    			date: "30 Jan 2023", 
+    			quantity: 4, 
+          productAvailabilityId: "d9fdbbe3-7770-456a-b423-7bd238cd41e7",
+  				availabilityRangeId: "e314586a-37b9-4979-ad31-4e782112864d"
+  }){
+    date
+  }
+}
+
+mutation createPictureVacuumMutation {
+  createPicture (input: {
+    web: "/vacuum_sealed_ribs.jpg",
+    mobile: "/vacuum_sealed_ribs.jpg"
+  }){
+    id
+  }
+}
+# 94a00ec9-3259-4e2a-a151-0aff0cb2749e
+
+mutation updateProductVacuumMutation {
+  updateProduct(input: {
+    name: "Vacuum Sealed - Pork Ribs Texas", 
+    id: "d9fdbbe3-7770-456a-b423-7bd238cd41e7",
+    category: "pork", 
+    # productPictureId: "94a00ec9-3259-4e2a-a151-0aff0cb2749e"
+  	# description: "Smoked for 6-7 hours, texas style has a salty and pepperish flavour. Comes with special sauce. Note: Keep refrigerated and consume within 2 weeks. Reheating: Remove meat from vacuum seal, Microwave for 15 minutes. Reheating: Remove meat from vacuum seal, Oven wrap with foil, preheat 250-275 degrees and lower to temperature 145 degrees for 15 minutes.", 
+  }) {
+    id
+  }
+}
+
+
+
+query listAvailQuery {
+  listAvailabilities {
+    items {
+      date
+      id
+      range {
+        id
+      }
+      productAvailabilityId
+      availabilityRangeId
+    }
+  }
+}

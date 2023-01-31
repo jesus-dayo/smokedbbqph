@@ -32,7 +32,7 @@ const Card = ({
       data-cy={`test-${label}-card`}
       className="bg-white w-full max-h-full h-full shadow-md flex-col md:h-full md:max-h-full"
     >
-      <div className="text-lg lg:text-sm xl:text-sm pl-1 pr-1 h-10">
+      <div className="text-lg lg:text-sm xl:text-sm pl-1 pr-1 h-6">
         <strong>{label}</strong>
       </div>
       <div className="p-1 border-2 h-96 md:h-96 lg:h-96 xl:h-96 w-full  relative">
@@ -40,7 +40,7 @@ const Card = ({
           <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
         )}
       </div>
-      <div className="text-sm md:text-xs lg:text-xs xl:text-sm p-2 h-44">
+      <div className="text-sm md:text-xs lg:text-xs xl:text-sm p-2 h-48">
         {description}
       </div>
       {/* <div className="text-md text-center opacity-80 p-2">
