@@ -34,7 +34,7 @@ const OrderPage = () => {
   const router = useRouter();
   const orders = useRecoilValue(orderState);
   const [inProgress, setInProgress] = useState(false);
-  console.log(products);
+
   useEffect(() => {
     if (process?.env?.ENV === 'prod') {
       window.gtag('event', 'screen_view', { screen_name: 'Orders' });
@@ -201,6 +201,7 @@ const OrderPage = () => {
               max={max}
               isQuantityLoading={ui.isQuantityLoading}
               isFrozen={item.isFrozen}
+              reheat={item.reheat}
             />
           ))}
         </div>

@@ -22,6 +22,7 @@ export const getProduct = /* GraphQL */ `
         updatedAt
       }
       isFrozen
+      reheat
       id
       createdAt
       updatedAt
@@ -45,6 +46,7 @@ export const listProducts = /* GraphQL */ `
         currency
         isRecommended
         isFrozen
+        reheat
         id
         createdAt
         updatedAt
@@ -138,6 +140,7 @@ export const getPicture = /* GraphQL */ `
         currency
         isRecommended
         isFrozen
+        reheat
         id
         createdAt
         updatedAt

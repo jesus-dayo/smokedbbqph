@@ -14,6 +14,7 @@ type Product @model {
   availability: [Availability] @hasMany
   picture: Picture @hasOne
   isFrozen: Boolean
+  reheat: Boolean
 }
 
 type Availability @model {

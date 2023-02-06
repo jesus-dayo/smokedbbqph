@@ -22,6 +22,7 @@ export const onCreateProduct = /* GraphQL */ `
         updatedAt
       }
       isFrozen
+      reheat
       id
       createdAt
       updatedAt
@@ -50,6 +51,7 @@ export const onUpdateProduct = /* GraphQL */ `
         updatedAt
       }
       isFrozen
+      reheat
       id
       createdAt
       updatedAt
@@ -78,6 +80,7 @@ export const onDeleteProduct = /* GraphQL */ `
         updatedAt
       }
       isFrozen
+      reheat
       id
       createdAt
       updatedAt
@@ -193,6 +196,7 @@ export const onCreatePicture = /* GraphQL */ `
         currency
         isRecommended
         isFrozen
+        reheat
         id
         createdAt
         updatedAt
@@ -218,6 +222,7 @@ export const onUpdatePicture = /* GraphQL */ `
         currency
         isRecommended
         isFrozen
+        reheat
         id
         createdAt
         updatedAt
@@ -243,6 +248,7 @@ export const onDeletePicture = /* GraphQL */ `
         currency
         isRecommended
         isFrozen
+        reheat
         id
         createdAt
         updatedAt

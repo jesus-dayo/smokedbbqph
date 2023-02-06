@@ -15,7 +15,7 @@ const Address = ({ className, validate, errors = [], disabled }) => {
     });
     validate(e, fieldName);
   };
-  console.log('address.city', address.city);
+
   return (
     <FormContainer className={className}>
       <div>

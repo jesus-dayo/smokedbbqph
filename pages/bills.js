@@ -83,7 +83,6 @@ const Bills = () => {
         }
         return 0;
       });
-      console.log(items);
       setBills(items);
     };
     listBillAPI();
