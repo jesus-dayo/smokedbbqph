@@ -474,3 +474,43 @@ query listAvailQuery {
     }
   }
 }
+
+# shift-option/alt-click on a query below to jump to it in the explorer
+# option/alt-click on a field in the explorer to select all subfields
+mutation createBangus {
+  createProduct(
+    input: { 
+      name: "Smoked Relyenong Bangus", 
+      category: "fish", 
+      description: "Our homemade relyenong bangus is stuffed with carrots, potatoes, bell pepper and quail eggs. Smoked for 3hrs and has the classic favorite taste of relyenong bangus with a hint of smoked maple wood. Best paired with rice. Each order weighs in about 800g to 1kg.", 
+      price: 599, 
+      originalPrice: 700
+      currency: "php", 
+      isRecommended: true,
+      isFrozen: false
+    }
+  ) {
+    id
+  }
+}
+# 73b2c22d-be57-4ab9-ba16-5eb477388953
+
+mutation createPictureBangusMutation {
+  createPicture (input: {
+    web: "/smoked_bangus.jpg",
+    mobile: "/smoked_bangus.jpg"
+  }){
+    id
+  }
+}
+# 4736038a-e493-4c83-b277-eac93fe93ff9
+
+mutation updateProductBangusMutation {
+  updateProduct(input: {
+    id: "73b2c22d-be57-4ab9-ba16-5eb477388953",
+    productPictureId: "4736038a-e493-4c83-b277-eac93fe93ff9"
+  }) {
+    id
+  }
+}
+

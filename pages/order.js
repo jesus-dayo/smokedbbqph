@@ -114,13 +114,6 @@ const OrderPage = () => {
       },
     },
     {
-      label: 'Beef',
-      click: () => handleFilter('beef'),
-      props: {
-        dataCy: 'test-category-beef-id',
-      },
-    },
-    {
       label: 'Pork',
       click: () => handleFilter('pork'),
       props: {
@@ -132,6 +125,13 @@ const OrderPage = () => {
       click: () => handleFilter('chicken'),
       props: {
         dataCy: 'test-category-chicken-id',
+      },
+    },
+    {
+      label: 'Seafood',
+      click: () => handleFilter('fish'),
+      props: {
+        dataCy: 'test-category-fish-id',
       },
     },
     {
@@ -158,14 +158,6 @@ const OrderPage = () => {
   return (
     <Layout>
       <div className="p-2">
-        {/* <div className="flex justify-start bg-slate-500">
-          <div className="p-5 text-white">
-            We currently deliver to these places{' '}
-            <span className="text-zinc-200 font-bold">
-              {CITY.map((c) => c.name).join(', ')}
-            </span>
-          </div>
-        </div> */}
         <div className="flex flex-wrap justify-start md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           <CalendarReservation
             className="md:w-full"
@@ -178,7 +170,7 @@ const OrderPage = () => {
         </div>
       </div>
       <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
-        <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 ">
+        <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 w-full">
           <div className="grid grid-flow-col gap-2 md:w-8/12 md:gap-5">
             <FilterGroup filters={filters} />
           </div>
