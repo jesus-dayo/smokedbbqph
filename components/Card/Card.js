@@ -104,9 +104,15 @@ const Card = ({
       <div className="text-lg lg:text-sm xl:text-sm pl-1 pr-1 h-6">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 h-96 md:h-96 lg:h-96 xl:h-96 w-full  relative">
+      <div className="p-1 border-2 w-full  relative">
         {imgSrc && (
-          <Image src={imgSrc} alt={label} objectFit="fill" layout="fill" />
+          <Image
+            src={imgSrc}
+            alt={label}
+            width={1000}
+            height={1000}
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
         )}
       </div>
       <div className="text-sm md:text-xs lg:text-xs xl:text-sm p-2 h-48">
