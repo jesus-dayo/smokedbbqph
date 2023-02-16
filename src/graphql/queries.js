@@ -211,6 +211,8 @@ export const getBill = /* GraphQL */ `
       discountCode
       status
       shippingFee
+      email
+      deliveryDate
       createdAt
       updatedAt
       billDeliveryId
@@ -232,6 +234,8 @@ export const listBills = /* GraphQL */ `
         discountCode
         status
         shippingFee
+        email
+        deliveryDate
         createdAt
         updatedAt
         billDeliveryId

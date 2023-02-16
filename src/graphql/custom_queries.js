@@ -159,6 +159,8 @@ export const listBillsWithDelivery = /* GraphQL */ `
         billAddressId
         billPaymentOptionId
         shippingFee
+        email
+        deliveryDate
       }
       nextToken
     }

@@ -301,6 +301,8 @@ export const onCreateBill = /* GraphQL */ `
       discountCode
       status
       shippingFee
+      email
+      deliveryDate
       createdAt
       updatedAt
       billDeliveryId
@@ -352,6 +354,8 @@ export const onUpdateBill = /* GraphQL */ `
       discountCode
       status
       shippingFee
+      email
+      deliveryDate
       createdAt
       updatedAt
       billDeliveryId
@@ -403,6 +407,8 @@ export const onDeleteBill = /* GraphQL */ `
       discountCode
       status
       shippingFee
+      email
+      deliveryDate
       createdAt
       updatedAt
       billDeliveryId

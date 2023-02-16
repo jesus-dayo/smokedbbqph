@@ -175,6 +175,8 @@ const Checkout = () => {
       billPaymentOptionId: paymentOptionResponse.data?.createPaymentOption?.id,
       status: PENDING,
       shippingFee: getShippingFee(),
+      email: personal.email,
+      deliveryDate: schedule.date,
     };
 
     if (discountCode) {

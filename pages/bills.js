@@ -112,9 +112,18 @@ const Bills = () => {
       type: 'text/html',
     });
     const clipboardItem = new window.ClipboardItem({ 'text/html': blob });
-    navigator.clipboard.write([clipboardItem]).then(() => {
-      alert.show('Copy to clipboard was successful');
-    });
+    const isIOS = navigator.userAgent.match(/ipad|ipod|iphone/i);
+    if (isIOS) {
+      navigator.clipboard
+        .writeText(JSON.stringify(filteredBills.join(' ')))
+        .then(() => {
+          alert.show('Copy to clipboard was successful');
+        });
+    } else {
+      navigator.clipboard.write([clipboardItem]).then(() => {
+        alert.show('Copy to clipboard was successful');
+      });
+    }
   };
 
   return (

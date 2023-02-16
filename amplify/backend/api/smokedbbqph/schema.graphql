@@ -45,6 +45,8 @@ type Bill @model {
   discountCode: String
   status: String
   shippingFee: Int
+  email: String
+  deliveryDate: String
 }
 
 type Delivery @model {
