@@ -34,7 +34,7 @@ const Header = () => {
             <h3 className="font-serif text-sm md:text-xl">
               PJ Smoke and Grill
             </h3>
-            <h4 className="font-serif text-xs md:text-xs text-center">
+            <h4 className="font-serif text-xs text-center">
               Usok Pa Lang Ulam Na
             </h4>
           </div>

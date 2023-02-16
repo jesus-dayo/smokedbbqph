@@ -169,9 +169,9 @@ const OrderPage = () => {
           Placing of orders closes 8hrs before the selected delivery date.
         </div>
       </div>
-      <div className="flex border-gray-800 border-t-2 border-b-2 p-2">
-        <div className="bg-gradient-to-r from-[#706f6f] to-[#888] grow p-2 space-x-2 w-full">
-          <div className="grid grid-flow-col gap-2 md:w-8/12 md:gap-5">
+      <div className="flex w-full border-gray-800  border-t-2 border-b-2 p-1">
+        <div className="p-1 bg-gradient-to-r from-[#706f6f] to-[#888] w-full">
+          <div className="flex flex-col md:flex-row gap-2 md:gap-2">
             <FilterGroup filters={filters} />
           </div>
         </div>

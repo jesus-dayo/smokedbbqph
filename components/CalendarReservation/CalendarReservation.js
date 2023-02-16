@@ -70,7 +70,7 @@ const CalendarReservation = ({ availabilities = [], products, className }) => {
             }  ${avail?.date === schedule?.date ? 'bg-slate-300' : ''}`}
             onClick={() => handleSelectDate(index)}
           >
-            <div className="text-center font-bold text-lg uppercase">
+            <div className="text-center font-bold text-sm md:text-lg uppercase">
               {avail?.date}
             </div>
             <div className="text-center text-sm uppercase">
