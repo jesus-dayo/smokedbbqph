@@ -5,11 +5,15 @@ import awsExports from '../src/aws-exports';
 import { listBillsWithDelivery } from '../src/graphql/custom_queries';
 import { useTable } from 'react-table';
 import moment from 'moment';
+import Button from '../components/Button/Button';
+import { useAlert } from 'react-alert';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
 const Bills = () => {
   const [bills, setBills] = useState([]);
+  const alert = useAlert();
+
   const columns = useMemo(
     () => [
       {
@@ -74,14 +78,15 @@ const Bills = () => {
       });
       const items = bill?.data?.listBills?.items || [];
       items.sort((prev, next) => {
-        const prevDate = moment(prev.delivery?.date, 'DD MMM YYYY').toDate();
-        const nextDate = moment(next.delivery?.date, 'DD MMM YYYY').toDate();
-        if (prevDate > nextDate) {
-          return -1;
-        } else if (prevDate < nextDate) {
-          return 1;
+        let prevDate = moment(prev.delivery?.date, 'DD MMM YYYY');
+        if (!prevDate.isValid()) {
+          prevDate = moment(prev.delivery?.date, 'D MMM YYYY');
         }
-        return 0;
+        let nextDate = moment(next.delivery?.date, 'DD MMM YYYY');
+        if (!nextDate.isValid()) {
+          nextDate = moment(next.delivery?.date, 'D MMM YYYY');
+        }
+        return nextDate.diff(prevDate);
       });
       setBills(items);
     };
@@ -89,9 +94,38 @@ const Bills = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const undelivered = () => {
+    return bills.filter(
+      (bill) =>
+        moment().toDate() <= moment(bill.delivery?.date, 'DD MMM YYYY').toDate()
+    );
+  };
+
+  const copyToClipboard = () => {
+    const filteredBills = undelivered().map(
+      (bill) =>
+        `https://${window.location.hostname}${
+          window.location.port ? ':' + window.location.port : ''
+        }/confirmation/${bill.id}<br/>`
+    );
+    const blob = new Blob([JSON.stringify(filteredBills.join(''))], {
+      type: 'text/html',
+    });
+    const clipboardItem = new window.ClipboardItem({ 'text/html': blob });
+    navigator.clipboard.write([clipboardItem]).then(() => {
+      alert.show('Copy to clipboard was successful');
+    });
+  };
+
   return (
     <Layout full>
       <div className="bg-white p-5 w-full box-border">
+        <div className="p-2">
+          <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
+        </div>
+        <div>
+          <span>Total Undelivered: {undelivered().length}</span>
+        </div>
         <table className="p-2 border-2 box-border w-full" {...getTableProps()}>
           <thead>
             {
