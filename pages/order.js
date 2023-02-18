@@ -18,6 +18,7 @@ import moment from 'moment';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { MAX_RIBS } from '../common/staticConfigs';
 import { uiState } from '../states/uiState';
+import { event } from 'nextjs-google-analytics';
 
 Amplify.configure({ ...awsExports, ssr: false });
 
@@ -36,9 +37,9 @@ const OrderPage = () => {
   const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
-    if (process?.env?.ENV === 'prod') {
-      window.gtag('event', 'screen_view', { screen_name: 'Orders' });
-    }
+    event('orders_page', {
+      category: 'Orders',
+    });
     const fetchProducts = async () => {
       const response = await API.graphql({
         query: listProductsWithAvailability,

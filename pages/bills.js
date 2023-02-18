@@ -7,6 +7,7 @@ import { useTable } from 'react-table';
 import moment from 'moment';
 import Button from '../components/Button/Button';
 import { useAlert } from 'react-alert';
+import { event } from 'nextjs-google-analytics';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -69,6 +70,10 @@ const Bills = () => {
     tableInstance;
 
   useEffect(() => {
+    event('bills', {
+      category: 'Bills',
+    });
+
     const listBillAPI = async () => {
       const bill = await API.graphql({
         query: listBillsWithDelivery,

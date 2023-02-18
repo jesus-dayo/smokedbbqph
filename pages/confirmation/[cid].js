@@ -9,7 +9,7 @@ import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
 import Image from 'next/image';
-import { G_TRACKING_ID } from '../_app';
+import { event } from 'nextjs-google-analytics';
 import ContactUs from '../../sections/contact-us/ContactUs';
 
 Amplify.configure({ ...awsExports, ssr: true });
@@ -22,9 +22,9 @@ const Confirmation = () => {
   const [discountPercentage, setDiscountPercentage] = useState();
 
   useEffect(() => {
-    if (process?.env?.ENV === 'prod') {
-      window.gtag('event', 'screen_view', { screen_name: 'Confirmation' });
-    }
+    event('confirmation', {
+      category: 'Confirmation',
+    });
     const getBillAPI = async () => {
       const bill = await API.graphql({
         query: getBillWithAvail,

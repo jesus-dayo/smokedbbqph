@@ -3,6 +3,7 @@ import { makeServer } from '../mock/server';
 import '../styles/globals.css';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 makeServer(process.env.NEXT_PUBLIC_ENV);
 
@@ -21,6 +22,7 @@ function App({ Component, pageProps }) {
     <>
       <RecoilRoot>
         <AlertProvider template={AlertTemplate} {...options}>
+          <GoogleAnalytics trackPageViews gaMeasurementId="G-H21XR297LE" />
           <Component {...pageProps} />
         </AlertProvider>
       </RecoilRoot>

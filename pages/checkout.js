@@ -31,6 +31,7 @@ import { productState } from '../states/product';
 import { PENDING } from '../common/status';
 import { CITY } from '../common/city';
 import useMaxOrders from '../hooks/useMaxOrders';
+import { event } from 'nextjs-google-analytics';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -54,9 +55,9 @@ const Checkout = () => {
   const max = useMaxOrders(schedule?.id);
 
   useEffect(() => {
-    if (process?.env?.ENV === 'prod') {
-      window.gtag('event', 'screen_view', { screen_name: 'Checkout' });
-    }
+    event('checkout_page', {
+      category: 'Checkout',
+    });
     const getConfigAPI = async () => {
       const config = await API.graphql({
         query: getConfig,
