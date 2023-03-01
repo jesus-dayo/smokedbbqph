@@ -179,7 +179,7 @@ const OrderPage = () => {
       </div>
       <div className="p-2 mb-10">
         {/* sm:grid-cols-4 md:grid-cols-4 */}
-        <div className="grid grid-cols-1 wide:grid-cols-2 portrait:grid-cols-2 sm:grid-cols-4 md:grid-cols-4  md:w-full lg:grid-cols-4 xl:grid-cols-4 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  md:w-full lg:grid-cols-4 xl:grid-cols-4 justify-evenly md:justify-start bg-gradient-to-r from-[#706f6f] to-[#888] p-3 gap-2">
           {filteredProducts.map((item) => (
             <Card
               key={`item-${item.name}`}
