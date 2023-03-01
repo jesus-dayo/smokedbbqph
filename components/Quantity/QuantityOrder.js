@@ -54,7 +54,7 @@ const QuantityOrder = ({
     >
       {!notAvail && (
         <div className="flex flex-row justify-around w-full">
-          <div className="w-8 md:w-8 flex justify-center text-white">
+          <div className="w-8 h-10 md:w-8 flex justify-center text-white">
             {!disabled && (
               <MinusSmIcon
                 onClick={onMinus}
@@ -78,7 +78,7 @@ const QuantityOrder = ({
               className="w-14 h-full text-center border-t-2 border-b-2 border-black"
             />
           </div>
-          <div className="w-8 md:w-8 flex justify-center text-white">
+          <div className="w-8 h-10 md:w-8 flex justify-center text-white">
             {!disabled && (
               <PlusSmIcon
                 onClick={onAdd}
