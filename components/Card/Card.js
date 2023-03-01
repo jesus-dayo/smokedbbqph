@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import Quantity from '../Quantity/Quantity';
 import { convertToPHP } from '../../utils/util';
 import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
@@ -7,6 +6,7 @@ import { MAX_RIBS } from '../../common/staticConfigs';
 import Button from '../Button/Button';
 import Modal from 'react-modal';
 import { useState } from 'react';
+import QuantityOrder from '../Quantity/QuantityOrder';
 
 const customStyles = {
   content: {
@@ -115,7 +115,7 @@ const Card = ({
           />
         )}
       </div>
-      <div className="text-sm md:text-xs lg:text-xs xl:text-sm p-2 h-48">
+      <div className="text-sm md:text-sm lg:text-xs xl:text-sm p-2 h-40 sm:h-44 md:h-56">
         {description}
         <div className="text-center p-2">
           {reheat && (
@@ -123,15 +123,18 @@ const Card = ({
           )}
         </div>
       </div>
-      <div className="text-md text-center opacity-80 p-2">
+      <div className="text-md text-center opacity-80 p-4">
         <p className="bg-slate-200 text-black ring-offset-2 ring-2">
           <strong>
             Price:{' '}
-            <span className="text-green-600"> {convertToPHP(price)}</span>
+            <span className="text-green-900 text-lg ">
+              {' '}
+              {convertToPHP(price)}
+            </span>
             <div
               data-cy={`test-${label}-quantity-avail-id`}
               className={
-                'h-6 text-center text-sm md:text-sm text-orange-400 font-semibold'
+                'h-6 text-center text-sm md:text-sm text-orange-900 font-semibold animate-pulse'
               }
             >
               {availableQuantity !== 0 &&
@@ -141,8 +144,8 @@ const Card = ({
           </strong>
         </p>
       </div>
-      <div className="p-1 flex items-center justify-center">
-        <Quantity
+      <div className="p-2 flex items-center justify-center">
+        <QuantityOrder
           value={order.quantity}
           onAdd={handleAddQuantity}
           onMinus={handleMinusQuantity}

@@ -17,31 +17,31 @@ const CheckoutButton = ({ onClick, inProgress }) => {
     <div
       data-cy={'test-checkout-id'}
       onClick={handleClick}
-      className={` text-white text-sm w-80 rounded-lg ring-2 ring-black ${
+      className={` text-white text-sm w-70 rounded-lg ring-2 ring-black ${
         inProgress
           ? 'cursor-wait bg-gradient-to-r from-[#aaa8a8ee] to-[#aaa7a7]'
           : 'cursor-pointer bg-gradient-to-r from-[#706f6f] to-[#888]'
       }`}
     >
-      <div className="flex justify-evenly">
-        <div className="p-2 flex relative">
-          <ShoppingCartIcon height={40} className="md:h-8" />
+      <div className="flex justify-evenly h-12">
+        <div className="p-3 flex relative">
+          <ShoppingCartIcon height={25} className="md:h-8" />
           <div
             data-cy={'test-checkout-quantity-id'}
-            className="rounded-full bg-red-500 absolute left-9 pb-4 h-5 md:left-7 md:h-4 md:w-4 w-6 text-md md:text-sm text-center"
+            className="rounded-full bg-red-500 absolute left-6 pb-2 h-5 md:left-7 md:h-4 md:w-4 w-6 text-md md:text-sm text-center"
           >
             {orders.reduce((prev, curr) => prev + curr.quantity, 0)}
           </div>
         </div>
         <div
           data-cy={'test-checkout-total-id'}
-          className="pl-2 pt-4 md:pl-4 md:pt-2 text-lg flex-grow"
+          className="pl-2 pt-3 md:pl-4 md:pt-2 text-lg flex-grow"
         >
           {convertToPHP(
             orders.reduce((prev, curr) => prev + curr.price * curr.quantity, 0)
           )}
         </div>
-        <div className="pl-2 pt-4 md:text-lg text-xl md:pl-4 md:pt-2">
+        <div className="pl-2 pt-3 md:text-lg text-xl md:pl-4 md:pt-2">
           CHECKOUT
         </div>
         <div className="pl-1 pt-2 text-xl md:text-lg md:pl-2 md:pt-1">

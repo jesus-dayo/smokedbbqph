@@ -201,7 +201,7 @@ const OrderPage = () => {
         </div>
       </div>
       {orders.length > 0 && (
-        <div className="pt-1 pb-4 fixed -bottom-0 right-7 animate-bounce">
+        <div className="pt-1 pb-1 fixed -bottom-0 right-7 animate-bounce">
           <CheckoutButton
             onClick={routeToCheckoutPage}
             inProgress={inProgress}
