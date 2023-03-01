@@ -114,14 +114,12 @@ const Card = ({
             style={{ maxWidth: '100%', height: 'auto' }}
           />
         )}
+        <div className="text-center top-2 left-1/2 absolute animate-pulse">
+          {reheat && <Button onClick={displayReheat}>How To Reheat</Button>}
+        </div>
       </div>
       <div className="text-sm md:text-sm lg:text-xs xl:text-sm p-2 h-40 sm:h-44 md:h-56">
         {description}
-        <div className="text-center p-2">
-          {reheat && (
-            <Button onClick={displayReheat}>Heating Instructions</Button>
-          )}
-        </div>
       </div>
       <div className="text-md text-center opacity-80 p-4">
         <p className="bg-slate-200 text-black ring-offset-2 ring-2">
