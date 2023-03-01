@@ -124,9 +124,20 @@ const Card = ({
         </div>
       </div>
       <div className="text-md text-center opacity-80 p-2">
-        <p className="bg-green-600 text-white ring-offset-2 ring-2">
+        <p className="bg-slate-200 text-black ring-offset-2 ring-2">
           <strong>
-            Today's Price: <strikethrough>{convertToPHP(price)}</strikethrough>
+            Price:{' '}
+            <span className="text-green-600"> {convertToPHP(price)}</span>
+            <div
+              data-cy={`test-${label}-quantity-avail-id`}
+              className={
+                'h-6 text-center text-sm md:text-sm text-orange-400 font-semibold'
+              }
+            >
+              {availableQuantity !== 0 &&
+                (isFrozen || max !== MAX_RIBS) &&
+                `${availableQuantity} left`}
+            </div>
           </strong>
         </p>
       </div>
@@ -139,16 +150,6 @@ const Card = ({
           notAvail={availableQuantity === 0 || (!isFrozen && max === MAX_RIBS)}
           isLoading={isQuantityLoading}
         />
-      </div>
-      <div
-        data-cy={`test-${label}-quantity-avail-id`}
-        className={
-          'h-6 text-center text-lg md:text-sm text-red-400 font-semibold'
-        }
-      >
-        {availableQuantity !== 0 &&
-          (isFrozen || max !== MAX_RIBS) &&
-          `${availableQuantity} left`}
       </div>
     </div>
   );
