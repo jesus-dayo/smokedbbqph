@@ -8,6 +8,8 @@ import awsExports from '../../../src/aws-exports';
 import Button from '../../Button/Button';
 import { listProducts, listRanges } from '../../../src/graphql/queries';
 import { createAvailability } from '../../../src/graphql/mutations';
+import moment from 'moment';
+import { DAYS } from '../../../utils/util';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -27,6 +29,7 @@ const AddAvailabilityModal = ({ modalIsOpen, setIsOpen, reload }) => {
   const [avail, setAvail] = useState({});
   const [products, setProducts] = useState([]);
   const [range, setRange] = useState([]);
+  const [selectDays, setSelectDays] = useState([]);
 
   const save = async () => {
     await API.graphql({
@@ -88,6 +91,19 @@ const AddAvailabilityModal = ({ modalIsOpen, setIsOpen, reload }) => {
   useEffect(() => {
     listAllProducts();
     listAllRange();
+    const displayDates = [];
+    displayDates.push({ label: '', value: '' });
+    const date = new Date();
+    for (let i = 0; i < 30; i++) {
+      const newDay = moment(date).add(i, 'days');
+      const day = DAYS[newDay.day()];
+      const formatedStr = newDay.format('DD MMM YYYY');
+      displayDates.push({
+        label: `${formatedStr} - ${day}`,
+        value: formatedStr,
+      });
+    }
+    setSelectDays(displayDates);
   }, []);
 
   const closeModal = () => {
@@ -109,7 +125,6 @@ const AddAvailabilityModal = ({ modalIsOpen, setIsOpen, reload }) => {
       'availabilityRangeId',
     ].some((property) => !avail[property]);
   };
-
   return (
     <div>
       <Modal
@@ -142,16 +157,16 @@ const AddAvailabilityModal = ({ modalIsOpen, setIsOpen, reload }) => {
               onChange={(e) => handleChange(e, 'productAvailabilityId')}
               required
             />
-            <FormInput
-              name={'Date'}
+            <SelectInput
               label="Date"
-              placeholder="String Date in 07 Oct 2022 format"
               value={avail.date}
+              options={selectDays}
+              placeholder="String Date in 07 Oct 2022 format"
               validationError={'date is a required field'}
               onChange={(e) => handleChange(e, 'date')}
-              maxLength={50}
               required
             />
+
             <FormInput
               name={'Quantity'}
               label="Quantity"

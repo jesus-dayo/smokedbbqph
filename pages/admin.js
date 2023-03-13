@@ -6,6 +6,8 @@ import Button from '../components/Button/Button';
 import Bill from '../components/Bill/Bill';
 import { useState } from 'react';
 import Availability from '../components/Availability/Availability';
+import { HomeIcon } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -57,6 +59,7 @@ const components = {
 
 const Admin = () => {
   const [display, setDisplay] = useState('default');
+  const router = useRouter();
 
   const choices = {
     availability: <Availability />,
@@ -68,6 +71,10 @@ const Admin = () => {
     setDisplay(route);
   };
 
+  const routeToHomePage = () => {
+    router.push('/');
+  };
+
   return (
     <Authenticator
       formFields={formFields}
@@ -77,7 +84,16 @@ const Admin = () => {
       {({ signOut, user }) => (
         <div className="flex flex-col">
           <div className="flex bg-white">
-            <div className="grow" />
+            <div className="text-center">
+              <div
+                onClick={routeToHomePage}
+                className="cursor-pointer flex flex-col justify-center"
+              >
+                <HomeIcon className="h-6 md:h-10" />
+                <div className="text-center">Home</div>
+              </div>
+            </div>
+            <div className="grow"></div>
             <div className="p-2">
               <h2>Hello {user.attributes.email}</h2>
             </div>
