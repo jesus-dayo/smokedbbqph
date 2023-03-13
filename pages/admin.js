@@ -5,6 +5,7 @@ import '@aws-amplify/ui-react/styles.css';
 import Button from '../components/Button/Button';
 import Bill from '../components/Bill/Bill';
 import { useState } from 'react';
+import Availability from '../components/Availability/Availability';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -58,8 +59,9 @@ const Admin = () => {
   const [display, setDisplay] = useState('default');
 
   const choices = {
+    availability: <Availability />,
     bills: <Bill />,
-    default: <div>hello</div>,
+    default: <Bill />,
   };
 
   const changeDisplay = (route) => {
@@ -85,12 +87,18 @@ const Admin = () => {
           </div>
           <div className="bg-slate-200">
             <div className="h-screen">
-              <div className="flex p-2">
+              <div className="flex p-2 gap-2">
                 <div
                   onClick={() => changeDisplay('bills')}
                   className="p-2 bg-zinc-800 text-white rounded-lg h-20 w-32 cursor-pointer text-center align-middle"
                 >
                   <h2 className="text-2xl">Bills</h2>
+                </div>
+                <div
+                  onClick={() => changeDisplay('availability')}
+                  className="p-2 bg-zinc-800 text-white rounded-lg h-20 w-32 cursor-pointer text-center align-middle"
+                >
+                  <h2 className="text-2xl">Availability</h2>
                 </div>
               </div>
               <div className="bg-black h-2"></div>

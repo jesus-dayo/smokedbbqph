@@ -43,6 +43,34 @@ export const listProductsWithAvailability = /* GraphQL */ `
   }
 `;
 
+export const listAvailabilityProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        availability {
+          items {
+            id
+            date
+            quantity
+            range {
+              id
+              start
+              end
+            }
+          }
+        }
+      }
+      nextToken
+    }
+  }
+`;
+
 export const getBillWithAvail = /* GraphQL */ `
   query GetBill($id: ID!) {
     getBill(id: $id) {
