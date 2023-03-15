@@ -1,10 +1,11 @@
 import Section from '../components/Section/Section';
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';
 import { useEffect, useState } from 'react';
 import ContactUs from '../sections/contact-us/ContactUs';
+import { event } from 'nextjs-google-analytics';
 
 const HomePage = () => {
   const router = useRouter();
@@ -18,6 +19,10 @@ const HomePage = () => {
 
   const routeToOrderPage = () => {
     setInProgressOrder(true);
+    event('go_to_order', {
+      category: 'Home',
+      label: 'Client Pressed Order',
+    });
     router.push('/order');
   };
 
@@ -29,9 +34,13 @@ const HomePage = () => {
             <Image
               src={'/pork_ribs.webp'}
               alt="pork_ribs"
-              layout="fill"
-              objectFit="cover"
               className={'-z-10'}
+              fill
+              priority
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
             />
             <div className="p-4 w-full flex gap-9 justify-between md:justify-around md:p-5">
               <div className="p-5 md:p-14 bg-slate-200 opacity-70">
@@ -73,6 +82,10 @@ const HomePage = () => {
                   alt="charcoal_wood"
                   height={'400'}
                   width={'700'}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </div>
             </div>
@@ -83,6 +96,10 @@ const HomePage = () => {
                   alt="sliced_beef_brisket"
                   height={'400'}
                   width={'700'}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
                 <p className="text-xs font-serif md:text-2xl">
                   The <strong>taste and the tenderness of the meat</strong> will

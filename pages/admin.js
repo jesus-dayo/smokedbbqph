@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Availability from '../components/Availability/Availability';
 import { HomeIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
+import Pictures from '../components/Pictures/Pictures';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -62,6 +63,7 @@ const Admin = () => {
   const router = useRouter();
 
   const choices = {
+    picture: <Pictures />,
     availability: <Availability />,
     bills: <Bill />,
     default: <Bill />,
@@ -115,6 +117,12 @@ const Admin = () => {
                   className="p-2 bg-zinc-800 text-white rounded-lg h-20 w-32 cursor-pointer text-center align-middle"
                 >
                   <h2 className="text-2xl">Availability</h2>
+                </div>
+                <div
+                  onClick={() => changeDisplay('picture')}
+                  className="p-2 bg-zinc-800 text-white rounded-lg h-20 w-32 cursor-pointer text-center align-middle"
+                >
+                  <h2 className="text-2xl">Pictures</h2>
                 </div>
               </div>
               <div className="bg-black h-2"></div>

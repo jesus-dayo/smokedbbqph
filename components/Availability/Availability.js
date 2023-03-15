@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { useTable } from 'react-table';
-import { useAlert } from 'react-alert';
 import { event } from 'nextjs-google-analytics';
 import '@aws-amplify/ui-react/styles.css';
 import { listAvailabilityProducts } from '../../src/graphql/custom_queries';

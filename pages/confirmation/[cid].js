@@ -8,7 +8,7 @@ import { getConfig, getDiscountCode } from '../../src/graphql/queries';
 import { Amplify, API } from 'aws-amplify';
 import awsExports from '../../src/aws-exports';
 import { getBillWithAvail } from '../../src/graphql/custom_queries';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { event } from 'nextjs-google-analytics';
 import ContactUs from '../../sections/contact-us/ContactUs';
 
@@ -94,9 +94,11 @@ const Confirmation = () => {
                     <Image
                       src={'/qr_code.jpeg'}
                       alt={'qr-code'}
-                      objectFit="fill"
-                      layout="fill"
-                    />
+                      fill
+                      sizes="100vw"
+                      style={{
+                        objectFit: "fill"
+                      }} />
                   </div>
                 )}
               </div>

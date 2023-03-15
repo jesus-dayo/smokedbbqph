@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { convertToPHP } from '../../utils/util';
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
 import { MAX_RIBS } from '../../common/staticConfigs';
 import Button from '../Button/Button';
@@ -104,18 +104,12 @@ const Card = ({
       <div className="text-lg lg:text-sm xl:text-sm pl-1 pr-1 h-6">
         <strong>{label}</strong>
       </div>
-      <div className="p-1 border-2 w-full  relative">
-        {imgSrc && (
-          <Image
-            src={imgSrc}
-            alt={label}
-            width={1000}
-            height={1000}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
-        )}
-        <div className="text-center top-2 left-1/2 absolute animate-pulse">
-          {reheat && <Button onClick={displayReheat}>How To Reheat</Button>}
+      <div className="p-1 border-2">
+        <div className="w-auto h-96 relative">
+          {imgSrc && <Image src={imgSrc} alt={label} priority fill />}
+          <div className="text-center top-2 left-1/2 absolute animate-pulse">
+            {reheat && <Button onClick={displayReheat}>How To Reheat</Button>}
+          </div>
         </div>
       </div>
       <div className="text-sm md:text-sm lg:text-xs xl:text-sm p-2 h-40 sm:h-44 md:h-56">

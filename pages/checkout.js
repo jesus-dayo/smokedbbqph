@@ -55,9 +55,6 @@ const Checkout = () => {
   const max = useMaxOrders(schedule?.id);
 
   useEffect(() => {
-    event('checkout_page', {
-      category: 'Checkout',
-    });
     const getConfigAPI = async () => {
       const config = await API.graphql({
         query: getConfig,
@@ -91,6 +88,10 @@ const Checkout = () => {
   };
 
   const handleSubmitOrders = async () => {
+    event('go_confirmation', {
+      category: 'Checkout',
+      label: 'Client Successfully Ordered',
+    });
     setCheckoutInProgress(true);
     const billNumber = generateBillNumber();
     const clientResponse = await API.graphql({

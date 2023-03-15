@@ -37,9 +37,6 @@ const OrderPage = () => {
   const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
-    event('orders_page', {
-      category: 'Orders',
-    });
     const fetchProducts = async () => {
       const response = await API.graphql({
         query: listProductsWithAvailability,
@@ -97,6 +94,10 @@ const OrderPage = () => {
       return;
     }
     if (orders?.length) {
+      event('go_to_checkout', {
+        category: 'Order',
+        label: 'Client pressed Checkout',
+      });
       router.push('/checkout');
     }
   };

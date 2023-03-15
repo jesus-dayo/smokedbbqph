@@ -13,6 +13,7 @@ const FormInput = ({
   required,
   type = 'text',
   disabled,
+  value,
 }) => {
   return (
     <div
@@ -34,6 +35,7 @@ const FormInput = ({
           data-cy={`test-${testId}-input`}
           maxLength={maxLength}
           disabled={disabled}
+          value={value}
         />
         {error && <div className="text-red-500 text-sm">{validationError}</div>}
       </div>
@@ -52,6 +54,7 @@ FormInput.propTypes = {
   maxLength: PropTypes.number,
   required: PropTypes.bool,
   type: PropTypes.string,
+  value: PropTypes.any,
 };
 
 export default FormInput;

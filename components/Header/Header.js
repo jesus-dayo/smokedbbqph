@@ -1,5 +1,5 @@
 import { HomeIcon, ShoppingCartIcon } from '@heroicons/react/outline';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
@@ -32,7 +32,10 @@ const Header = () => {
             alt="logo"
             width={100}
             height={100}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
         <div className="flex md:items-center md:justify-center">
           <div className="pl-6">

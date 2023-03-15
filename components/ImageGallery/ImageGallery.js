@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
@@ -13,7 +13,10 @@ const ImageGallery = ({ images }) => {
             alt={image.name}
             width={700}
             height={600}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
           <p className="text-white text-center align-middle">{image.title}</p>
         </div>
       ))}
