@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRecoilState } from 'recoil';
 import { paymentOptionState } from '../../states/paymentOption';
 import FormContainer from '../FormContainer/FormContainer';

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { convertToPHP } from '../../utils/util';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import useOrders from '../../hooks/useOrders';
 import { MAX_RIBS } from '../../common/staticConfigs';
 import Button from '../Button/Button';

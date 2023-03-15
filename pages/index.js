@@ -1,5 +1,5 @@
 import Section from '../components/Section/Section';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Button from '../components/Button/Button';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout';

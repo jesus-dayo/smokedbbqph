@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
 import { convertToPHP } from '../../utils/util';
 import Quantity from '../Quantity/Quantity';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import useOrders from '../../hooks/useOrders';
 import Button from '../Button/Button';
 import { ArrowCircleUpIcon } from '@heroicons/react/outline';

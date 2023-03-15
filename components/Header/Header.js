@@ -1,5 +1,5 @@
 import { HomeIcon, ShoppingCartIcon } from '@heroicons/react/outline';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRouter } from 'next/router';
 import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
