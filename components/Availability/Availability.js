@@ -72,7 +72,6 @@ const Availability = () => {
       },
     });
     const items = availabilities?.data?.listProducts?.items || [];
-    console.log('availabilities', availabilities);
     setAvailabilities(items);
   };
 

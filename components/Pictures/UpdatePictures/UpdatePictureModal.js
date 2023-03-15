@@ -54,7 +54,6 @@ const UpdatePictureModal = ({
   };
 
   const handleChange = (e, name) => {
-    console.log('e', e.target.value);
     const newPicture = { ...picture };
     newPicture[name] = e.target.value;
     setPicture(newPicture);
@@ -88,7 +87,7 @@ const UpdatePictureModal = ({
               value={picture.web}
               validationError={'web is a required field'}
               onChange={(e) => handleChange(e, 'web')}
-              maxLength={50}
+              maxLength={300}
               required
             />
             <FormInput
@@ -98,7 +97,7 @@ const UpdatePictureModal = ({
               value={picture.mobile}
               validationError={'mobile is a required field'}
               onChange={(e) => handleChange(e, 'mobile')}
-              maxLength={50}
+              maxLength={300}
               required
             />
           </div>

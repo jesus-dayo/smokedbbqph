@@ -32,7 +32,7 @@ const HomePage = () => {
         <Section>
           <div className="w-full h-64 md:h-96 p-4 md:p-10 m-0 block relative">
             <Image
-              src={'/pork_ribs.webp'}
+              src={'/pork_ribs-min.jpg'}
               alt="pork_ribs"
               className={'-z-10'}
               fill

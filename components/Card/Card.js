@@ -7,6 +7,7 @@ import Button from '../Button/Button';
 import Modal from 'react-modal';
 import { useState } from 'react';
 import QuantityOrder from '../Quantity/QuantityOrder';
+import { s3Loader } from '../../common/s3-loader';
 
 const customStyles = {
   content: {
@@ -106,7 +107,9 @@ const Card = ({
       </div>
       <div className="p-1 border-2">
         <div className="w-auto h-96 relative">
-          {imgSrc && <Image src={imgSrc} alt={label} priority fill />}
+          {imgSrc && (
+            <Image loader={s3Loader} src={imgSrc} alt={label} priority fill />
+          )}
           <div className="text-center top-2 left-1/2 absolute animate-pulse">
             {reheat && <Button onClick={displayReheat}>How To Reheat</Button>}
           </div>

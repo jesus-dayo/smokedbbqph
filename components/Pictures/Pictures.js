@@ -7,6 +7,7 @@ import { listProductPictures } from '../../src/graphql/custom_queries';
 import Button from '../Button/Button';
 import UpdatePictureModal from './UpdatePictures/UpdatePictureModal';
 import Image from 'next/image';
+import { s3Loader } from '../../common/s3-loader';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -16,7 +17,6 @@ const Pictures = () => {
   const [addOpen, setAddOpen] = useState(false);
 
   const updatePicture = (picture) => {
-    console.log('updatePicture', picture);
     setSelectedPicture(picture);
     setAddOpen(true);
   };
@@ -40,7 +40,13 @@ const Pictures = () => {
               <h3 className="font-bold">{value}</h3>
             </div>
             <div className="relative">
-              <Image src={value} width={200} height={500} alt={value} />
+              <Image
+                loader={s3Loader}
+                src={value}
+                width={200}
+                height={500}
+                alt={value}
+              />
             </div>
           </div>
         ),
@@ -54,7 +60,13 @@ const Pictures = () => {
               <h3 className="font-bold">{value}</h3>
             </div>
             <div className="relative">
-              <Image src={value} width={200} height={500} alt={value} />
+              <Image
+                loader={s3Loader}
+                src={value}
+                width={200}
+                height={500}
+                alt={value}
+              />
             </div>
           </div>
         ),

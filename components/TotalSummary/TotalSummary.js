@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { orderState } from '../../states/orders';
 import { convertToPHP } from '../../utils/util';
 import Quantity from '../Quantity/Quantity';
-import Image from "next/image";
+import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
 import Button from '../Button/Button';
 import { ArrowCircleUpIcon } from '@heroicons/react/outline';
@@ -11,6 +11,7 @@ import awsExports from '../../src/aws-exports';
 import { Amplify, API } from 'aws-amplify';
 import { getDiscountCode } from '../../src/graphql/queries';
 import moment from 'moment';
+import { s3Loader } from '../../common/s3-loader';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -35,23 +36,8 @@ const Row = ({
   });
   return (
     <tr key={order.label} className="border-t-cyan-700 border-2">
-      <td width={'20%'} className="p-2 hidden md:block">
-        {order.picture && (
-          <Image
-            src={order.picture}
-            alt={order.label}
-            width={100}
-            height={100}
-            layout={'fixed'}
-            style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
-        )}
-      </td>
       <td className="text-left">
         <div className="text-sm">{order.label}</div>
-        <div className="text-xs md:block hidden">{order.description}</div>
       </td>
       <td width={'10%'} className="text-center">
         <div>
@@ -214,7 +200,6 @@ const TotalSummary = ({
         <table border={2} className="table-auto md:table-fixed">
           <thead className="text-sm">
             <th className="text-left">Product</th>
-            <th className="text-left hidden md:block"></th>
             <th className="text-center">Quantity</th>
             <th className="text-right p-2">Price</th>
           </thead>
