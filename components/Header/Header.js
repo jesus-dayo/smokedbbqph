@@ -27,7 +27,12 @@ const Header = () => {
     <div className="bg-gray-700 flex justify-between shadow-md z-10">
       <div className="flex justify-start  h-10 md:h-20 p-2 text-slate-50 w-full">
         <div className="w-12 h-14 md:w-32 md:h-24 relative ">
-          <Image src={'/icon_trans_nobuf.png'} alt="logo" layout="fill" />
+          <Image
+            src={'/icon_trans_nobuf.png'}
+            alt="logo"
+            width={100}
+            height={100}
+          />
         </div>
         <div className="flex md:items-center md:justify-center">
           <div className="pl-6">

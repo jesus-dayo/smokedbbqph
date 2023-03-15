@@ -1,5 +1,8 @@
+import withBundledAnalyzer from '@next/bundle-analyzer';
+
 const nextConfig = {
   reactStrictMode: true,
+
   // images: {
   //   domains: ['placeimg.com', 'maps.gstatic.com'],
   // },
@@ -14,4 +17,10 @@ const nextConfig = {
   // },
 };
 
-export default nextConfig;
+export default withBundledAnalyzer(
+  {
+    enabled: process.env.ANALYZE === 'true',
+    openAnalyzer: false,
+  },
+  nextConfig
+);

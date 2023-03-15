@@ -3,11 +3,12 @@
   "dependencies": {
     "@aws-amplify/ui-react": "^3.5.1",
     "@heroicons/react": "^1.0.6",
+    "@next/bundle-analyzer": "^13.2.4",
     "aws-amplify": "^4.3.35",
     "currency-formatter": "^1.5.9",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
-    "next": "^12.1.6",
+    "next": "^13.2.4",
     "nextjs-google-analytics": "^2.3.0",
     "react": "^18.1.0",
     "react-alert": "^7.0.3",
