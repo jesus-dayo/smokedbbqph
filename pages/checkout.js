@@ -32,6 +32,7 @@ import { PENDING } from '../common/status';
 import { CITY } from '../common/city';
 import useMaxOrders from '../hooks/useMaxOrders';
 import { event } from 'nextjs-google-analytics';
+import { currentTotalState } from '../states/currentTotal';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -53,6 +54,7 @@ const Checkout = () => {
   const resetPaymentOption = useResetRecoilState(paymentOptionState);
   const [discountCode, setDiscountCode] = useState(null);
   const max = useMaxOrders(schedule?.id);
+  const totalAmountToCharge = useRecoilValue(currentTotalState);
 
   useEffect(() => {
     const getConfigAPI = async () => {
@@ -168,7 +170,7 @@ const Checkout = () => {
         },
       });
     });
-
+    console.log('totalAmountToCharge', totalAmountToCharge);
     const billInput = {
       id: billNumber,
       billClientId: clientResponse.data?.createClient?.id,
@@ -179,6 +181,8 @@ const Checkout = () => {
       shippingFee: getShippingFee(),
       email: personal.email,
       deliveryDate: schedule.date,
+      discountPercentage: totalAmountToCharge.discountPercentage,
+      totalAmount: totalAmountToCharge.totalAmount,
     };
 
     if (discountCode) {

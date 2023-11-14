@@ -210,6 +210,8 @@ export const listBillsWithDelivery = /* GraphQL */ `
         shippingFee
         email
         deliveryDate
+        discountPercentage
+        totalAmount
       }
       nextToken
     }

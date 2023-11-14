@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { orderState } from '../../states/orders';
 import { convertToPHP } from '../../utils/util';
 import Quantity from '../Quantity/Quantity';
@@ -6,12 +6,12 @@ import Image from 'next/image';
 import useOrders from '../../hooks/useOrders';
 import Button from '../Button/Button';
 import { ArrowCircleUpIcon } from '@heroicons/react/outline';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import awsExports from '../../src/aws-exports';
 import { Amplify, API } from 'aws-amplify';
 import { getDiscountCode } from '../../src/graphql/queries';
 import moment from 'moment';
-import { s3Loader } from '../../common/s3-loader';
+import { currentTotalState } from '../../states/currentTotal';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -68,11 +68,35 @@ const TotalSummary = ({
   setTotalDiscountCode,
   disabled,
 }) => {
+  const totalAmount = useRef(0);
   const orders = useRecoilValue(orderState);
+  const setTotalAmountToCharge = useSetRecoilState(currentTotalState);
   const [discountCodeInProgress, setDiscountCodeInProgress] = useState(false);
   const [discountCode, setDiscountCode] = useState();
   const [discountCodeApplied, setDiscountCodeApplied] = useState();
   const [discountPercentage, setDiscountPercentage] = useState();
+
+  const getTotal = () => {
+    let total = orders.reduce(
+      (prev, curr) => prev + curr.price * curr.quantity,
+      shippingFee
+    );
+    if (discountCodeApplied === SUCCESS) {
+      total = total - total * discountPercentage;
+    }
+    setTotalAmountToCharge({
+      totalAmount: total,
+      discountPercentage,
+    });
+    return total;
+  };
+
+  useEffect(() => {
+    totalAmount.current = getTotal();
+    return () => {
+      totalAmount.current = 0;
+    };
+  }, [orders, discountCodeApplied]);
 
   const handleDiscountCode = (e) => {
     setDiscountCode(e.target.value);
@@ -104,15 +128,8 @@ const TotalSummary = ({
     } else {
       setDiscountCodeApplied(INVALID);
     }
-
     setDiscountCodeInProgress(false);
   };
-
-  const getTotal = () =>
-    orders.reduce(
-      (prev, curr) => prev + curr.price * curr.quantity,
-      shippingFee
-    );
 
   return (
     <div className="p-1 h-full">
@@ -259,7 +276,7 @@ const TotalSummary = ({
                           : 'underline'
                       }`}
                     >
-                      {convertToPHP(getTotal())}
+                      {convertToPHP(totalAmount.current)}
                     </span>
                   </div>
                 </div>
@@ -268,7 +285,7 @@ const TotalSummary = ({
                     <div className="p-2 font-bold text-sm">Discount:</div>
                     <div className="p-2 text-sm">
                       <span className="font-bold underline">
-                        {convertToPHP(getTotal() * discountPercentage)}
+                        {convertToPHP(totalAmount.current)}
                       </span>
                     </div>
                   </div>
@@ -280,9 +297,7 @@ const TotalSummary = ({
                     </div>
                     <div className="p-2 text-sm">
                       <span className="font-bold underline">
-                        {convertToPHP(
-                          getTotal() - getTotal() * discountPercentage
-                        )}
+                        {convertToPHP(totalAmount.current)}
                       </span>
                     </div>
                   </div>

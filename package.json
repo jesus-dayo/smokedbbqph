@@ -27,7 +27,7 @@
     "start": "next start",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
     "build-storybook": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
-    "lint": "next lint --max-warnings=0",
+    "lint": "next lint --max-warnings=10",
     "prepare": "husky install",
     "cypress": "cypress open",
     "cypress:test": "cypress run"

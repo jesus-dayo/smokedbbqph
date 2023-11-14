@@ -9,6 +9,8 @@ import { useAlert } from 'react-alert';
 import { event } from 'nextjs-google-analytics';
 import '@aws-amplify/ui-react/styles.css';
 import { deleteBill } from '../../src/graphql/mutations';
+import { convertToPHP } from '../../utils/util';
+import { calculateTotal } from '../../common/calculate';
 
 Amplify.configure({ ...awsExports, ssr: true });
 
@@ -124,10 +126,23 @@ const Bill = () => {
   }, []);
 
   const undelivered = () => {
-    return bills.filter(
-      (bill) =>
-        moment().toDate() <= moment(bill.delivery?.date, 'DD MMM YYYY').toDate()
-    );
+    return bills
+      .filter(
+        (bill) =>
+          moment().subtract(1, 'days').toDate() <=
+          moment(bill.delivery?.date, 'DD MMM YYYY').toDate()
+      )
+      .sort((prev, next) => {
+        let prevDate = moment(prev.delivery?.date, 'DD MMM YYYY');
+        if (!prevDate.isValid()) {
+          prevDate = moment(prev.delivery?.date, 'D MMM YYYY');
+        }
+        let nextDate = moment(next.delivery?.date, 'DD MMM YYYY');
+        if (!nextDate.isValid()) {
+          nextDate = moment(next.delivery?.date, 'D MMM YYYY');
+        }
+        return prevDate.diff(nextDate);
+      });
   };
 
   const copyToClipboard = () => {
@@ -155,10 +170,51 @@ const Bill = () => {
     }
   };
 
+  const copyToClipboardForRider = () => {
+    const undeliveredDetails = undelivered().map((bill) => {
+      const addr = bill.address;
+      const del = bill.delivery;
+      const paymentOpt = bill.paymentOption;
+      const client = bill.client;
+      const city = addr.city.replace(/\(([^)]+)\)/, '').replace(/[()]/g, '');
+
+      const total = (totalAmount) => {
+        if (totalAmount !== undefined) {
+          return convertToPHP(totalAmount);
+        }
+        return convertToPHP(calculateTotal(bill));
+      };
+
+      return `(${del.date} ${del.time}) - ${
+        paymentOpt.option === 'cash' ? 'cash - ' + total() : 'GCASH'
+      } -> ${client.name} ${client.phoneNumber} -> ${addr.houseNo} ${
+        addr.street
+      } ${addr.barangay} ${city} ${addr.postalCode}`;
+    });
+
+    const blob = new Blob([JSON.stringify(undeliveredDetails.join('<br/>'))], {
+      type: 'text/html',
+    });
+    const clipboardItem = new window.ClipboardItem({ 'text/html': blob });
+    const isIOS = navigator.userAgent.match(/ipad|ipod|iphone/i);
+    if (isIOS) {
+      navigator.clipboard
+        .writeText(JSON.stringify(undeliveredDetails.join('<br/>')))
+        .then(() => {
+          alert.show('Copy to clipboard was successful');
+        });
+    } else {
+      navigator.clipboard.write([clipboardItem]).then(() => {
+        alert.show('Copy to clipboard was successful');
+      });
+    }
+  };
+
   return (
     <div className="w-full box-border">
-      <div className="p-2">
+      <div className="p-2 flex gap-2">
         <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
+        <Button onClick={copyToClipboardForRider}>Rider</Button>
       </div>
       <div>
         <span>Total Undelivered: {undelivered().length}</span>

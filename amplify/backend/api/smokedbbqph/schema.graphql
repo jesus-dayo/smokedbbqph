@@ -47,6 +47,8 @@ type Bill @model {
   shippingFee: Int
   email: String
   deliveryDate: String
+  discountPercentage: Float
+  totalAmount: Float
 }
 
 type Delivery @model {

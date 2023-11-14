@@ -300,14 +300,14 @@ mutation updateAvailability {
 
 
 mutation createDiscountCode {
-  createDiscountCode(input:{
-    id: "smokinholidays",
-    percentage: 0.08,
-    expiration: "31 Dec 2022"
-  }){
-    id
-    percentage
-  }
+    createDiscountCode(input:{
+      id: "smokinholidays",
+      percentage: 0.08,
+      expiration: "31 Dec 2022"
+    }){
+      id
+      percentage
+    }
 }
 
 
